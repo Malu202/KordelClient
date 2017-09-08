@@ -1,0 +1,15 @@
+{
+  "name": "kordel",
+  "version": "0.0.1",
+  "description": "Kordel WebApp Client",
+  "main": "index.js",
+  "dependencies": {
+    "material-components-web": "^0.17.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
