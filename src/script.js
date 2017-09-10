@@ -362,7 +362,7 @@ update = function () {
       }
       addPlaylistItems(status);
     });
-  });
+  });  
 }
 update();
 

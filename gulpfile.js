@@ -1,6 +1,6 @@
 var gulp = require('gulp');
 var sass = require('gulp-sass');
-var fileinclude = require('gulp-file-include');
+var include = require('gulp-include');
 /*
 gulp.task('default', function () {
     return gulp.src('style.scss')
@@ -19,16 +19,22 @@ gulp.task('css', function () {
 //         .pipe(gulp.dest(''));
 // });
 
-gulp.task('join', ['css'], function() {
+gulp.task('join', ['css'], function () {
     gulp.src('src/index.html')
-      .pipe(fileinclude({
-        prefix: '@@',
-        basepath: './src'
-      }))
-      .pipe(gulp.dest(''));
-  });
+        .pipe(include({
+            prefix: '@@',
+            basepath: './src'
+        }))
+        .pipe(gulp.dest(''));
+});
 
-gulp.task('default', ['join']);
+gulp.task('join2', ['css'], function(){
+    gulp.src("src/index.html")
+        .pipe(include({}))
+        .pipe(gulp.dest(""));
+});
+
+gulp.task('default', ['join2']);
 
 gulp.task('watch', function () {
     gulp.watch('src/*', ['default']);
