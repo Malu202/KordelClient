@@ -1,4 +1,4 @@
-
+//=include ../node_modules/material-components-web/dist/material-components-web.js
 window.mdc.autoInit();
 //TOOLS
 var getRequest = function (url, callback) {

@@ -1,12 +1,7 @@
 var gulp = require('gulp');
 var sass = require('gulp-sass');
 var include = require('gulp-include');
-/*
-gulp.task('default', function () {
-    return gulp.src('style.scss')
-        .pipe(sass({ outputStyle: 'compressed', includePaths: 'node_modules' }).on('error', sass.logError))
-        .pipe(gulp.dest(''));
-});*/
+var compiler = require('google-closure-compiler-js').gulp();
 
 gulp.task('css', function () {
     return gulp.src('src/style.scss')
@@ -14,28 +9,42 @@ gulp.task('css', function () {
         .pipe(gulp.dest(''));
 });
 
-// gulp.task('index', function () {
-//     return gulp.src('src/index.html')
-//         .pipe(gulp.dest(''));
-// });
-
 gulp.task('join', ['css'], function () {
-    gulp.src('src/index.html')
-        .pipe(include({
-            prefix: '@@',
-            basepath: './src'
-        }))
-        .pipe(gulp.dest(''));
-});
-
-gulp.task('join2', ['css'], function(){
-    gulp.src("src/index.html")
+    return gulp.src("src/index.html")
         .pipe(include({}))
         .pipe(gulp.dest(""));
 });
 
-gulp.task('default', ['join2']);
+gulp.task('default', ['join']);
 
-gulp.task('watch', function () {
-    gulp.watch('src/*', ['default']);
+gulp.task('watch', ['default'], function () {
+    return gulp.watch('src/*', ['default']);
+})
+
+gulp.task('distributehtml', function () {
+    return gulp.src('src/index.html')
+        .pipe(gulp.dest('./dist'));
+});
+
+gulp.task('distributecss', ['css'], function () {
+    return gulp.src('style.css')
+        .pipe(gulp.dest('./dist'));
+});
+
+gulp.task('distributejs', function () {
+    return gulp.src('src/script.js')
+        .pipe(include())
+        .pipe(compiler({
+            compilationLevel: 'WHITESPACE_ONLY',
+            // warningLevel: 'VERBOSE',
+            // outputWrapper: '(function(){\n%output%\n}).call(this)',
+            jsOutputFile: 'dist/script.js',
+            // createSourceMap: true,
+        }))
+        .pipe(gulp.dest(''));
+})
+gulp.task('distribute', ['distributejs', 'distributehtml', 'distributecss'], function () {
+    return gulp.src('dist/index.html')
+        .pipe(include())
+        .pipe(gulp.dest(''))
 })
