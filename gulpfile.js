@@ -37,7 +37,9 @@ gulp.task('distributecss', ['distributejs', 'distributehtml'], function () {
     return gulp.src('src/style.scss')
         .pipe(sass({ outputStyle: 'compressed', includePaths: 'node_modules' }).on('error', sass.logError))
         .pipe(purify(['dist/script.js', 'src/index.html'], {
-            minify: true
+            minify: true,
+            //rejected: true,
+            whitelist: [ '*:not*' ] //fix, weil purifycss alles mit :not entfernt
         }))
         .pipe(gulp.dest(''))
 });
