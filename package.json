@@ -10,6 +10,7 @@
     "google-closure-compiler-js": "^20170806.0.0",
     "gulp": "^3.9.1",
     "gulp-include": "^2.3.1",
+    "gulp-purifycss": "^0.2.0",
     "gulp-sass": "^3.1.0",
     "node-sass": "^4.5.3"
   },

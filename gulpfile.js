@@ -2,11 +2,18 @@ var gulp = require('gulp');
 var sass = require('gulp-sass');
 var include = require('gulp-include');
 var compiler = require('google-closure-compiler-js').gulp();
+var purify = require('gulp-purifycss');
 
 gulp.task('css', function () {
     return gulp.src('src/style.scss')
         .pipe(sass({ outputStyle: 'compressed', includePaths: 'node_modules' }).on('error', sass.logError))
         .pipe(gulp.dest(''));
+});
+
+gulp.task('removeCss', function () {
+    return gulp.src('style.css')
+        .pipe(purify(['dist/script.js', 'src/index.html']))
+        .pipe(gulp.dest('./dist/'));
 });
 
 gulp.task('join', ['css'], function () {
@@ -26,9 +33,13 @@ gulp.task('distributehtml', function () {
         .pipe(gulp.dest('./dist'));
 });
 
-gulp.task('distributecss', ['css'], function () {
-    return gulp.src('style.css')
-        .pipe(gulp.dest('./dist'));
+gulp.task('distributecss', ['distributejs', 'distributehtml'], function () {
+    return gulp.src('src/style.scss')
+        .pipe(sass({ outputStyle: 'compressed', includePaths: 'node_modules' }).on('error', sass.logError))
+        .pipe(purify(['dist/script.js', 'src/index.html'], {
+            minify: true
+        }))
+        .pipe(gulp.dest(''))
 });
 
 gulp.task('distributejs', function () {
@@ -43,7 +54,7 @@ gulp.task('distributejs', function () {
         }))
         .pipe(gulp.dest(''));
 })
-gulp.task('distribute', ['distributejs', 'distributehtml', 'distributecss'], function () {
+gulp.task('distribute', ['distributecss'], function () {
     return gulp.src('dist/index.html')
         .pipe(include())
         .pipe(gulp.dest(''))
