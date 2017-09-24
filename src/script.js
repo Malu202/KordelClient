@@ -1,5 +1,5 @@
 //=include ../node_modules/material-components-web/dist/material-components-web.js
-window.mdc.autoInit();
+mdc.autoInit();
 //TOOLS
 var getRequest = function (url, callback) {
   var xhr = new XMLHttpRequest();
@@ -38,7 +38,7 @@ var deleteRequest = function (url, jsondata, callback) {
   }
   http.send(JSON.stringify(jsondata));
 }
-content = document.getElementById("content");
+var content = document.getElementById("content");
 function showDialog(heading, body, cancel, accept, oncancel, onaccept) {
   var dialog = document.createElement("aside");
   dialog.className = "mdc-dialog";
@@ -79,7 +79,7 @@ function showDialog(heading, body, cancel, accept, oncancel, onaccept) {
   buttonCancel.appendChild(canceltext);
   buttonAccept.appendChild(accepttext);
   dialog.appendChild(backdrop);
-  var dialogjs = new mdc.dialog.MDCDialog(dialog);
+  var dialogjs = new window.mdc.dialog.MDCDialog(dialog);
   dialogjs.listen('MDCDialog:accept', onaccept);
   dialogjs.listen('MDCDialog:cancel', oncancel);
   dialogjs.show();
@@ -110,9 +110,9 @@ var serverip = "http://10.0.0.16:1337/";
 
 //RADIO
 
-musikTabBar = new mdc.tabs.MDCTabBar(document.querySelector('.mdc-tab-bar'));
-senderSubPage = document.getElementById("sender");
-playlistSubPage = document.getElementById("playlist");
+var musikTabBar = new mdc.tabs.MDCTabBar(document.querySelector('.mdc-tab-bar'));
+var senderSubPage = document.getElementById("sender");
+var playlistSubPage = document.getElementById("playlist");
 musikTabBar.listen('MDCTabBar:change', function ({ detail: tabs }) {
   var tabIndex = tabs.activeTabIndex;
   if (tabIndex == 0) {
@@ -125,7 +125,7 @@ musikTabBar.listen('MDCTabBar:change', function ({ detail: tabs }) {
   }
 });
 
-onOffAutoplay = document.getElementById("onOffAutoplay");
+var onOffAutoplay = document.getElementById("onOffAutoplay");
 onOffAutoplay.addEventListener("click", function () {
   var request = {};
   if (onOffAutoplay.checked) request.task = "Autoplayaktivieren";
@@ -137,7 +137,7 @@ onOffAutoplay.addEventListener("click", function () {
 
 
 var removedialog = new mdc.dialog.MDCDialog(document.querySelector('#removeRadiosenderDialog'));
-sender = document.getElementById("sender");
+var sender = document.getElementById("sender");
 var removeRadioBody = document.getElementById("removeRadioBody");
 
 var addRadio = function (name, nummer) {
@@ -199,9 +199,9 @@ var addRadio = function (name, nummer) {
 }
 
 removedialog.listen('MDCDialog:accept', function () {
-  removetext = removeRadioBody.childNodes[0].nodeValue;
-  sendername = (removetext.split('"'))[1];
-  request = {};
+  var removetext = removeRadioBody.childNodes[0].nodeValue;
+  var sendername = (removetext.split('"'))[1];
+  var request = {};
   request.name = sendername;
   deleteRequest(serverip + "Radiosender", request, function () {
   });
@@ -219,8 +219,8 @@ var radiosenderSpielen = function (name) {
 
 //Radiosender hinzufügen
 var dialog = new mdc.dialog.MDCDialog(document.querySelector('#addRadiosenderDialog'));
-radioname = document.getElementById("radioname");
-radiourl = document.getElementById("radiourl");
+var radioname = document.getElementById("radioname");
+var radiourl = document.getElementById("radiourl");
 
 dialog.listen('MDCDialog:accept', function () {
   console.log('accepted');
@@ -238,8 +238,8 @@ document.querySelector('#addRadioButton').addEventListener('click', function (ev
 })
 
 //PLAYLIST
-playlist = document.getElementById("playlist");
-addPlaylistItems = function (status) {
+var playlist = document.getElementById("playlist");
+function addPlaylistItems(status) {
   var songs = status.Playlist;
   if (songs != null) {
     for (var i = songs.length - 1; i >= 0; i--) {
@@ -254,7 +254,7 @@ addPlaylistItems = function (status) {
 //PLAYLISTCONTROL
 mdc.textfield.MDCTextfield.attachTo(document.querySelector('#songinput'));
 
-stop = function () {
+function stop() {
   var request = {};
   request.task = "Playerstoppen";
   postRequest(serverip + "todo", request, function (msg) {
@@ -262,7 +262,7 @@ stop = function () {
   });
 }
 
-playpausebuttonjs = new mdc.iconToggle.MDCIconToggle(document.getElementById("playpause"));
+var playpausebuttonjs = new mdc.iconToggle.MDCIconToggle(document.getElementById("playpause"));
 
 const playpausebutton = document.getElementById('playpause');
 playpausebutton.addEventListener('MDCIconToggle:change', ({ detail }) => {
@@ -288,8 +288,8 @@ document.addEventListener("keyup", function (event) {
   }
 })
 
-songinputlabel = document.getElementById("songinputlabel");
-song = document.getElementById('song');
+var songinputlabel = document.getElementById("songinputlabel");
+var song = document.getElementById('song');
 song.addEventListener("keyup", function (event) {
   var keyCode = event.which || event.keyCode || event.charCode;
   if (keyCode == ENTER_KEYCODE) {
@@ -297,7 +297,7 @@ song.addEventListener("keyup", function (event) {
   }
 });
 
-textinputs = document.getElementsByTagName("input");
+var textinputs = document.getElementsByTagName("input");
 for (var i = 0; i < textinputs.length; i++) {
   textinputs[i].addEventListener("keyup", function (event) {
     var keyCode = event.which || event.keyCode || event.charCode;
@@ -311,8 +311,8 @@ for (var i = 0; i < textinputs.length; i++) {
   });
 }
 
-videocheckbox = document.getElementById("video");
-nextCheckbox = document.getElementById("next");
+var videocheckbox = document.getElementById("video");
+var nextCheckbox = document.getElementById("next");
 function addtoPlaylist() {
   var request = {};
   if (videocheckbox.checked) request.task = "YoutubeVideostreamen";
@@ -332,7 +332,7 @@ function addtoPlaylist() {
 }
 
 //ONLOAD
-update = function () {
+function update() {
   //Radiosender abrufen
   getRequest(serverip + "radiosender", function (res) {
     var i = 0;
@@ -401,7 +401,7 @@ function showPage(pageid, button) {
 }
 showPage("musik");
 //GERÄTE
-onOffKordel = document.getElementById("onOffKordel");
+var onOffKordel = document.getElementById("onOffKordel");
 onOffKordel.addEventListener("click", function () {
   if (!onOffKordel.checked) {
     var request = {};

@@ -12,6 +12,7 @@
     "gulp-include": "^2.3.1",
     "gulp-purifycss": "^0.2.0",
     "gulp-sass": "^3.1.0",
+    "gulp-sourcemaps": "^2.6.1",
     "node-sass": "^4.5.3"
   },
   "scripts": {
