@@ -92,12 +92,7 @@ var drawer = new MDCTemporaryDrawer(drawerEl);
 document.querySelector('.menu').addEventListener('click', function () {
   drawer.open = true;
 });
-drawerEl.addEventListener('MDCTemporaryDrawer:open', function () {
-  console.log('Received MDCTemporaryDrawer:open');
-});
-drawerEl.addEventListener('MDCTemporaryDrawer:close', function () {
-  console.log('Received MDCTemporaryDrawer:close');
-});
+
 //TOOLBAR mdc-toolbar-fixed-adjust damit sich der adjust anpasst beim resizen
 window.addEventListener("resize", resize, true);
 
@@ -109,7 +104,6 @@ function resize() {
 var serverip = "http://10.0.0.16:1337/";
 
 //RADIO
-
 var musikTabBar = new mdc.tabs.MDCTabBar(document.querySelector('.mdc-tab-bar'));
 var senderSubPage = document.getElementById("sender");
 var playlistSubPage = document.getElementById("playlist");
@@ -368,6 +362,7 @@ update();
 
 var previousPageId = null;
 function showPage(pageid, button) {
+  drawer.open = false;
   //Elemente von alter page verstecken
   if (previousPageId != null) {
     var previousPageElements = document.getElementsByClassName(previousPageId);
