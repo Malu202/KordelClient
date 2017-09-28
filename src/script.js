@@ -356,7 +356,7 @@ function update() {
       }
       addPlaylistItems(status);
     });
-  });  
+  });
 }
 update();
 
@@ -417,3 +417,8 @@ onOffKordel.addEventListener("contextmenu", function (e) {
     e.preventDefault();
   }
 });
+
+function streamMedia(url) {
+  var request = { "task": "YoutubeVideostreamen", "url": url, "now": true };
+  window.alert("Nice one!" + "\n" + JSON.stringify(request));
+}
