@@ -420,5 +420,6 @@ onOffKordel.addEventListener("contextmenu", function (e) {
 
 function streamMedia(url) {
   var request = { "task": "YoutubeVideostreamen", "url": url, "now": true };
+  showDialog("Erfolg", JSON.stringify(request), null, "OK", function () { }, function () { });
   window.alert("Nice one!" + "\n" + JSON.stringify(request));
 }
