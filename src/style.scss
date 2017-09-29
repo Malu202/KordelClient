@@ -102,7 +102,10 @@ nav .mdc-permanent-drawer--selected, nav .mdc-permanent-drawer--selected .mdc-li
 //Toolbar und page übereinander (nur notwendig, weil bei height:100% auf den content
 //Scrollbalken entstehen weil zu den 100% noch mdc-toolbar-fixed-adjust hinzukommt):
 body{
-	display:flex;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display:flex;
 	flex-direction: column;
 }
 .mdc-toolbar{
@@ -111,6 +114,9 @@ body{
 //page enthält den permanenten Drawer und den content bereich nebeneinander 
 #page{
 	flex: 1 1 auto;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
 	display:flex;
 	flex-direction: row;
 	width: 100%;
@@ -152,6 +158,9 @@ body{
 //BOTTOMPANEL
 .bottompanel {
 	background-color: $toolbar-background;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
 	flex: 0 0 auto;
     z-index: 3;
 }
@@ -160,6 +169,9 @@ body{
     height: 800px;
 }
 .playercontrol {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
     flex: 0 0 auto;
     display: flex;
     flex-direction: row;
@@ -186,6 +198,9 @@ body{
     
 }
 #playlistpage {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
     display: flex;
     flex-direction: column;
     height: 100%;
@@ -198,6 +213,9 @@ body{
     display: none;
 }
 #playlistcontrol1 {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
     display: flex;
     flex-direction: row;
     align-items: baseline;
@@ -205,6 +223,9 @@ body{
     margin-right: 8px;
 }
 #playlistcontrol2 {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
     display: flex;
     flex-direction: row;
     align-items: flex-end;
@@ -230,6 +251,9 @@ body{
     flex: 1;
 }
 .music-info{
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
 	display:flex;
 	flex-direction: column;
 	align-items:center;
@@ -277,6 +301,9 @@ button i{
 //MUSIK
 
 #musik{
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
     display: flex;
 }
 #sender{
