@@ -158,9 +158,6 @@ body{
 //BOTTOMPANEL
 .bottompanel {
 	background-color: $toolbar-background;
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
 	flex: 0 0 auto;
     z-index: 3;
 }
@@ -172,8 +169,8 @@ body{
     display: -webkit-box;
     display: -webkit-flex;
     display: -ms-flexbox;
+	display: flex;
     flex: 0 0 auto;
-    display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
