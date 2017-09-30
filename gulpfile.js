@@ -4,6 +4,7 @@ var include = require('gulp-include');
 var compiler = require('google-closure-compiler-js').gulp();
 var purify = require('gulp-purifycss');
 const sourcemaps = require('gulp-sourcemaps');
+const autoprefixer = require('gulp-autoprefixer')
 
 gulp.task('css', function () {
     return gulp.src('src/style.scss')
@@ -37,6 +38,9 @@ gulp.task('distributehtml', function () {
 gulp.task('distributecss', ['distributejs', 'distributehtml'], function () {
     return gulp.src('src/style.scss')
         .pipe(sass({ outputStyle: 'compressed', includePaths: 'node_modules' }).on('error', sass.logError))
+        .pipe(autoprefixer({
+            browsers: ['last 2 versions', 'last 6 Android versions']
+        }))
         .pipe(purify(['dist/script.js', 'src/index.html'], {
             minify: true,
             //rejected: true,
