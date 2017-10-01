@@ -52,8 +52,7 @@ body{
 	margin:0;
 	height:100vh;
     min-height:100vh;
-    overflow:hidden;
-    box-sizing:content-box;
+    overflow:hidden!important;
     // position:fixed;
     // top:0
 }
