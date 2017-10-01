@@ -22,12 +22,12 @@
   <div class="mdc-toolbar mdc-toolbar--fixed">
     <div class="mdc-toolbar__row">
       <section class="mdc-toolbar__section mdc-toolbar__section--align-start">
-        <button class="menu material-icons mdc-toolbar__icon--menu">menu</button>
+        <button class="menu material-icons mdc-toolbar__icon--menu">&#xE5D2;</button>
         <span class="mdc-toolbar__title catalog-title">Kordel</span>
       </section>
       <section class="mdc-toolbar__section mdc-toolbar__section--align-end">
-        <button class="material-icons mdc-toolbar__icon" id="updateButton" onclick='android.update("https://github.com/Malu202/KordelClient/blob/master/index.html?raw=true");'>refresh</button>
-        <button class="material-icons mdc-toolbar__icon musik" id="addRadioButton">add</button>
+        <button class="material-icons mdc-toolbar__icon" id="updateButton" onclick='android.update("https://github.com/Malu202/KordelClient/blob/master/index.html?raw=true");'>&#xE5D5;</button>
+        <button class="material-icons mdc-toolbar__icon musik" id="addRadioButton">&#xE145;</button>
       </section>
     </div>
 
@@ -47,16 +47,16 @@
       <nav class="mdc-temporary-drawer__content mdc-list-group">
         <nav class="mdc-list">
           <a class="mdc-list-item musik" onclick='showPage("musik")'>
-            <i class="material-icons mdc-list-item__start-detail">music_note</i>Musik
+            <i class="material-icons mdc-list-item__start-detail">&#xE405;</i>Musik
+          </a>
+          <a class="mdc-list-item">
+            <i class="material-icons mdc-list-item__start-detail">&#xE54D</i>Filme
           </a>
           <a class="mdc-list-item" onclick=''>
-            <i class="material-icons mdc-list-item__start-detail">settings_remote</i>Fernbedienung
-          </a>
-          <a class="mdc-list-item" onclick=''>
-            <i class="material-icons mdc-list-item__start-detail">local_movies</i>Filme
+            <i class="material-icons mdc-list-item__start-detail">&#xE8C7;</i>Fernbedienung
           </a>
           <a class="mdc-list-item Geraete" onclick='showPage("Geraete")'>
-            <i class="material-icons mdc-list-item__start-detail">devices</i>Geräte
+                <i class="material-icons mdc-list-item__start-detail">&#xE1B1;</i>Geräte
           </a>
         </nav>
       </nav>
@@ -68,16 +68,16 @@
     <nav class="mdc-permanent-drawer">
       <nav class="mdc-list">
         <a class="mdc-list-item musik" onclick='showPage("musik")'>
-          <i class="material-icons mdc-list-item__start-detail">music_note</i>Musik
+          <i class="material-icons mdc-list-item__start-detail">&#xE405;</i>Musik
         </a>
         <a class="mdc-list-item">
-          <i class="material-icons mdc-list-item__start-detail">local_movies</i>Filme
+          <i class="material-icons mdc-list-item__start-detail">&#xE54D</i>Filme
         </a>
         <a class="mdc-list-item" onclick=''>
-          <i class="material-icons mdc-list-item__start-detail">settings_remote</i>Fernbedienung
+          <i class="material-icons mdc-list-item__start-detail">&#xE8C7;</i>Fernbedienung
         </a>
         <a class="mdc-list-item Geraete" onclick='showPage("Geraete")'>
-          <i class="material-icons mdc-list-item__start-detail">devices</i>Geräte
+          <i class="material-icons mdc-list-item__start-detail">&#xE1B1;</i>Geräte
         </a>
       </nav>
     </nav>
@@ -154,16 +154,16 @@
       <div id="Geraete" class="contentpage Geraete">
         <h4 class="mdc-primary-on-background">Geräte starten und herunterfahren</h4>
         <ul class="mdc-list">
-            <li class="mdc-list-item">
-              <div class="mdc-switch">
-                <!-- onchange="onOffKordel(this)"  -->
-                <input type="checkbox" id="onOffKordel" class="mdc-switch__native-control" checked/>
-                <div class="mdc-switch__background">
-                  <div class="mdc-switch__knob"></div>
-                </div>
+          <li class="mdc-list-item">
+            <div class="mdc-switch">
+              <!-- onchange="onOffKordel(this)"  -->
+              <input type="checkbox" id="onOffKordel" class="mdc-switch__native-control" checked/>
+              <div class="mdc-switch__background">
+                <div class="mdc-switch__knob"></div>
               </div>
-              <label class="geraetelabel">Kordel</label>
-            </li>
+            </div>
+            <label class="geraetelabel">Kordel</label>
+          </li>
         </ul>
       </div>
     </main>
@@ -212,7 +212,7 @@
         </label>
 
         <button class="mdc-button" id="addtoPlaylistButton" onclick="addtoPlaylist()">
-          <i class="material-icons">queue_music</i>
+          <i class="material-icons">&#xE03D;</i>
         </button>
       </div>
 
@@ -220,7 +220,7 @@
 
     <div class="playercontrol">
       <button class="mdc-button playerbutton" onclick="stop();">
-        <i class="material-icons">stop</i>
+        <i class="material-icons">&#xE047;</i>
       </button>
 
       <div class="music-info">
@@ -232,7 +232,8 @@
           <i class="material-icons">pause</i>
       </button> -->
 
-      <i class="mdc-icon-toggle material-icons playerbutton" id="playpause" role="button" aria-pressed="false" data-toggle-on='{"content": "play_arrow"}' data-toggle-off='{"content": "pause"}'>
+      <i class="mdc-icon-toggle material-icons playerbutton" id="playpause" role="button" aria-pressed="false" data-toggle-on='{"content": "&#xE037;"}'
+        data-toggle-off='{"content": "&#xE034;"}'>
         pause
       </i>
 
