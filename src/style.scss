@@ -163,6 +163,7 @@ body{
 	background-color: $toolbar-background;
 	flex: 0 0 auto;
     z-index: 3;
+    overflow: hidden!important;
 }
 
 .page-content {
