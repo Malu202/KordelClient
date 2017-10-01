@@ -39,7 +39,7 @@ gulp.task('distributecss', ['distributejs', 'distributehtml'], function () {
     return gulp.src('src/style.scss')
         .pipe(sass({ outputStyle: 'compressed', includePaths: 'node_modules' }).on('error', sass.logError))
         .pipe(autoprefixer({
-            browsers: ['last 2 versions', 'last 6 Android versions']
+            browsers: ['last 2 versions', 'android 4.4']
         }))
         .pipe(purify(['dist/script.js', 'src/index.html'], {
             minify: true,
