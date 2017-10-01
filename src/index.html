@@ -1,17 +1,19 @@
 <!doctype html>
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<!-- <link rel="stylesheet"href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css"> -->
-<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500">
-<!-- <link rel="stylesheet" href="style.css"> -->
-
-<meta name="viewport" content="initial-scale = 1.0, maximum-scale = 1.0, user-scalable = no, width = device-width, height = device-height">
-
 <head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- <link rel="stylesheet"href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css"> -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500">
+  <!-- <link rel="stylesheet" href="style.css"> -->
+
+  <meta name="viewport" content="initial-scale = 1.0, maximum-scale = 1.0, user-scalable = no, width = device-width, height = device-height">
+
+
   <title>Kordel</title>
   <meta charset="utf-8">
   <style>
+    /*nicht=include ../node_modules/normalize.css/normalize.css */
     /*=include ../style.css */
   </style>
 </head>
@@ -100,7 +102,7 @@
         </div>
       </div>
 
-      <aside id="addRadiosenderDialog" class="mdc-dialog" role="alertdialog">
+      <aside id="addRadiosenderDialog" class="mdc-dialog">
         <div class="mdc-dialog__surface">
           <header class="mdc-dialog__header">
             <h2 id="my-mdc-dialog-label" class="mdc-dialog__header__title">
@@ -130,7 +132,7 @@
         </div>
         <div class="mdc-dialog__backdrop"></div>
       </aside>
-      <aside id="removeRadiosenderDialog" class="mdc-dialog" role="alertdialog">
+      <aside id="removeRadiosenderDialog" class="mdc-dialog">
         <div class="mdc-dialog__surface">
           <header class="mdc-dialog__header">
             <h2 class="mdc-dialog__header__title">
@@ -150,8 +152,8 @@
 
       <!-- GERÄTE -->
       <div id="Geraete" class="contentpage Geraete">
+        <h4 class="mdc-primary-on-background">Geräte starten und herunterfahren</h4>
         <ul class="mdc-list">
-          <h4 class="mdc-primary-on-background">Geräte starten und herunterfahren</h2>
             <li class="mdc-list-item">
               <div class="mdc-switch">
                 <!-- onchange="onOffKordel(this)"  -->
@@ -206,7 +208,7 @@
       <div id="playlistcontrol2">
         <label class="mdc-textfield mdc-textfield--upgraded" id="songinput">
           <input type="text" class="mdc-textfield__input" id="song">
-          <span class="mdc-textfield__label" id="songinputlabel" for="song">Song eingeben</span>
+          <span class="mdc-textfield__label" id="songinputlabel">Song eingeben</span>
         </label>
 
         <button class="mdc-button" id="addtoPlaylistButton" onclick="addtoPlaylist()">
@@ -234,7 +236,7 @@
         pause
       </i>
 
-      <!-- <button class="mdl-button mdl-js-button mdl-button--icon playerbutton">
+      <!-- <button class="mdl-button mdl-js-button mdl-button-/-icon playerbutton">
         <i class="material-icons">pause</i>
       </button> -->
     </div>

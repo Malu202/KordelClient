@@ -51,7 +51,8 @@ body{
 	background: $hintergrund;
 	margin:0;
 	height:100vh;
-	min-height:100vh;
+    min-height:100vh;
+    overflow:hidden;
 }
 
 //TOOLBAR
