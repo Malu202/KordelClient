@@ -4,7 +4,7 @@ var include = require('gulp-include');
 var compiler = require('google-closure-compiler-js').gulp();
 var purify = require('gulp-purifycss');
 const sourcemaps = require('gulp-sourcemaps');
-const autoprefixer = require('gulp-autoprefixer')
+const autoprefixer = require('gulp-autoprefixer');
 
 gulp.task('css', function () {
     return gulp.src('src/style.scss')
