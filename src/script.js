@@ -362,7 +362,7 @@ update();
 
 var previousPageId = null;
 function showPage(pageid, button) {
-  drawer.open = false;
+  //drawer.open = false;
   //Elemente von alter page verstecken
   if (previousPageId != null) {
     var previousPageElements = document.getElementsByClassName(previousPageId);
@@ -435,5 +435,3 @@ window.onerror = function (msg, url, linenumber) {
 //   //dialogjs.show = false;
 //   //dialogjs.close();
 // }
-var fd = new mdc.dialog.MDCDialogFoundation();
-fd.enableScroll_();
