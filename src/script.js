@@ -92,7 +92,6 @@ var drawer = new MDCTemporaryDrawer(drawerEl);
 document.querySelector('.menu').addEventListener('click', function () {
   drawer.open = true;
 });
-drawer.open = false;
 
 //TOOLBAR mdc-toolbar-fixed-adjust damit sich der adjust anpasst beim resizen
 window.addEventListener("resize", resize, true);
@@ -131,9 +130,9 @@ onOffAutoplay.addEventListener("click", function () {
 
 
 
-// var removedialog = new mdc.dialog.MDCDialog(document.querySelector('#removeRadiosenderDialog'));
+var removedialog = new mdc.dialog.MDCDialog(document.querySelector('#removeRadiosenderDialog'));
 var sender = document.getElementById("sender");
-// var removeRadioBody = document.getElementById("removeRadioBody");
+var removeRadioBody = document.getElementById("removeRadioBody");
 
 var addRadio = function (name, nummer) {
   var formfield = document.createElement("div");
@@ -193,14 +192,14 @@ var addRadio = function (name, nummer) {
   })();
 }
 
-// removedialog.listen('MDCDialog:accept', function () {
-//   var removetext = removeRadioBody.childNodes[0].nodeValue;
-//   var sendername = (removetext.split('"'))[1];
-//   var request = {};
-//   request.name = sendername;
-//   deleteRequest(serverip + "Radiosender", request, function () {
-//   });
-// });
+removedialog.listen('MDCDialog:accept', function () {
+  var removetext = removeRadioBody.childNodes[0].nodeValue;
+  var sendername = (removetext.split('"'))[1];
+  var request = {};
+  request.name = sendername;
+  deleteRequest(serverip + "Radiosender", request, function () {
+  });
+});
 
 var radiosenderSpielen = function (name) {
   var request = {};
@@ -213,24 +212,24 @@ var radiosenderSpielen = function (name) {
 }
 
 //Radiosender hinzufügen
-//var dialog = new mdc.dialog.MDCDialog(document.querySelector('#addRadiosenderDialog'));
+var dialog = new mdc.dialog.MDCDialog(document.querySelector('#addRadiosenderDialog'));
 var radioname = document.getElementById("radioname");
 var radiourl = document.getElementById("radiourl");
 
-// dialog.listen('MDCDialog:accept', function () {
-//   console.log('accepted');
-//   var request = {};
-//   request.name = radioname.value;
-//   request.url = radioname.value;
-//   postRequest(serverip + "Radiosender", request, function () {
-//     console.log("Radiosender hinzugefügt");
-//   });
-// })
+dialog.listen('MDCDialog:accept', function () {
+  console.log('accepted');
+  var request = {};
+  request.name = radioname.value;
+  request.url = radioname.value;
+  postRequest(serverip + "Radiosender", request, function () {
+    console.log("Radiosender hinzugefügt");
+  });
+})
 
-// document.querySelector('#addRadioButton').addEventListener('click', function (evt) {
-//   //dialog.lastFocusedTarget = evt.target;
-//   dialog.show();
-// })
+document.querySelector('#addRadioButton').addEventListener('click', function (evt) {
+  //dialog.lastFocusedTarget = evt.target;
+  dialog.show();
+})
 
 //PLAYLIST
 var playlist = document.getElementById("playlist");
@@ -423,7 +422,15 @@ function streamMedia(url) {
   var request = { "task": "YoutubeVideostreamen", "url": url, "now": true };
 }
 
-window.onerror = function(msg, url, linenumber) {
+window.onerror = function (msg, url, linenumber) {
   showDialog("Error", msg + '\nURL: ' + url + '\nLine Number: ' + linenumber, null, "OK", null, null);
   return true;
+}
+
+var Dialogs = document.getElementsByClassName("mdc-dialog");
+for (var i = 0; i < Dialogs.length; i++) { 
+  console.log(Dialogs[i].id);
+  var dialogjs = new mdc.dialog.MDCDialog(Dialogs[i]);
+  dialogjs.show = false;
+  //dialogjs.close();
 }
