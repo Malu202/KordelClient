@@ -427,10 +427,13 @@ window.onerror = function (msg, url, linenumber) {
   return true;
 }
 
-var Dialogs = document.getElementsByClassName("mdc-dialog");
-for (var i = 0; i < Dialogs.length; i++) { 
-  console.log(Dialogs[i].id);
-  var dialogjs = new mdc.dialog.MDCDialog(Dialogs[i]);
-  dialogjs.show = false;
-  //dialogjs.close();
-}
+// var Dialogs = document.getElementsByClassName("mdc-dialog");
+// for (var i = 0; i < Dialogs.length; i++) { 
+//   console.log(Dialogs[i].id);
+//   var dialogjs = new mdc.dialog.MDCDialog(Dialogs[i]);
+//   dialogjs.enableScroll_();
+//   //dialogjs.show = false;
+//   //dialogjs.close();
+// }
+var fd = new mdc.dialog.MDCDialogFoundation();
+fd.enableScroll_();
