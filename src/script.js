@@ -362,7 +362,7 @@ update();
 
 var previousPageId = null;
 function showPage(pageid, button) {
-  //drawer.open = false;
+  drawer.open = false;
   //Elemente von alter page verstecken
   if (previousPageId != null) {
     var previousPageElements = document.getElementsByClassName(previousPageId);
