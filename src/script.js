@@ -260,7 +260,7 @@ function stop() {
 var playpausebuttonjs = new mdc.iconToggle.MDCIconToggle(document.getElementById("playpause"));
 
 const playpausebutton = document.getElementById('playpause');
-playpausebutton.addEventListener('MDCIconToggle:change', ( detail ) => {
+playpausebutton.addEventListener('MDCIconToggle:change', (detail) => {
   var request = {};
   if (detail.isOn) request.task = "Playerpausieren";
   else request.task = "Playerfortsetzen";
