@@ -107,8 +107,7 @@ var serverip = "http://10.0.0.16:1337/";
 var musikTabBar = new mdc.tabs.MDCTabBar(document.querySelector('.mdc-tab-bar'));
 var senderSubPage = document.getElementById("sender");
 var playlistSubPage = document.getElementById("playlist");
-musikTabBar.listen('MDCTabBar:change', function (/*{ detail: tabs }*/a) {
-  var tabs = a.detail;
+musikTabBar.listen('MDCTabBar:change', function ({ detail: tabs }) {
   var tabIndex = tabs.activeTabIndex;
   if (tabIndex == 0) {
     senderSubPage.style.display = "block";
@@ -260,7 +259,7 @@ function stop() {
 var playpausebuttonjs = new mdc.iconToggle.MDCIconToggle(document.getElementById("playpause"));
 
 const playpausebutton = document.getElementById('playpause');
-playpausebutton.addEventListener('MDCIconToggle:change', (detail) => {
+playpausebutton.addEventListener('MDCIconToggle:change', ({ detail }) => {
   var request = {};
   if (detail.isOn) request.task = "Playerpausieren";
   else request.task = "Playerfortsetzen";
