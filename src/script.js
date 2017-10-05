@@ -107,7 +107,8 @@ var serverip = "http://10.0.0.16:1337/";
 var musikTabBar = new mdc.tabs.MDCTabBar(document.querySelector('.mdc-tab-bar'));
 var senderSubPage = document.getElementById("sender");
 var playlistSubPage = document.getElementById("playlist");
-musikTabBar.listen('MDCTabBar:change', function ({ detail: tabs }) {
+musikTabBar.listen('MDCTabBar:change', function (/*{ detail: tabs }*/a) {
+  var tabs = a.detail;
   var tabIndex = tabs.activeTabIndex;
   if (tabIndex == 0) {
     senderSubPage.style.display = "block";
