@@ -64,8 +64,8 @@ gulp.task('distributejs', function () {
             // outputWrapper: '(function(){\n%output%\n}).call(this)',
             jsOutputFile: 'dist/script.js',
             //createSourceMap: true,
-            }))*/
-        .pipe(sourcemaps.write(''))
+            }))
+        .pipe(sourcemaps.write(''))*/
         .pipe(gulp.dest(''));
 })
 gulp.task('distribute', ['distributecss'], function () {
