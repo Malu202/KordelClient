@@ -55,7 +55,7 @@ gulp.task('distributejs', function () {
 
     return gulp.src('src/script.js')
         .pipe(include())
-        /*.pipe(compiler({
+        .pipe(compiler({
             compilationLevel: 'SIMPLE_OPTIMIZATIONS',
             warningLevel: 'QUIET',
             // externs: [
@@ -65,7 +65,7 @@ gulp.task('distributejs', function () {
             jsOutputFile: 'dist/script.js',
             //createSourceMap: true,
             }))
-        .pipe(sourcemaps.write(''))*/
+        .pipe(sourcemaps.write(''))
         .pipe(gulp.dest(''));
 })
 gulp.task('distribute', ['distributecss'], function () {
