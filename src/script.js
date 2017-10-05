@@ -426,13 +426,3 @@ window.onerror = function (msg, url, linenumber) {
   showDialog("Error", msg + '\nURL: ' + url + '\nLine Number: ' + linenumber, null, "OK", null, null);
   return true;
 }
-
- var Dialogs = document.getElementsByClassName("mdc-dialog-scroll-lock");
- for (var i = 0; i < Dialogs.length; i++) { 
-     console.log(Dialogs[i].id);
-     Dialogs[i].classList.remove("mdc-dialog-scroll-lock");
-//   var dialogjs = new mdc.dialog.MDCDialog(Dialogs[i]);
-//   dialogjs.enableScroll_();
-//   //dialogjs.show = false;
-//   //dialogjs.close();
-}
