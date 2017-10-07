@@ -387,7 +387,12 @@ function showPage(pageid, button) {
       pageElements[i].classList.add("mdc-permanent-drawer--selected");
     }
     else {
-      pageElements[i].style.display = "block";
+      if (pageElements[i].classList.contains("contentpage")) {
+        pageElements[i].style.display = "flex";
+
+      } else {
+        pageElements[i].style.display = "block";
+      }  
     }
   }
   //Toolbar platzhalter aktualisieren (tabs können hinzugekommen/verschwunden sein)

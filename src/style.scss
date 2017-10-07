@@ -136,6 +136,8 @@ body{
     //overflow-y: auto;
     overflow: auto;
     -webkit-overflow-scrolling: touch;
+    display:flex;
+    overflow: hidden;
 }
 //TABS
 .mdc-tab-bar{
@@ -297,6 +299,7 @@ button i{
 }
 .contentpage{
     display: none;
+    flex: 1 0 auto;
 }
 //GERÄTE
 .geraetelabel{
@@ -309,9 +312,11 @@ button i{
     display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
+    flex: 1 0 auto;
 }
 #sender{
     flex: 1 1 0;
+    overflow: auto;
 }
 #playlist{
     flex: 1 1 0;
