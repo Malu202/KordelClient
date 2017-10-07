@@ -5,6 +5,7 @@ var compiler = require('google-closure-compiler-js').gulp();
 var purify = require('gulp-purifycss');
 const sourcemaps = require('gulp-sourcemaps');
 const autoprefixer = require('gulp-autoprefixer');
+var htmlmin = require('gulp-htmlmin');
 
 gulp.task('css', function () {
     return gulp.src('src/style.scss')
@@ -32,6 +33,11 @@ gulp.task('watch', ['default'], function () {
 
 gulp.task('distributehtml', function () {
     return gulp.src('src/index.html')
+        .pipe(htmlmin({
+            collapseWhitespace: true,
+            conservativeCollapse: true,
+            removeComments: true,
+        }))
         .pipe(gulp.dest('./dist'));
 });
 
@@ -46,6 +52,7 @@ gulp.task('distributecss', ['distributejs', 'distributehtml'], function () {
             //rejected: true,
             whitelist: ['*:not*'] //fix, weil purifycss alles mit :not entfernt
         }))
+        .pipe(include())
         .pipe(gulp.dest(''))
 });
 
@@ -64,12 +71,12 @@ gulp.task('distributejs', function () {
             // outputWrapper: '(function(){\n%output%\n}).call(this)',
             jsOutputFile: 'dist/script.js',
             //createSourceMap: true,
-            }))
-        .pipe(sourcemaps.write(''))
+        }))
+        //.pipe(sourcemaps.write(''))
         .pipe(gulp.dest(''));
 })
 gulp.task('distribute', ['distributecss'], function () {
     return gulp.src('dist/index.html')
-        .pipe(include())
+        .pipe(include()).on('error', console.log)
         .pipe(gulp.dest(''))
 })
