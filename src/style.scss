@@ -112,7 +112,8 @@ body{
     display: -webkit-flex;
     display: -ms-flexbox;
     display:flex;
-	flex-direction: column;
+    flex-direction: column;
+    overflow: hidden;
 }
 .mdc-toolbar{
 	flex: 0 0 auto;
@@ -125,7 +126,8 @@ body{
     display: -ms-flexbox;
 	display:flex;
 	flex-direction: row;
-	width: 100%;
+    width: 100%;
+    overflow:hidden;
 }
 .mdc-permanent-drawer{
 	flex: 0 0 auto;
