@@ -379,9 +379,18 @@ function showPage(pageid, button) {
   }
   //Elemente von neuer page einblenden
   var pageElements = document.getElementsByClassName(pageid);
+  var tabindikator = document.getElementById("tabindikator");
+  var showtabs = (tabindikator.currentStyle ? tabindikator.currentStyle.display : getComputedStyle(tabindikator, null).display)=="block";
   for (var i = 0; i < pageElements.length; i++) {
     if (pageElements[i].classList.contains("tabs")) {
-      if (screen.width <= 480) pageElements[i].style.display = "block";
+      //if (screen.width <= 480) pageElements[i].style.display = "block";
+      //tabindikator (größe: 0) wird über mediaqueries ein/ausgeblendet als indikator ob tabs via javascript ein/ausgeblendet werden müssen
+      if (!showtabs) {
+        pageElements[i].style.display = "none";
+      }
+      else if (showtabs) {
+        pageElements[i].style.display = "block";
+      }
     }
     else if (pageElements[i].parentElement.parentElement.tagName.toLowerCase() == "nav") {
       pageElements[i].classList.add("mdc-permanent-drawer--selected");
@@ -392,7 +401,7 @@ function showPage(pageid, button) {
 
       } else {
         pageElements[i].style.display = "block";
-      }  
+      }
     }
   }
   //Toolbar platzhalter aktualisieren (tabs können hinzugekommen/verschwunden sein)

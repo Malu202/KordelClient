@@ -70,7 +70,7 @@ body{
 }
 
 //DRAWER
-@media only screen and (max-device-width: 800px) {
+@media only screen and (max-width: 800px) {
 	.mdc-permanent-drawer{
 		display: none !important;
     }
@@ -79,7 +79,7 @@ body{
         z-index: 4;
     }
 }
-@media only screen and (min-device-width: 801px) {
+@media only screen and (min-width: 801px) {
 	.mdc-temporary-drawer{
 		display: none !important;
 	}
@@ -328,17 +328,29 @@ button i{
 #playlist{
     flex: 1 1 0;
 }
-@media only screen and (max-device-width: 480px) {
+//tabindikator (größe: 0) wird über mediaqueries ein/ausgeblendet als indikator ob tabs via javascript ein/ausgeblendet werden müssen
+#tabindikator{
+    width: 0 !important;
+    height: 0 !important;
+    display: none;
+}
+@media only screen and (max-width: 480px) {
 	#playlist{
         display:none;
+    }    
+    #tabindikator{
+        display: block;
     }
 }
-@media only screen and (min-device-width: 481px) {
+@media only screen and (min-width: 481px) {
 	#playlist{
         display:block;
     }
     #sender{
         display:block;
+    }    
+    #tabindikator{
+        display: none;
     }
 }
 #playlist{
