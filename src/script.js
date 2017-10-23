@@ -433,7 +433,7 @@ onOffKordel.addEventListener("contextmenu", function (e) {
 });
 
 function streamMedia(url) {
-  var request = { "task": "YoutubeVideostreamen", "url": url, "now": true };
+  var request = { "task": "YoutubeVideostreamen", "url": url, "now": true, "autoplay": false};
   postRequest(serverip + "todo", request, function (msg) { });
 }
 
