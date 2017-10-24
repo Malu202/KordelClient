@@ -54,7 +54,7 @@
           <a class="mdc-list-item">
             <i class="material-icons mdc-list-item__start-detail">&#xE54D;</i>Filme
           </a>
-          <a class="mdc-list-item" onclick=''>
+          <a class="mdc-list-item fernbedienung" onclick='showPage("fernbedienung")'>
             <i class="material-icons mdc-list-item__start-detail">&#xE8C7;</i>Fernbedienung
           </a>
           <a class="mdc-list-item Geraete" onclick='showPage("Geraete")'>
@@ -75,7 +75,7 @@
         <a class="mdc-list-item">
           <i class="material-icons mdc-list-item__start-detail">&#xE54D;</i>Filme
         </a>
-        <a class="mdc-list-item" onclick=''>
+        <a class="mdc-list-item fernbedienung" onclick='showPage("fernbedienung")'>
           <i class="material-icons mdc-list-item__start-detail">&#xE8C7;</i>Fernbedienung
         </a>
         <a class="mdc-list-item Geraete" onclick='showPage("Geraete")'>
@@ -152,9 +152,15 @@
         <div class="mdc-dialog__backdrop"></div>
       </aside>
 
+      <!-- FERNBEDIENUNG -->
+      <div id="fernbedienung" class="contentpage fernbedienung">
+          <button id="fernsehen" class="mdc-button mdc-button--raised">
+              Fernsehen
+            </button>
+      </div>
+
       <!-- GERÄTE -->
       <div id="Geraete" class="contentpage Geraete">
-        <h4 class="mdc-primary-on-background">Geräte starten und herunterfahren</h4>
         <ul class="mdc-list">
           <li class="mdc-list-item">
             <div class="mdc-switch">
@@ -234,8 +240,7 @@
           <i class="material-icons">pause</i>
       </button> -->
 
-      <i class="mdc-icon-toggle material-icons playerbutton" id="playpause" role="button" aria-pressed="false" data-toggle-on='{"content": "&#xE037;"}'
-        data-toggle-off='{"content": "&#xE034;"}'>
+      <i class="mdc-icon-toggle material-icons playerbutton" id="playpause" role="button" aria-pressed="false" data-toggle-on='{"content": "&#xE037;"}' data-toggle-off='{"content": "&#xE034;"}'>
         pause
       </i>
 

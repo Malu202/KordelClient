@@ -245,6 +245,14 @@ function addPlaylistItems(status) {
     }
   }
 }
+//FERNBEDIENUNG
+var fernsehenButton = document.getElementById("fernsehen");
+fernsehenButton.addEventListener("click", function () {
+  var request = {};
+  request["task"] = "Fernsehen";
+  postRequest(serverip + "todo", request, function () { });
+});
+
 //PLAYLISTCONTROL
 mdc.textfield.MDCTextfield.attachTo(document.querySelector('#songinput'));
 
@@ -380,7 +388,7 @@ function showPage(pageid, button) {
   //Elemente von neuer page einblenden
   var pageElements = document.getElementsByClassName(pageid);
   var tabindikator = document.getElementById("tabindikator");
-  var showtabs = (tabindikator.currentStyle ? tabindikator.currentStyle.display : getComputedStyle(tabindikator, null).display)=="block";
+  var showtabs = (tabindikator.currentStyle ? tabindikator.currentStyle.display : getComputedStyle(tabindikator, null).display) == "block";
   for (var i = 0; i < pageElements.length; i++) {
     if (pageElements[i].classList.contains("tabs")) {
       //if (screen.width <= 480) pageElements[i].style.display = "block";
@@ -433,7 +441,7 @@ onOffKordel.addEventListener("contextmenu", function (e) {
 });
 
 function streamMedia(url) {
-  var request = { "task": "YoutubeVideostreamen", "url": url, "now": true, "autoplay": false};
+  var request = { "task": "YoutubeVideostreamen", "url": url, "now": true, "autoplay": false };
   postRequest(serverip + "todo", request, function (msg) { });
 }
 
