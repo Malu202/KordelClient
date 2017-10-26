@@ -254,7 +254,21 @@ fernsehenButton.addEventListener("click", function () {
 });
 
 //PLAYLISTCONTROL
-mdc.textfield.MDCTextfield.attachTo(document.querySelector('#songinput'));
+//mdc.textfield.MDCTextfield.attachTo(document.querySelector('#songinput'));
+
+var rewindButton = document.getElementById("rewindButton");
+//var skipForwardButton = document.getElementById("skipForwardButton");
+//var skipBackButton = document.getElementById("skipBackButton");
+var forwardButton = document.getElementById("forwardButton");
+
+rewindButton.addEventListener('click', function () {
+  var request = { "task": "Playerzurueckspulen" };
+  postRequest(serverip + "todo", request, function () { });
+});
+forwardButton.addEventListener('click', function () {
+  var request = { "task": "Playervorspulen" };
+  postRequest(serverip + "todo", request, function () { });
+});
 
 function stop() {
   var request = {};
@@ -290,7 +304,7 @@ document.addEventListener("keyup", function (event) {
   }
 })
 
-var songinputlabel = document.getElementById("songinputlabel");
+//var songinputlabel = document.getElementById("songinputlabel");
 var song = document.getElementById('song');
 song.addEventListener("keyup", function (event) {
   var keyCode = event.which || event.keyCode || event.charCode;
@@ -330,7 +344,7 @@ function addtoPlaylist() {
 
   song.value = "";
   //Fix, weil label (Song eingeben...) nicht wieder in die textbox geht, wenn man den button anklickt
-  songinputlabel.classList.remove('mdc-textfield__label--float-above');
+  //songinputlabel.classList.remove('mdc-textfield__label--float-above');
 }
 
 //ONLOAD
@@ -371,16 +385,16 @@ update();
 var previousPageId = null;
 function showPage(pageid, button) {
   drawer.open = false;
-  
+
   var tabindikator = document.getElementById("tabindikator");
   var showtabs = (tabindikator.currentStyle ? tabindikator.currentStyle.display : getComputedStyle(tabindikator, null).display) == "block";
-  
+
   //Elemente von alter page verstecken
   if (previousPageId != null) {
     var previousPageElements = document.getElementsByClassName(previousPageId);
     for (var i = 0; i < previousPageElements.length; i++) {
       if (previousPageElements[i].classList.contains("tabs")) {
-          previousPageElements[i].style.display = "none";
+        previousPageElements[i].style.display = "none";
       }
       else if (previousPageElements[i].parentElement.parentElement.tagName.toLowerCase() == "nav") {
         previousPageElements[i].classList.remove("mdc-permanent-drawer--selected");

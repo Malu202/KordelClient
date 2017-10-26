@@ -214,10 +214,14 @@
       </div>
 
       <div id="playlistcontrol2">
-        <label class="mdc-textfield mdc-textfield--upgraded" id="songinput">
+        <!-- <label class="mdc-textfield mdc-textfield--upgraded" id="songinput">
           <input type="text" class="mdc-textfield__input" id="song">
           <span class="mdc-textfield__label" id="songinputlabel">Song eingeben</span>
-        </label>
+        </label> -->
+        <div class="mdc-textfield" id="songinput">
+          <input type="text" class="mdc-textfield__input" id="song" placeholder="Song eingeben">
+        </div>
+    
 
         <button class="mdc-button" id="addtoPlaylistButton" onclick="addtoPlaylist()">
           <i class="material-icons">&#xE03D;</i>
@@ -226,14 +230,32 @@
 
     </div>
 
+
+
     <div class="playercontrol">
+      <button class="mdc-button playerbutton" id="rewindButton">
+        <i class="material-icons">&#xE020;</i>
+      </button>
+      <button class="mdc-button playerbutton" disabled id="skipForwardButton">
+        <i class="material-icons">&#xE045;</i>
+      </button>
+      <button class="mdc-button playerbutton" disabled id="skipBackButton">
+        <i class="material-icons">&#xE044;</i>
+      </button>
+      <button class="mdc-button playerbutton" id="forwardButton">
+        <i class="material-icons">&#xE01F;</i>
+      </button>
+    </div>
+    
+
+    <div id="basicPlayerControl" class="playercontrol">
       <button class="mdc-button playerbutton" onclick="stop();">
         <i class="material-icons">&#xE047;</i>
       </button>
 
       <div class="music-info">
-        <div class="mdl-typography--font-bold">Song</div>
-        <div>Interpret</div>
+        <div class="mdc-typography--body2">Song</div>
+        <div class="mdc-typography--body1">Interpret</div>
       </div>
 
       <!-- <button class="mdc-button playerbutton" onclick="playpause();" id="playpausebutton">
