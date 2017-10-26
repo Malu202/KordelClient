@@ -380,7 +380,7 @@ function showPage(pageid, button) {
     var previousPageElements = document.getElementsByClassName(previousPageId);
     for (var i = 0; i < previousPageElements.length; i++) {
       if (previousPageElements[i].classList.contains("tabs")) {
-          pageElements[i].style.display = "none";
+          previousPageElements[i].style.display = "none";
       }
       else if (previousPageElements[i].parentElement.parentElement.tagName.toLowerCase() == "nav") {
         previousPageElements[i].classList.remove("mdc-permanent-drawer--selected");
