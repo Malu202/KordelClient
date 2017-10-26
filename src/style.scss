@@ -190,19 +190,19 @@ body{
 }
 .playerbutton {
     //Mindestmaße, damit gleich wie icon toggle
-    // margin: 14px 0px 14px 0px;
-    // padding: 0px 0px;
-    margin: 21px 7px;
-    padding: 0px;
+    margin: 14px 0px 14px 0px;
+    padding: 0px 0px;
+    // margin: 21px 7px;
+    // padding: 0px;
     // margin: 26px 10px;
     // padding: 0px;
 }
 .playerbutton.mdc-icon-toggle {
     //Mindestmaße, damit gleich wie playerbutton        
-    // margin: 8px 8px 8px 8px;
-    // padding: 0px 16px;
-    margin: 15px;
+    margin: 8px 8px 8px 8px;
     padding: 0px 16px;
+    // margin: 15px;
+    // padding: 0px 16px;
     // margin: 20px;
     // padding: 0px 16px;
     
@@ -243,12 +243,15 @@ body{
     margin-right: 8px;
 }
 .playlistcontrolitem {
-    margin: 8px 16px 0px 0px;
+    margin: 0px 16px 0px 0px;
     flex: 0 0 auto;
 }
 #addtoPlaylistButton{
     margin: 0px 0px 0px 0px;
     padding: 0px;
+}
+#playlistcontrol .mdc-checkbox{
+    //padding: 0px;
 }
 #songinput {
     margin-left: 16px;
