@@ -371,12 +371,16 @@ update();
 var previousPageId = null;
 function showPage(pageid, button) {
   drawer.open = false;
+  
+  var tabindikator = document.getElementById("tabindikator");
+  var showtabs = (tabindikator.currentStyle ? tabindikator.currentStyle.display : getComputedStyle(tabindikator, null).display) == "block";
+  
   //Elemente von alter page verstecken
   if (previousPageId != null) {
     var previousPageElements = document.getElementsByClassName(previousPageId);
     for (var i = 0; i < previousPageElements.length; i++) {
       if (previousPageElements[i].classList.contains("tabs")) {
-        if (screen.width <= 480) previousPageElements[i].style.display = "none";
+          previousPageElements[i].style.display = "none";
       }
       else if (previousPageElements[i].parentElement.parentElement.tagName.toLowerCase() == "nav") {
         previousPageElements[i].classList.remove("mdc-permanent-drawer--selected");
@@ -387,16 +391,11 @@ function showPage(pageid, button) {
   }
   //Elemente von neuer page einblenden
   var pageElements = document.getElementsByClassName(pageid);
-  var tabindikator = document.getElementById("tabindikator");
-  var showtabs = (tabindikator.currentStyle ? tabindikator.currentStyle.display : getComputedStyle(tabindikator, null).display) == "block";
   for (var i = 0; i < pageElements.length; i++) {
     if (pageElements[i].classList.contains("tabs")) {
       //if (screen.width <= 480) pageElements[i].style.display = "block";
       //tabindikator (größe: 0) wird über mediaqueries ein/ausgeblendet als indikator ob tabs via javascript ein/ausgeblendet werden müssen
-      if (!showtabs) {
-        pageElements[i].style.display = "none";
-      }
-      else if (showtabs) {
+      if (showtabs) {
         pageElements[i].style.display = "block";
       }
     }
