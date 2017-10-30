@@ -175,7 +175,7 @@ body{
     z-index: 3;
     overflow: hidden!important;
 }
-
+$bottomPanelMaxWidth: 800px;
 .page-content {
     height: 800px;
 }
@@ -185,6 +185,8 @@ body{
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
+    max-width: $bottomPanelMaxWidth;
+    margin: auto;
 }
 .playerbutton {
     //Mindestmaße, damit gleich wie icon toggle und quadratisch
@@ -223,9 +225,10 @@ body{
     flex: 0 0 auto;
     display: none;
     flex-direction: column;
+    max-width:$bottomPanelMaxWidth;
+    margin: auto;
 }
 #playlistcontrol1 {
-    display: -webkit-box;
     display: flex;
     flex-direction: row;
     align-items: baseline;
