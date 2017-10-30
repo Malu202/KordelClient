@@ -5,8 +5,9 @@ $mdc-theme-accent: #81d4fa;
 $mdc-theme-background: #303030;*/
 
 $mdc-theme-primary: #fff;
-$mdc-theme-accent: #03a9f4;
-//$mdc-theme-accent: #9E9D24;
+$mdc-theme-secondary: #03a9f4;
+// $mdc-theme-accent: #03a9f4;
+// $mdc-theme-secondary: #9E9D24;
 $mdc-theme-background: #303030;
 
 $hintergrund: #303030;
@@ -23,7 +24,7 @@ $toolbar: #fff;
 @import "node_modules/@material/dialog/mdc-dialog";
 @import "node_modules/@material/drawer/mdc-drawer";
 //@import "node_modules/@material/elevation/mdc-elevation";
-//@import "node_modules/@material/fab/mdc-fab";
+@import "node_modules/@material/fab/mdc-fab";
 @import "node_modules/@material/form-field/mdc-form-field";
 //@import "node_modules/@material/grid-list/mdc-grid-list";
 @import "node_modules/@material/icon-toggle/mdc-icon-toggle";
@@ -83,7 +84,7 @@ body{
 	.mdc-temporary-drawer{
 		display: none !important;
 	}
-    .mdc-toolbar__icon--menu{
+    .mdc-toolbar__menu-icon{
 		display:none;
     }
 }
@@ -97,7 +98,7 @@ nav .mdc-list, nav .mdc-list-item__start-detail{
     color:$mdc-theme-primary !important;
 }
 nav .mdc-permanent-drawer--selected, nav .mdc-permanent-drawer--selected .mdc-list-item__start-detail{
-    color:$mdc-theme-accent !important;
+    color:$mdc-theme-secondary !important;
 }
 
 // .mdc-list-item__start-detail{
@@ -179,10 +180,7 @@ body{
     height: 800px;
 }
 .playercontrol {
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
-	display: flex;
+	display: none;
     flex: 0 0 auto;
     flex-direction: row;
     align-items: center;
@@ -194,13 +192,18 @@ body{
     // padding: 0px 0px;
     margin: 0px;
     padding: 0px 0px;
+    min-width: 0px;
+    min-height: 0px;
+    //margin:16px;
+    //height:48px;
+    width:48px;
 }
 .playerbutton.mdc-icon-toggle {
     //Mindestmaße, damit gleich wie playerbutton und quadratisch  
     // margin: 8px 8px 8px 8px;
     // padding: 0px 16px;
-    margin: 0px 8px 0px 8px;
-    padding: 0px 16px;
+    //height:36px;
+    //width:24px;
 }
 #basicPlayerControl{
     padding-bottom: 8px;
@@ -219,16 +222,15 @@ body{
 #playlistcontrol {
     flex: 0 0 auto;
     display: none;
+    flex-direction: column;
 }
 #playlistcontrol1 {
     display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
     display: flex;
     flex-direction: row;
     align-items: baseline;
-    margin-left: 8px;
-    margin-right: 8px;
+    // margin-left: 8px;
+    // margin-right: 8px;
 }
 #playlistcontrol2 {
     display: -webkit-box;
@@ -237,8 +239,8 @@ body{
     display: flex;
     flex-direction: row;
     align-items: flex-end;
-    margin-left: 8px;
-    margin-right: 8px;
+    // margin-left: 8px;
+    // margin-right: 8px;
 }
 .playlistcontrolitem {
     margin: 0px 16px 0px 0px;
@@ -271,20 +273,31 @@ button i{
 	// height:100%;
 	vertical-align: middle;
 }
+//BUTTONS
+.mdc-button--raised{
+    //background-color: #f00!important;
+    @include mdc-button-filled-accessible($toolbar-background);
+}
+//SECONDARY BUTTONS
+.mdc-button--secondary{
+    //background-color: #f00!important;
+    @include mdc-button-filled-accessible($mdc-theme-secondary);
+}
+
 //CHECKBOX
 .mdc-theme--dark .mdc-checkbox__native-control:checked:not(:disabled) ~ .mdc-checkbox__background,
 .mdc-theme--dark .mdc-checkbox__native-control:indeterminate:not(:disabled) ~ .mdc-checkbox__background {
-  background-color: $mdc-theme-accent;
-  border-color: $mdc-theme-accent;
+  background-color: $mdc-theme-secondary;
+  border-color: $mdc-theme-secondary;
 }
 .mdc-theme--dark .mdc-checkbox__background::before {
-  background-color: $mdc-theme-accent !important;
+  background-color: $mdc-theme-secondary !important;
 }
 .mdc-theme--dark .mdc-checkbox__checkmark__path {
   stroke: #262626 !important;
 }
 .mdc-theme--dark .mdc-checkbox__mixedmark {
-  background-color: $mdc-theme-accent !important;
+  background-color: $mdc-theme-secondary !important;
 }
 //DIALOG
 //FIX entfernt blaues rechteck um Button (Fokus)
@@ -303,13 +316,6 @@ button i{
     display: none;
     flex: 1 0 auto;
 }
-//GERÄTE
-.geraetelabel{
-    margin: 0px 0px 0px 16px;
-}
-#Geraete{
-    flex-direction: column;
-}
 //MUSIK
 
 #musik{
@@ -325,6 +331,49 @@ button i{
 }
 #playlist{
     flex: 1 1 0;
+}
+//FERNSEHER
+#fernseher{
+    flex-direction: row;
+    margin:14px 7px 14px 5px;
+    overflow:auto;
+    max-width: 555px;
+    max-height:700px;
+}
+.fernseherreihe{
+    margin-left: 7px;
+    margin-right: 7px;
+    flex: 1 1 0;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+.fernseherreihe *{
+    // margin-right: 14px;
+    // margin-bottom: 14px;
+    // margin:0px;
+    //min-width: 0px;
+    min-height: 28px;
+    flex: 1 1 0;
+}
+.fernseherfab{
+    min-height: 60px;
+}
+.fernseherzentriert{
+    align-self: center;
+    display: flex;
+    flex-direction: row;
+    align-items:center;
+}
+.fernseherfixedsize{
+    flex: 0 0 auto;
+}
+//GERÄTE
+.geraetelabel{
+    margin: 0px 0px 0px 16px;
+}
+#Geraete{
+    flex-direction: column;
 }
 //tabindikator (größe: 0) wird über mediaqueries ein/ausgeblendet als indikator ob tabs via javascript ein/ausgeblendet werden müssen
 #tabindikator{

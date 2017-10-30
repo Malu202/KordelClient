@@ -4,19 +4,19 @@
   "description": "Kordel WebApp Client",
   "main": "index.js",
   "dependencies": {
-    "material-components-web": "^0.17.0"
+    "material-components-web": "^0.23.0"
   },
   "devDependencies": {
-    "google-closure-compiler-js": "^20170806.0.0",
-    "gulp": "^3.9.1",
-    "gulp-autoprefixer": "^4.0.0",
+    "google-closure-compiler-js": "*",
+    "gulp": ">=3.9.1",
+    "gulp-autoprefixer": ">=4.0.0",
     "gulp-htmlmin": "^3.0.0",
     "gulp-include": "^2.3.1",
-    "gulp-purifycss": "^0.2.0",
+    "gulp-purifycss": ">=0.2.0",
     "gulp-sass": "^3.1.0",
     "gulp-sourcemaps": "^2.6.1",
-    "node-sass": "^4.5.3",
-    "normalize.css": "^7.0.0"
+    "node-sass": ">=4.5.3",
+    "normalize.css": ">=7.0.0"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
