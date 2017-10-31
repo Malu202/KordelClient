@@ -7,7 +7,7 @@
     "material-components-web": "^0.23.0"
   },
   "devDependencies": {
-    "google-closure-compiler-js": "*",
+    "google-closure-compiler-js": "^20170910.0.1",
     "gulp": ">=3.9.1",
     "gulp-autoprefixer": ">=4.0.0",
     "gulp-htmlmin": "^3.0.0",

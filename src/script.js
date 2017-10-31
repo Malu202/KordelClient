@@ -263,16 +263,16 @@ fernsehenButton.addEventListener("click", function () {
 });
 
 var hdmi1Button = document.getElementById("hdmi1");
-fernsehenButton.addEventListener("click", function () {
+hdmi1Button.addEventListener("click", function () {
   var request = {};
-  request["task"] = "hdmi1";
+  request["task"] = "HDMI1";
   postRequest(serverip + "todo", request, function () { });
 });
 
 var pcButton = document.getElementById("pc");
-fernsehenButton.addEventListener("click", function () {
+pcButton.addEventListener("click", function () {
   var request = {};
-  request["task"] = "pc";
+  request["task"] = "PCundTV";
   postRequest(serverip + "todo", request, function () { });
 });
 
