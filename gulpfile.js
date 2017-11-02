@@ -69,6 +69,11 @@ gulp.task('distributejs', function () {
             //     { 'src': "var exports;var module; var define;var mdc;" }
             // ],
             // outputWrapper: '(function(){\n%output%\n}).call(this)',
+            
+            // jsCode: [{ 'src': '/node_modules/**' }],
+            // moduleResolutionMode: "NODE",
+            // processCommonJsModules: true,            
+            
             jsOutputFile: 'dist/script.js',
             //createSourceMap: true,
         }))

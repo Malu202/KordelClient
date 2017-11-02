@@ -4,17 +4,17 @@
   "description": "Kordel WebApp Client",
   "main": "index.js",
   "dependencies": {
-    "material-components-web": "^0.23.0"
+    "material-components-web": ">=0.24.0"
   },
   "devDependencies": {
-    "google-closure-compiler-js": "^20170910.0.1",
+    "google-closure-compiler-js": ">=20170910.0.1",
     "gulp": ">=3.9.1",
     "gulp-autoprefixer": ">=4.0.0",
-    "gulp-htmlmin": "^3.0.0",
+    "gulp-htmlmin": ">=3.0.0",
     "gulp-include": "^2.3.1",
     "gulp-purifycss": ">=0.2.0",
-    "gulp-sass": "^3.1.0",
-    "gulp-sourcemaps": "^2.6.1",
+    "gulp-sass": ">=3.1.0",
+    "gulp-sourcemaps": ">=2.6.1",
     "node-sass": ">=4.5.3",
     "normalize.css": ">=7.0.0"
   },
