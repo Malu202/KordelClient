@@ -7,6 +7,7 @@ var getRequest = function (url, callback) {
   xhr.open("GET", url, true);
   xhr.addEventListener('load', function (event) {
     var json = JSON.parse(xhr.responseText);
+    update(json);
     callback(json);
   });
   xhr.send();
@@ -20,7 +21,9 @@ var postRequest = function (url, jsondata, callback) {
 
   http.onreadystatechange = function () {
     if (http.readyState == 4) {
-      callback(http.responseText);
+      var responseJSON = JSON.parse(http.responseText);
+      update(responseJSON);
+      callback(responseJSON);
     }
   }
   http.send(JSON.stringify(jsondata));
@@ -34,7 +37,9 @@ var deleteRequest = function (url, jsondata, callback) {
 
   http.onreadystatechange = function () {
     if (http.readyState == 4) {
-      callback(http.responseText);
+      var responseJSON = JSON.parse(http.responseText);
+      update(responseJSON);
+      callback(responseJSON);
     }
   }
   http.send(JSON.stringify(jsondata));
@@ -135,6 +140,12 @@ var removedialog = new mdc.dialog.MDCDialog(document.querySelector('#removeRadio
 var sender = document.getElementById("sender");
 var removeRadioBody = document.getElementById("removeRadioBody");
 
+
+function clearRadio() {
+  while (sender.firstChild) {
+    sender.removeChild(sender.firstChild);
+  }
+}
 var addRadio = function (name, nummer) {
   var formfield = document.createElement("div");
   formfield.className = "mdc-form-field";
@@ -186,7 +197,7 @@ var addRadio = function (name, nummer) {
   }, false);
 
   input.onclick = (function () {
-    var currentname = name;
+    //var currentname = name;
     return function () {
       radiosenderSpielen(name);
     };
@@ -208,7 +219,7 @@ var radiosenderSpielen = function (name) {
   request.name = name;
   console.log("abgesendeter request: " + JSON.stringify(request));
   postRequest(serverip + "todo", request, function (msg) {
-    console.log(msg)
+    checkRadio(name);
   });
 }
 
@@ -233,8 +244,12 @@ document.querySelector('#addRadioButton').addEventListener('click', function (ev
 })
 
 //PLAYLIST
-var playlist = document.getElementById("playlist");
+//var playlist = document.getElementById("playlist");
+var playlistSongs = document.getElementById("playlistSongs");
 function addPlaylistItems(status) {
+  while (playlistSongs.firstChild) {
+    playlistSongs.removeChild(playlistSongs.firstChild);
+  }
   var songs = status.Playlist;
   if (songs != null) {
     for (var i = songs.length - 1; i >= 0; i--) {
@@ -242,7 +257,7 @@ function addPlaylistItems(status) {
       var listitem = document.createElement("li");
       var node = document.createTextNode(songname);
       listitem.appendChild(node);
-      playlist.appendChild(listitem);
+      playlistSongs.appendChild(listitem);
     }
   }
 }
@@ -298,7 +313,7 @@ function stop() {
   var request = {};
   request.task = "Playerstoppen";
   postRequest(serverip + "todo", request, function (msg) {
-    console.log(msg);
+    checkRadio(null);
   });
 }
 
@@ -372,39 +387,89 @@ function addtoPlaylist() {
 }
 
 //ONLOAD
-function update() {
+// function update() {
+//   //Radiosender abrufen
+//   getRequest(serverip + "radiosender", function (res) {
+//     var i = 0;
+//     for (var sender in res) {
+//       addRadio(res[sender], i);
+//       i++;
+//     }
+//     //componentHandler.upgradeAllRegistered();
+//     //weil sonst manchmal kein mdl style auf den radio buttons ist...
+
+
+//     getRequest(serverip + "status", function (status) {
+//       //Bei wiedergabe pausebutton anzeigen und umgekehrt
+//       if (status.Pausiert == false) playpausebuttonjs.on = false;
+//       else playpausebuttonjs.on = true;
+//       //Spielenden Radio markieren
+//       if (status.task == "WebRadiospielen") {
+//         var senderliste = (document.getElementById("sender")).childNodes;
+//         for (var i = 0; i < senderliste.length; i++) {
+//           if (senderliste[i].childNodes[1] != undefined) {
+//             if ((senderliste[i].childNodes[1]).textContent == status.name) {
+//               (senderliste[i].childNodes[0]).firstChild.checked = true;
+//               break;
+//             }
+//           }
+//         }
+//       }
+//       addPlaylistItems(status);
+//     });
+//   });
+// }
+// update();
+
+function update(response) {
+  console.log("update")
   //Radiosender abrufen
-  getRequest(serverip + "radiosender", function (res) {
-    var i = 0;
-    for (var sender in res) {
-      addRadio(res[sender], i);
-      i++;
-    }
-    //componentHandler.upgradeAllRegistered();
-    //weil sonst manchmal kein mdl style auf den radio buttons ist...
+  var Senderliste = response.Radiosender;
+  var i = 0;
+  clearRadio();
+  for (var radiosender in Senderliste) {
+    addRadio(Senderliste[radiosender], i);
+    i++;
+  }
 
+  var status = response.Status;
+  if (status == undefined) status = {};
+  if (status.Pausiert == false) playpausebuttonjs.on = false;
+  else playpausebuttonjs.on = true;
 
-    getRequest(serverip + "status", function (status) {
-      //Bei wiedergabe pausebutton anzeigen und umgekehrt
-      if (status.Pausiert == false) playpausebuttonjs.on = false;
-      else playpausebuttonjs.on = true;
-      //Spielenden Radio markieren
-      if (status.task == "WebRadiospielen") {
-        var senderliste = (document.getElementById("sender")).childNodes;
-        for (var i = 0; i < senderliste.length; i++) {
-          if (senderliste[i].childNodes[1] != undefined) {
-            if ((senderliste[i].childNodes[1]).textContent == status.name) {
-              (senderliste[i].childNodes[0]).firstChild.checked = true;
-              break;
-            }
-          }
+  //Spielenden Radio markieren
+  if (status.task == "WebRadiospielen") {
+    checkRadio(status.name);
+  }
+  addPlaylistItems(status);
+
+}
+function checkRadio(name) {
+  //var senderliste = (document.getElementById("sender")).childNodes;/  
+  var senderliste = sender.childNodes;
+  if (name != null) {
+    for (var i = 0; i < senderliste.length; i++) {
+      if (senderliste[i].childNodes[1] != undefined) {
+        if ((senderliste[i].childNodes[1]).textContent == name) {
+          (senderliste[i].childNodes[0]).firstChild.checked = true;
+          break;
         }
       }
-      addPlaylistItems(status);
-    });
-  });
+    }
+  }
+  else {
+    for (var i = 0; i < senderliste.length; i++) {
+      if (senderliste[i].childNodes[1] != undefined) {
+        (senderliste[i].childNodes[0]).firstChild.checked = false;
+      }
+    }
+  }
 }
-update();
+getRequest(serverip + "Status", function () { });
+
+
+
+
 
 var previousPageId = null;
 function showPage(pageid, button) {
