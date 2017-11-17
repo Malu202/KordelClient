@@ -367,13 +367,13 @@ for (var i = 0; i < textinputs.length; i++) {
 }
 
 var videocheckbox = document.getElementById("video");
-var nextCheckbox = document.getElementById("next");
+var nowCheckbox = document.getElementById("now");
 function addtoPlaylist() {
   var request = {};
   if (videocheckbox.checked) request.task = "YoutubeVideostreamen";
   else request.task = "YoutubeAudiostreamen";
-  if (nextCheckbox.checked) request.next = true;
-  else request.next = false;
+  if (nowCheckbox.checked) request.now = true;
+  else request.now = false;
 
   request.name = song.value;
 
