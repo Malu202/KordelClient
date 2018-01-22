@@ -443,6 +443,10 @@ function update(response) {
   }
   addPlaylistItems(status);
 
+  //Geraete
+  console.log("onOffPc set to: " + status.PcOnline + " via update");
+  onOffPC.checked = status.PcOnline;
+
 }
 function checkRadio(name) {
   //var senderliste = (document.getElementById("sender")).childNodes;/  
@@ -542,13 +546,25 @@ onOffKordel.addEventListener("contextmenu", function (e) {
   }
 });
 
+
 var onOffPC = document.getElementById("onOffPc");
 onOffPC.addEventListener("click", function () {
-  console.log("A");
-  var request = {}
-  request.task = "PC-ONOFF";
-  postRequest(serverip + "todo", request, function (msg) { console.log(msg);});
- });
+  var request = {};
+  if (!onOffPC.checked) {
+    request.task = "turnOffPc";
+    postRequest(serverip + "todo", request, function (msg) {});
+  } else {
+    request.task = "turnOnPc";
+    postRequest(serverip + "todo", request, function (msg) {});
+  }
+});
+
+
+// onOffPC.addEventListener("click", function () {
+//   var request = {}
+//   request.task = "PC-ONOFF";
+//   postRequest(serverip + "todo", request, function (msg) { console.log(msg);});
+//  });
 
 function streamMedia(url) {
   var request = { "task": "YoutubeVideostreamen", "url": url, "now": true, "autoplay": false };
