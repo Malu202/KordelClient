@@ -92,7 +92,7 @@ function showDialog(heading, body, cancel, accept, oncancel, onaccept) {
 }
 
 //DRAWER
-var drawerEl = document.querySelector('.mdc-temporary-drawer');
+var drawerEl = document.querySelector('.mdc-drawer--temporary');
 var MDCTemporaryDrawer = mdc.drawer.MDCTemporaryDrawer;
 var drawer = new MDCTemporaryDrawer(drawerEl);
 document.querySelector('.menu').addEventListener('click', function () {
@@ -541,6 +541,14 @@ onOffKordel.addEventListener("contextmenu", function (e) {
     e.preventDefault();
   }
 });
+
+var onOffPC = document.getElementById("onOffPc");
+onOffPC.addEventListener("click", function () {
+  console.log("A");
+  var request = {}
+  request.task = "PC-ONOFF";
+  postRequest(serverip + "todo", request, function (msg) { console.log(msg);});
+ });
 
 function streamMedia(url) {
   var request = { "task": "YoutubeVideostreamen", "url": url, "now": true, "autoplay": false };

@@ -44,9 +44,9 @@
     </div>
   </div>
   <!--Für Handys nur ein Temporärer Drawer der über den Menübutton eingeblendet wird-->
-  <aside class="mdc-temporary-drawer">
-    <nav class="mdc-temporary-drawer__drawer">
-      <nav class="mdc-temporary-drawer__content mdc-list-group">
+  <aside class="mdc-drawer mdc-drawer--temporary">
+    <nav class="mdc-drawer__drawer">
+      <nav class="mdc-drawer__content mdc-list-group">
         <nav class="mdc-list">
           <a class="mdc-list-item musik" onclick='showPage("musik")'>
             <i class="material-icons mdc-list-item__start-detail">&#xE405;</i>Musik
@@ -67,7 +67,7 @@
   <!-- page enthält den permanenten Drawer und den content bereich nebeneinander -->
   <div id="page" class="mdc-toolbar-fixed-adjust mdc-typography mdc-theme--dark">
     <!--Für Tablets/PC Permanenter Drawer, da genug Platz ist-->
-    <nav class="mdc-permanent-drawer">
+    <nav class="mdc-drawer mdc-drawer--permanent">
       <nav class="mdc-list">
         <a class="mdc-list-item musik" onclick='showPage("musik")'>
           <i class="material-icons mdc-list-item__start-detail">&#xE405;</i>Musik
@@ -199,6 +199,7 @@
             </div>
             <label class="geraetelabel">Kordel</label>
           </li>
+          <button id="onOffPc" class="mdc-button mdc-button--raised">PC On/Off</button>
         </ul>
       </div>
     </main>

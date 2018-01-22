@@ -72,16 +72,16 @@ body{
 
 //DRAWER
 @media only screen and (max-width: 800px) {
-	.mdc-permanent-drawer{
+	.mdc-drawer--permanent {
 		display: none !important;
     }
     
-    .mdc-temporary-drawer{
+    .mdc-drawer--temporary{
         z-index: 4;
     }
 }
 @media only screen and (min-width: 801px) {
-	.mdc-temporary-drawer{
+	.mdc-drawer--temporary{
 		display: none !important;
 	}
     .mdc-toolbar__menu-icon{
