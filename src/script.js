@@ -136,7 +136,7 @@ onOffAutoplay.addEventListener("click", function () {
 
 
 
-var removedialog = new mdc.dialog.MDCDialog(document.querySelector('#removeRadiosenderDialog'));
+var removedialog = new mdc.dialog.MDCDialog(document.getElementById('removeRadiosenderDialog'));
 var sender = document.getElementById("sender");
 var removeRadioBody = document.getElementById("removeRadioBody");
 
