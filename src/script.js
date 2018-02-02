@@ -386,6 +386,9 @@ function addtoPlaylist() {
   //songinputlabel.classList.remove('mdc-textfield__label--float-above');
 }
 
+var songname = document.getElementById("song-name");
+
+
 //ONLOAD
 // function update() {
 //   //Radiosender abrufen
@@ -443,6 +446,10 @@ function update(response) {
   }
   addPlaylistItems(status);
 
+  //Laufendes Lied eintragen
+  if (status.name) songname.innerHTML = status.name;
+  else songname.innerHTML = "Song";
+    
   //Geraete
   console.log("onOffPc set to: " + status.PcOnline + " via update");
   onOffPC.checked = status.PcOnline;
