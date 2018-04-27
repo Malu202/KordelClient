@@ -107,7 +107,7 @@ function resize() {
   var toolbar = mdc.toolbar.MDCToolbar.attachTo(document.querySelector('.mdc-toolbar'));
   toolbar.fixedAdjustElement = document.querySelector('.mdc-toolbar-fixed-adjust');
 }
-var serverip = "http://10.0.0.16:1337/";
+var serverip = "http://10.0.0.40:1337/";
 
 //RADIO
 var musikTabBar = new mdc.tabs.MDCTabBar(document.querySelector('.mdc-tab-bar'));
