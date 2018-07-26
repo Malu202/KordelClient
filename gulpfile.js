@@ -7,29 +7,29 @@ const sourcemaps = require('gulp-sourcemaps');
 const autoprefixer = require('gulp-autoprefixer');
 var htmlmin = require('gulp-htmlmin');
 
-gulp.task('css', function () {
+gulp.task('css', function() {
     return gulp.src('src/style.scss')
         .pipe(sass({ outputStyle: 'compressed', includePaths: 'node_modules' }).on('error', sass.logError))
-        .pipe(gulp.dest(''));
+        .pipe(gulp.dest("./"));
 });
 
-gulp.task('removeCss', function () {
+gulp.task('removeCss', function() {
     return gulp.src('style.css')
         .pipe(purify(['dist/script.js', 'src/index.html']))
         .pipe(gulp.dest('./dist/'));
 });
 
-gulp.task('join', ['css'], function () {
+gulp.task('join', function() {
     return gulp.src("src/index.html")
         .pipe(include({}))
-        .pipe(gulp.dest(""));
+        .pipe(gulp.dest("./"));
 });
 
-gulp.task('default', ['join']);
+gulp.task('default', gulp.series('css', 'join'));
 
-gulp.task('watch', ['default'], function () {
+gulp.task('watch', gulp.series('default' , function () {
     return gulp.watch('src/*', ['default']);
-})
+}));
 
 gulp.task('distributehtml', function () {
     return gulp.src('src/index.html')
@@ -39,21 +39,6 @@ gulp.task('distributehtml', function () {
             removeComments: true,
         }))
         .pipe(gulp.dest('./dist'));
-});
-
-gulp.task('distributecss', ['distributejs', 'distributehtml'], function () {
-    return gulp.src('src/style.scss')
-        .pipe(sass({ outputStyle: 'compressed', includePaths: 'node_modules' }).on('error', sass.logError))
-        .pipe(autoprefixer({
-            browsers: ['last 2 versions', 'android 4.4']
-        }))
-        .pipe(purify(['dist/script.js', 'src/index.html'], {
-            minify: true,
-            //rejected: true,
-            whitelist: ['*:not*'] //fix, weil purifycss alles mit :not entfernt
-        }))
-        .pipe(include())
-        .pipe(gulp.dest(''))
 });
 
 gulp.task('distributejs', function () {
@@ -78,10 +63,27 @@ gulp.task('distributejs', function () {
             //createSourceMap: true,
         }))
         //.pipe(sourcemaps.write(''))
-        .pipe(gulp.dest(''));
+        .pipe(gulp.dest('./'));
 })
-gulp.task('distribute', ['distributecss'], function () {
+
+
+gulp.task('distributecss', gulp.series(gulp.parallel('distributejs', 'distributehtml'), function () {
+    return gulp.src('src/style.scss')
+        .pipe(sass({ outputStyle: 'compressed', includePaths: 'node_modules' }).on('error', sass.logError))
+        .pipe(autoprefixer({
+            browsers: ['last 2 versions', 'android 4.4']
+        }))
+        .pipe(purify(['dist/script.js', 'src/index.html'], {
+            minify: true,
+            //rejected: true,
+            whitelist: ['*:not*'] //fix, weil purifycss alles mit :not entfernt
+        }))
+        .pipe(include())
+        .pipe(gulp.dest('./'))
+}));
+
+gulp.task('distribute', gulp.series('distributecss', function () {
     return gulp.src('dist/index.html')
         .pipe(include()).on('error', console.log)
-        .pipe(gulp.dest(''))
-})
+        .pipe(gulp.dest('./'))
+}));
