@@ -21,6 +21,7 @@
     "gulp-purifycss": ">=0.2.0",
     "gulp-sass": "^4.0.1",
     "gulp-sourcemaps": "^2.6.4",
+    "gulp-useref": "^3.1.5",
     "material-components-web": "^0.37.1",
     "node-sass": "^4.9.2",
     "normalize.css": "^8.0.0"

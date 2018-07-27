@@ -6,38 +6,36 @@ var purify = require('gulp-purifycss');
 const sourcemaps = require('gulp-sourcemaps');
 const autoprefixer = require('gulp-autoprefixer');
 var htmlmin = require('gulp-htmlmin');
+const useref = require("gulp-useref");
 
-gulp.task('css', function() {
+//DEVELOPMENT TASKS
+gulp.task('css', function () {
     return gulp.src('src/style.scss')
         .pipe(sass({ outputStyle: 'compressed', includePaths: 'node_modules' }).on('error', sass.logError))
-        .pipe(gulp.dest("./"));
+        .pipe(gulp.dest("./dist/"));
 });
 
-gulp.task('removeCss', function() {
-    return gulp.src('style.css')
-        .pipe(purify(['dist/script.js', 'src/index.html']))
-        .pipe(gulp.dest('./dist/'));
-});
-
-gulp.task('join', function() {
+gulp.task('move', function () {
     return gulp.src("src/index.html")
-        .pipe(include({}))
         .pipe(gulp.dest("./"));
 });
 
-gulp.task('default', gulp.series('css', 'join'));
+gulp.task('default', gulp.parallel('css', 'move'));
 
-gulp.task('watch', gulp.series('default' , function () {
+gulp.task('watch', gulp.series('default', function () {
     return gulp.watch('src/*', ['default']);
 }));
 
+
+//DISTRIBUTE TASKS
 gulp.task('distributehtml', function () {
     return gulp.src('src/index.html')
-        .pipe(htmlmin({
-            collapseWhitespace: true,
-            conservativeCollapse: true,
-            removeComments: true,
-        }))
+        .pipe(useref())
+        // .pipe(htmlmin({
+        //     collapseWhitespace: true,
+        //     conservativeCollapse: true,
+        //     removeComments: true,
+        // }))
         .pipe(gulp.dest('./dist'));
 });
 
@@ -54,11 +52,11 @@ gulp.task('distributejs', function () {
             //     { 'src': "var exports;var module; var define;var mdc;" }
             // ],
             // outputWrapper: '(function(){\n%output%\n}).call(this)',
-            
-            // jsCode: [{ 'src': '/node_modules/**' }],
+
+            // jsCode: [{ 'src': 'src/**/*.js' }],
             // moduleResolutionMode: "NODE",
             // processCommonJsModules: true,            
-            
+
             jsOutputFile: 'dist/script.js',
             //createSourceMap: true,
         }))
@@ -79,7 +77,7 @@ gulp.task('distributecss', gulp.series(gulp.parallel('distributejs', 'distribute
             whitelist: ['*:not*'] //fix, weil purifycss alles mit :not entfernt
         }))
         .pipe(include())
-        .pipe(gulp.dest('./'))
+        .pipe(gulp.dest('./dist/'))
 }));
 
 gulp.task('distribute', gulp.series('distributecss', function () {
