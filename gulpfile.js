@@ -6,7 +6,6 @@ var purify = require('gulp-purifycss');
 const sourcemaps = require('gulp-sourcemaps');
 const autoprefixer = require('gulp-autoprefixer');
 var htmlmin = require('gulp-htmlmin');
-const useref = require("gulp-useref");
 
 //DEVELOPMENT TASKS
 gulp.task('css', function () {
@@ -15,22 +14,22 @@ gulp.task('css', function () {
         .pipe(gulp.dest("./dist/"));
 });
 
-gulp.task('move', function () {
+gulp.task('include', function () {
     return gulp.src("src/index.html")
+        .pipe(include())
         .pipe(gulp.dest("./"));
 });
 
-gulp.task('default', gulp.parallel('css', 'move'));
+gulp.task('default', gulp.series('css', 'include'));
 
 gulp.task('watch', gulp.series('default', function () {
-    return gulp.watch('src/*', ['default']);
+    return gulp.watch('src/*', gulp.series('default'));
 }));
 
 
 //DISTRIBUTE TASKS
 gulp.task('distributehtml', function () {
     return gulp.src('src/index.html')
-        .pipe(useref())
         // .pipe(htmlmin({
         //     collapseWhitespace: true,
         //     conservativeCollapse: true,

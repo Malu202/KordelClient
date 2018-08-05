@@ -1,0 +1,63 @@
+<div class="contentpage musik">
+        <div id="musik">
+          <div id="sender"></div>
+          <div id="playlist">
+            <div class="mdc-switch">
+              <input type="checkbox" id="onOffAutoplay" class="mdc-switch__native-control" checked/>
+              <div class="mdc-switch__background">
+                <div class="mdc-switch__knob"></div>
+              </div>
+            </div>
+            <label class="geraetelabel">Autoplay</label>
+            <div id="playlistSongs"></div>
+          </div>
+        </div>
+      </div>
+
+      <aside id="addRadiosenderDialog" class="mdc-dialog">
+        <div class="mdc-dialog__surface">
+          <header class="mdc-dialog__header">
+            <h2 id="my-mdc-dialog-label" class="mdc-dialog__header__title">
+              Radiosender hinzufügen
+            </h2>
+          </header>
+          <section id="my-mdc-dialog-description" class="mdc-dialog__body">
+            <div>
+              <label>Name: </label>
+              <label class="mdc-text-field mdc-text-field--upgraded" id="radionameinput">
+                <input type="text" class="mdc-text-field__input" id="radioname">
+              </label>
+            </div>
+            <div>
+              <label>http://</label>
+              <label class="mdc-text-field mdc-text-field--upgraded" id="radiourlinput">
+                <input type="text" class="mdc-text-field__input" id="radiourl">
+              </label>
+            </div>
+
+
+          </section>
+          <footer class="mdc-dialog__footer">
+            <button type="button" class="mdc-button mdc-dialog__footer__button mdc-dialog__footer__button--cancel">Abbrechen</button>
+            <button type="button" class="mdc-button mdc-dialog__footer__button mdc-dialog__footer__button--accept">Speichern</button>
+          </footer>
+        </div>
+        <div class="mdc-dialog__backdrop"></div>
+      </aside>
+      <aside id="removeRadiosenderDialog" class="mdc-dialog">
+        <div class="mdc-dialog__surface">
+          <header class="mdc-dialog__header">
+            <h2 class="mdc-dialog__header__title">
+              Radiosender löschen?
+            </h2>
+          </header>
+          <section id="removeRadioBody" class="mdc-dialog__body">
+
+          </section>
+          <footer class="mdc-dialog__footer">
+            <button type="button" class="mdc-button mdc-dialog__footer__button mdc-dialog__footer__button--cancel">Abbrechen</button>
+            <button type="button" class="mdc-button mdc-dialog__footer__button mdc-dialog__footer__button--accept">Löschen</button>
+          </footer>
+        </div>
+        <div class="mdc-dialog__backdrop"></div>
+      </aside>
