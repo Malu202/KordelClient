@@ -3,7 +3,6 @@ var sass = require('gulp-sass');
 var include = require('gulp-include');
 var compiler = require('google-closure-compiler-js').gulp();
 var purify = require('gulp-purifycss');
-const sourcemaps = require('gulp-sourcemaps');
 const autoprefixer = require('gulp-autoprefixer');
 var htmlmin = require('gulp-htmlmin');
 
@@ -34,6 +33,18 @@ gulp.task('distributehtml', function () {
         //     collapseWhitespace: true,
         //     conservativeCollapse: true,
         //     removeComments: true,
+        //     ignoreCustomComments: [ /^=require/, /^=include/, /^newline/ ]
+        // }))
+        .pipe(gulp.dest('./dist'));
+});
+
+gulp.task('distributepages', function () {
+    return gulp.src('src/pages.html')
+        .pipe(include()).on('error', console.log)
+        // .pipe(htmlmin({
+        //     collapseWhitespace: true,
+        //     conservativeCollapse: true,
+        //     removeComments: true,
         // }))
         .pipe(gulp.dest('./dist'));
 });
@@ -42,7 +53,7 @@ gulp.task('distributejs', function () {
     //Anleitung für externs als file einlesen: https://medium.com/dev-channel/polymer-the-closure-compiler-e80dd249d9d7
     //zusammenfassung: externsSrc = fs.readFileSync(...), externs: [{'src': externsSrc, 'path': 'asdf.js'}],
 
-    return gulp.src('src/script.js')
+    return gulp.src('src/masterscript.js')
         .pipe(include())
         .pipe(compiler({
             compilationLevel: 'SIMPLE_OPTIMIZATIONS',
@@ -56,7 +67,7 @@ gulp.task('distributejs', function () {
             // moduleResolutionMode: "NODE",
             // processCommonJsModules: true,            
 
-            jsOutputFile: 'dist/script.js',
+            jsOutputFile: 'dist/masterscript.js',
             //createSourceMap: true,
         }))
         //.pipe(sourcemaps.write(''))
@@ -64,13 +75,13 @@ gulp.task('distributejs', function () {
 })
 
 
-gulp.task('distributecss', gulp.series(gulp.parallel('distributejs', 'distributehtml'), function () {
+gulp.task('distributecss', gulp.series(gulp.parallel('distributejs', 'distributehtml', 'distributepages'), function () {
     return gulp.src('src/style.scss')
         .pipe(sass({ outputStyle: 'compressed', includePaths: 'node_modules' }).on('error', sass.logError))
         .pipe(autoprefixer({
             browsers: ['last 2 versions', 'android 4.4']
         }))
-        .pipe(purify(['dist/script.js', 'src/index.html'], {
+        .pipe(purify(['dist/masterscript.js', 'dist/index.html', 'dist/pages.html'], {
             minify: true,
             //rejected: true,
             whitelist: ['*:not*'] //fix, weil purifycss alles mit :not entfernt
@@ -82,5 +93,10 @@ gulp.task('distributecss', gulp.series(gulp.parallel('distributejs', 'distribute
 gulp.task('distribute', gulp.series('distributecss', function () {
     return gulp.src('dist/index.html')
         .pipe(include()).on('error', console.log)
+         .pipe(htmlmin({
+            collapseWhitespace: true,
+            conservativeCollapse: true,
+            removeComments: true,
+        }))
         .pipe(gulp.dest('./'))
 }));
