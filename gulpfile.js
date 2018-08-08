@@ -93,7 +93,7 @@ gulp.task('distributecss', gulp.series(gulp.parallel('distributejs', 'distribute
 gulp.task('distribute', gulp.series('distributecss', function () {
     return gulp.src('dist/index.html')
         .pipe(include()).on('error', console.log)
-         .pipe(htmlmin({
+        .pipe(htmlmin({
             collapseWhitespace: true,
             conservativeCollapse: true,
             removeComments: true,
