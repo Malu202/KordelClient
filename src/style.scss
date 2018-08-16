@@ -9,11 +9,17 @@ $mdc-theme-secondary: #03a9f4;
 // $mdc-theme-accent: #03a9f4;
 // $mdc-theme-secondary: #9E9D24;
 $mdc-theme-background: #303030;
+//$mdc-theme-surface: #000;
 
 $hintergrund: #303030;
 $toolbar-background: #212121;
 $toolbar: #fff;
 
+$mdc-theme-on-surface: #fff; //design fix
+//$mdc-theme-on-primary: $mdc-theme-background;
+
+$mdc-permanent-drawer-fill-color: $toolbar-background; //design fix
+$mdc-tab-bar-indicator-ink-color: $mdc-theme-secondary;
 //SWITCH
 //TODO im eingeschalteten zustand accent color verwenden
 
@@ -21,20 +27,27 @@ $toolbar: #fff;
 @import "node_modules/@material/button/mdc-button";
 //@import "node_modules/@material/card/mdc-card";
 @import "node_modules/@material/checkbox/mdc-checkbox";
+//@import "node_modules@material/chips/mdc-chips";
 @import "node_modules/@material/dialog/mdc-dialog";
 @import "node_modules/@material/drawer/mdc-drawer";
 //@import "node_modules/@material/elevation/mdc-elevation";
 @import "node_modules/@material/fab/mdc-fab";
+//@import "node_modules/@material/floating-label/mdc-floating-label";
 @import "node_modules/@material/form-field/mdc-form-field";
 //@import "node_modules/@material/grid-list/mdc-grid-list";
+//@import "node_modules@material/icon-button/mdc-icon-button";
 @import "node_modules/@material/icon-toggle/mdc-icon-toggle";
+//@import "node_modules@material/image-list/mdc-image-list";
 //@import "node_modules/@material/layout-grid/mdc-layout-grid";
+//@import "node_modules@material/line-ripple/mdc-line-ripple";
 //@import "node_modules/@material/linear-progress/mdc-linear-progress";
 @import "node_modules/@material/list/mdc-list";
 //@import "node_modules/@material/menu/mdc-menu";
+//@import "node_modules/@material/notched-outline/mdc-notched-outline";
 @import "node_modules/@material/radio/mdc-radio";
 //@import "node_modules/@material/ripple/mdc-ripple";
 //@import "node_modules/@material/select/mdc-select";
+//@import "node_modules@material/shape/mdc-shape";
 //@import "node_modules/@material/slider/mdc-slider";
 //@import "node_modules/@material/snackbar/mdc-snackbar";
 @import "node_modules/@material/switch/mdc-switch";
@@ -43,12 +56,14 @@ $toolbar: #fff;
 @import "node_modules/@material/textfield/mdc-text-field";
 @import "node_modules/@material/theme/mdc-theme";
 @import "node_modules/@material/toolbar/mdc-toolbar";
+//@import "node_modules@material/top-app-bar/mdc-top-app-bar";
 @import "node_modules/@material/typography/mdc-typography";
+
 
 html{
 	height:100vh;
     min-height:100vh;    
-    color: $mdc-theme-primary;
+    color: $mdc-theme-primary; //design fix
 }
 body{
 	background: $hintergrund;
@@ -56,9 +71,6 @@ body{
 	height:100vh;
     min-height:100vh;
     overflow:hidden;
-    // position: relative;
-    // position:fixed;
-    // top:0
 }
 
 //TOOLBAR
@@ -91,27 +103,19 @@ body{
 nav .mdc-list-item{
     cursor: pointer;
 }
-// nav .mdc-list-item__start-detail{
-//     color:#f00 !important;
-// }
 nav .mdc-list, nav .mdc-list-item__start-detail{
     color:$mdc-theme-primary !important;
 }
 nav .mdc-permanent-drawer--selected, nav .mdc-permanent-drawer--selected .mdc-list-item__start-detail{
     color:$mdc-theme-secondary !important;
 }
-
-// .mdc-list-item__start-detail{
-//     color: $mdc-theme-primary;
-// }
-
+.mdc-drawer--permanent{
+    border-right: 1px solid rgba(255,255,255,.12);
+}
 //LAYOUT
 //Toolbar und page übereinander (nur notwendig, weil bei height:100% auf den content
 //Scrollbalken entstehen weil zu den 100% noch mdc-toolbar-fixed-adjust hinzukommt):
 body{
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
     display:flex;
     flex-direction: column;
     overflow: hidden;
@@ -122,9 +126,6 @@ body{
 //page enthält den permanenten Drawer und den content bereich nebeneinander 
 #page{
 	flex: 1 1 auto;
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
 	display:flex;
 	flex-direction: row;
     width: 100%;
@@ -137,8 +138,6 @@ body{
 //content enthält die verschiedenen seiten (radio, filme, etc)
 #content{
 	flex: 1 0 auto;
-    //display:flex;
-    //overflow-y: auto;
     overflow: auto;
     -webkit-overflow-scrolling: touch;
     display:flex;
@@ -153,21 +152,13 @@ body{
 .mdc-tab{
 	width:50%;
 }
+.mdc-tab-bar__indicator{
+    background-color: $mdc-theme-secondary;
+}
 #music-tabs{
     display:none;
 }
-/*
-@media only screen and (max-device-width: 480px) {
-	#music-tabs{
-		display:block;
-	}
-}
-@media only screen and (min-device-width: 481px) {
-	#music-tabs{
-		display:none;
-	}
-}
-*/
+
 //BOTTOMPANEL
 .bottompanel {
 	background-color: $toolbar-background;
@@ -206,14 +197,12 @@ $bottomPanelMaxWidth: 800px;
     // padding: 0px 16px;
     //height:36px;
     //width:24px;
+    color: $mdc-theme-primary;
 }
 #basicPlayerControl{
     padding-bottom: 8px;
 }
 #playlistpage {
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
     display: flex;
     flex-direction: column;
     height: 100%;
@@ -236,9 +225,6 @@ $bottomPanelMaxWidth: 800px;
     // margin-right: 8px;
 }
 #playlistcontrol2 {
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
     display: flex;
     flex-direction: row;
     align-items: flex-end;
@@ -264,9 +250,6 @@ $bottomPanelMaxWidth: 800px;
     flex: 1;
 }
 .music-info{
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
 	display:flex;
 	flex-direction: column;
 	align-items:center;
@@ -288,20 +271,23 @@ button i{
 }
 
 //CHECKBOX
-.mdc-theme--dark .mdc-checkbox__native-control:checked:not(:disabled) ~ .mdc-checkbox__background,
-.mdc-theme--dark .mdc-checkbox__native-control:indeterminate:not(:disabled) ~ .mdc-checkbox__background {
-  background-color: $mdc-theme-secondary;
-  border-color: $mdc-theme-secondary;
-}
-.mdc-theme--dark .mdc-checkbox__background::before {
-  background-color: $mdc-theme-secondary !important;
-}
+// .mdc-theme--dark .mdc-checkbox__native-control:checked:not(:disabled) ~ .mdc-checkbox__background,
+// .mdc-theme--dark .mdc-checkbox__native-control:indeterminate:not(:disabled) ~ .mdc-checkbox__background {
+//   background-color: $mdc-theme-secondary;
+//   border-color: $mdc-theme-secondary;
+// }
+// .mdc-theme--dark .mdc-checkbox__background::before {
+//   background-color: $mdc-theme-secondary !important;
+// }
 .mdc-theme--dark .mdc-checkbox__checkmark__path {
-  stroke: #262626 !important;
+//   stroke: #262626 !important;
+//   stroke-width: 3.12px;
 }
-.mdc-theme--dark .mdc-checkbox__mixedmark {
-  background-color: $mdc-theme-secondary !important;
-}
+// .mdc-theme--dark .mdc-checkbox__mixedmark {
+//   background-color: $mdc-theme-secondary !important;
+// }
+
+
 //DIALOG
 //FIX entfernt blaues rechteck um Button (Fokus)
 *:focus {
@@ -311,9 +297,13 @@ button i{
 .mdc-dialog{
     z-index: 10;
 }
+.mdc-dialog__body{
+    color: $mdc-theme-primary;
+}
 //TEXTFIELD
-.mdc-textfield{
-    margin: 0px 0px 0px 16px !important;
+.mdc-text-field__input{
+    //margin: 0px 0px 0px 16px !important;
+    padding-top: 0px;
 }
 .contentpage{
     display: none;
@@ -322,9 +312,6 @@ button i{
 //MUSIK
 
 #musik{
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
     display: flex;
     flex: 1 0 auto;
 }
