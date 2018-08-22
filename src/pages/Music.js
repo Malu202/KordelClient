@@ -43,7 +43,7 @@ function updateMusic(response) {
   if (response.Status.task == "WebRadiospielen") {
     checkRadio(response.Status.name);
   }
-  addPlaylistItems(status);
+  addPlaylistItems(response.Status);
 
  }
 
