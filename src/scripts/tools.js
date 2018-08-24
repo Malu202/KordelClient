@@ -20,7 +20,7 @@ var postRequest = function (url, jsondata, callback) {
     if (http.readyState == 4) {
       var responseJSON = JSON.parse(http.responseText);
       const dataObj = {
-        message: responseJSON,
+        message: responseJSON.message,
       };
       snackbar.show(dataObj);
       update(responseJSON);
@@ -39,6 +39,10 @@ var deleteRequest = function (url, jsondata, callback) {
   http.onreadystatechange = function () {
     if (http.readyState == 4) {
       var responseJSON = JSON.parse(http.responseText);
+      const dataObj = {
+        message: responseJSON.message,
+      };
+      snackbar.show(dataObj);
       update(responseJSON);
       callback(responseJSON);
     }
