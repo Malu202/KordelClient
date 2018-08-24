@@ -174,6 +174,16 @@ function showPage(pageid, button) {
 }
 showPage("musik");
 
+const snackbar = new mdc.snackbar.MDCSnackbar(document.querySelector('#mainSnackbar'));
+// const dataObj = {
+//   message: "test",
+//   // actionText: 'Undo',
+//   // actionHandler: function () {
+//   //   console.log('my cool function');
+//   // }
+// };
+// snackbar.show(dataObj);
+
 function streamMedia(url) {
   var request = { "task": "YoutubeVideostreamen", "url": url, "now": true, "autoplay": false };
   postRequest(serverip + "todo", request, function (msg) { });
