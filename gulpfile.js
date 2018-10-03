@@ -49,6 +49,16 @@ gulp.task('distributepages', function () {
         .pipe(gulp.dest('./dist'));
 });
 
+gulp.task('distributeFaviconHead', function () {
+    return gulp.src('src/faviconHead.html')
+        // .pipe(htmlmin({
+        //     collapseWhitespace: true,
+        //     conservativeCollapse: true,
+        //     removeComments: true,
+        // }))
+        .pipe(gulp.dest('./dist'));
+});
+
 gulp.task('distributejs', function () {
     //Anleitung für externs als file einlesen: https://medium.com/dev-channel/polymer-the-closure-compiler-e80dd249d9d7
     //zusammenfassung: externsSrc = fs.readFileSync(...), externs: [{'src': externsSrc, 'path': 'asdf.js'}],
@@ -75,7 +85,7 @@ gulp.task('distributejs', function () {
 })
 
 
-gulp.task('distributecss', gulp.series(gulp.parallel('distributejs', 'distributehtml', 'distributepages'), function () {
+gulp.task('distributecss', gulp.series(gulp.parallel('distributejs', 'distributehtml', 'distributepages','distributeFaviconHead'), function () {
     return gulp.src('src/style.scss')
         .pipe(sass({ outputStyle: 'compressed', includePaths: 'node_modules' }).on('error', sass.logError))
         .pipe(autoprefixer({
