@@ -34,6 +34,19 @@ onOffPC.addEventListener("click", function () {
   }
 });
 
+
+var onOffSimulationStation = document.getElementById("onOffSimulationstation");
+onOffSimulationStation.addEventListener("click", function () {
+  var request = {};
+  if (!onOffSimulationStation.checked) {
+    request.task = "startSimulationStation";
+    postRequest(serverip + "todo", request, function (msg) {});
+  } else {
+    request.task = "killSimulationStation";
+    postRequest(serverip + "todo", request, function (msg) {});
+  }
+});
+
 function updateGeraete(response) {
   onOffPC.checked = response.Status.PcOnline;
 };
