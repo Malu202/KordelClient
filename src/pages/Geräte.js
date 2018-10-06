@@ -35,14 +35,14 @@ onOffPC.addEventListener("click", function () {
 });
 
 
-var onOffSimulationStation = document.getElementById("onOffSimulationstation");
+var onOffSimulationStation = document.getElementById("onOffEmulationstation");
 onOffSimulationStation.addEventListener("click", function () {
   var request = {};
   if (!onOffSimulationStation.checked) {
-    request.task = "startSimulationStation";
+    request.task = "startEmulationStation";
     postRequest(serverip + "todo", request, function (msg) {});
   } else {
-    request.task = "killSimulationStation";
+    request.task = "killEmulationStation";
     postRequest(serverip + "todo", request, function (msg) {});
   }
 });
