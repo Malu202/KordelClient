@@ -38,10 +38,10 @@ onOffPC.addEventListener("click", function () {
 var onOffSimulationStation = document.getElementById("onOffEmulationstation");
 onOffSimulationStation.addEventListener("click", function () {
   var request = {};
-  if (!onOffSimulationStation.checked) {
+  if (onOffSimulationStation.checked) {
     request.task = "startEmulationStation";
     postRequest(serverip + "todo", request, function (msg) {});
-  } else {
+  } else { 
     request.task = "killEmulationStation";
     postRequest(serverip + "todo", request, function (msg) {});
   }
