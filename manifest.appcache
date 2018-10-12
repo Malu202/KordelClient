@@ -1,5 +1,7 @@
 CACHE MANIFEST
-#v-2018-10-13
+#v-2018-10-13-002
+
+CACHE
 index.html
 
 /favicons/apple-touch-icon.png
@@ -9,3 +11,6 @@ index.html
 /favicons/safari-pinned-tab.svg
 /favicons/favicon.ico
 /favicons/browserconfig.xml
+
+NETWORK
+https://fonts.googleapis.com/*
