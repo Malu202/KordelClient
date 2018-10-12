@@ -22,7 +22,7 @@ gulp.task('include', function () {
 gulp.task('default', gulp.series('css', 'include'));
 
 gulp.task('watch', gulp.series('default', function () {
-    return gulp.watch('src/*', gulp.series('default'));
+    return gulp.watch('src/**/*', gulp.series('default'));
 }));
 
 
