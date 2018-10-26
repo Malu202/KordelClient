@@ -48,6 +48,9 @@
           <a class="mdc-list-item">
             <i class="material-icons mdc-list-item__start-detail">&#xE54D;</i>Filme
           </a>
+          <a class="mdc-list-item serien" onclick='showPage("serien")'>
+            <i class="material-icons mdc-list-item__start-detail">&#xE064;</i>Serien
+          </a>
           <a class="mdc-list-item fernseher" onclick='showPage("fernseher")'>
             <i class="material-icons mdc-list-item__start-detail">&#xE8C7;</i>Fernseher
           </a>
@@ -68,6 +71,9 @@
         </a>
         <a class="mdc-list-item">
           <i class="material-icons mdc-list-item__start-detail">&#xE54D;</i>Filme
+        </a>
+        <a class="mdc-list-item serien" onclick='showPage("serien")'>
+          <i class="material-icons mdc-list-item__start-detail">&#xE064;</i>Serien
         </a>
         <a class="mdc-list-item fernseher" onclick='showPage("fernseher")'>
           <i class="material-icons mdc-list-item__start-detail">&#xE8C7;</i>Fernseher
@@ -133,7 +139,7 @@
       </div>
     </div>
 
-    <div class="playercontrol musik">
+    <div class="playercontrol musik serien">
       <button class="mdc-button playerbutton" id="rewindButton">
         <i class="material-icons">&#xE020;</i>
       </button>
@@ -149,13 +155,13 @@
     </div>
 
 
-    <div id="basicPlayerControl" class="playercontrol musik">
+    <div id="basicPlayerControl" class="playercontrol musik serien">
       <button class="mdc-button playerbutton" onclick="stop();">
         <i class="material-icons">&#xE047;</i>
       </button>
 
       <div class="music-info">
-        <div id="song-name" class="mdc-typography--body2">Song</div>
+        <div id="song-name" class="mdc-typography--body2"></div>
       </div>
 
       <i class="mdc-icon-toggle material-icons playerbutton" id="playpause" role="button" aria-pressed="false" data-toggle-on='{"content": "&#xE037;"}' data-toggle-off='{"content": "&#xE034;"}'>

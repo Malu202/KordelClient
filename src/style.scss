@@ -368,6 +368,16 @@ button i{
 #Geraete{
     flex-direction: column;
 }
+//SERIEN
+#serien{
+    overflow: auto;
+}
+.serienSubPage{
+    //display: none;T
+    display:flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
 //tabindikator (größe: 0) wird über mediaqueries ein/ausgeblendet als indikator ob tabs via javascript ein/ausgeblendet werden müssen
 #tabindikator{
     width: 0 !important;

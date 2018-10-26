@@ -118,7 +118,7 @@ function update(response) {
 
   //Laufendes Lied eintragen
   if (status.name) songname.innerHTML = status.name;
-  else songname.innerHTML = "Song";
+  else songname.innerHTML = "";
     
   updateGeraete(response);
 
@@ -172,7 +172,7 @@ function showPage(pageid, button) {
   resize();
   previousPageId = pageid;
 }
-showPage("musik");
+showPage("serien");
 
 const snackbar = new mdc.snackbar.MDCSnackbar(document.querySelector('#mainSnackbar'));
 // const dataObj = {
