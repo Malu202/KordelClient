@@ -1,0 +1,16 @@
+CACHE MANIFEST
+#v-2018-10-13-002
+
+CACHE
+index.html
+
+/favicons/apple-touch-icon.png
+/favicons/favicon-32x32.png
+/favicons/favicon-16x16.png
+/favicons/site.webmanifest
+/favicons/safari-pinned-tab.svg
+/favicons/favicon.ico
+/favicons/browserconfig.xml
+
+NETWORK
+*
