@@ -172,7 +172,7 @@ function showPage(pageid, button) {
   resize();
   previousPageId = pageid;
 }
-showPage("serien");
+showPage("musik");
 
 const snackbar = new mdc.snackbar.MDCSnackbar(document.querySelector('#mainSnackbar'));
 // const dataObj = {

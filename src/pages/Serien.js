@@ -1,29 +1,29 @@
 var SERIEN_URL = serverip + "LokaleFilme";
-getRequest(SERIEN_URL, function (res) {
-    if (res.message == null) console.log("nix");
-});
+// getRequest(SERIEN_URL, function (res) {
+//     if (res.message == null) console.log("nix");
+// });
 
 var serien = document.getElementById("serien");
 var Serien = [];
 
 
 var SerienListe = {};
-for (var k = 1; k < 4; k++) {
-    var Serienname = "Serie " + k;
+// for (var k = 1; k < 4; k++) {
+//     var Serienname = "Serie " + k;
 
-    var Staffeln = {};
-    for (var j = 1; j < 5; j++) {
-        var Staffelname = "Staffel " + j;
+//     var Staffeln = {};
+//     for (var j = 1; j < 5; j++) {
+//         var Staffelname = "Staffel " + j;
 
-        var Folgen = [];
-        for (var i = 1; i < 300; i++) {
-            //SerienListe[Serienname][Staffelname][i] = "Folge " + i;
-            Folgen.push("Folge " + i + " von " + Serienname);
-        }
-        Staffeln[Staffelname] = Folgen;
-    }
-    SerienListe[Serienname] = Staffeln;
-}
+//         var Folgen = [];
+//         for (var i = 1; i < 300; i++) {
+//             //SerienListe[Serienname][Staffelname][i] = "Folge " + i;
+//             Folgen.push("Folge " + i + " von " + Serienname);
+//         }
+//         Staffeln[Staffelname] = Folgen;
+//     }
+//     SerienListe[Serienname] = Staffeln;
+// }
 
 console.log(SerienListe);
 SerienListe.length = Object.keys(SerienListe).length;
