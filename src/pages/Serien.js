@@ -1,13 +1,18 @@
-var SERIEN_URL = serverip + "LokaleFilme";
-// getRequest(SERIEN_URL, function (res) {
-//     if (res.message == null) console.log("nix");
-// });
+var SERIEN_URL = serverip + "LokaleSerien";
+getRequest(SERIEN_URL, function (res) {
+    console.log("wosis???");
+    if (res.message == null) console.log("nix");
+    else {
+        SerienListe = res.message;
+        setupButtons2();
+    }
+});
 
 var serien = document.getElementById("serien");
 var Serien = [];
 
 
-var SerienListe = {};
+var SerienListe = [];
 // for (var k = 1; k < 4; k++) {
 //     var Serienname = "Serie " + k;
 
@@ -26,8 +31,8 @@ var SerienListe = {};
 // }
 
 console.log(SerienListe);
-SerienListe.length = Object.keys(SerienListe).length;
-console.log(SerienListe.length);
+// SerienListe.length = Object.keys(SerienListe).length;
+// console.log(SerienListe.length);
 
 
 
@@ -73,18 +78,35 @@ function setupButtons() {
             }
         });
     }
-}    
-setupButtons();
+}
+
+function setupButtons2() {
+    clearButtons();
+    SerienListe.forEach(function (serie) {
+        addButton(serie.name, function () {
+            clearButtons();
+            serie.staffeln.forEach(function (staffel) {
+                addButton(staffel.name, function () {
+                    clearButtons();
+                    staffel.folgen.forEach(function (folge) {
+                        addButton(folge.name, function () {
+                            requestSeriesPlayback(folge.path);
+                        });
+                    });
+                });
+            });
+        });
+    });
+
+}
 function clearButtons() {
     sp.innerHTML = "";
 }
 
-function requestSeriesPlayback(Serienname, Serienstaffel, Serienfolge) {
+function requestSeriesPlayback(path) {
     var task = {};
-    task.Task = "LokaleSerieSpielen";
-    task.Serie = Serienname;
-    task.Staffel = Serienstaffel;
-    task.Folge = Serienfolge;
+    task.task = "LokaleSeriespielen";
+    task.path = path;
     postRequest(serverip + "todo", task, function () {
 
     });
