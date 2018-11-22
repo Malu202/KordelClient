@@ -18,7 +18,7 @@ function resize() {
   toolbar.fixedAdjustElement = document.querySelector('.mdc-toolbar-fixed-adjust');
 }
 var serverip = "http://10.0.0.40:1337/";
-
+var TODO_IP = serverip + "todo";
 
 var rewindButton = document.getElementById("rewindButton");
 //var skipForwardButton = document.getElementById("skipForwardButton");
@@ -27,17 +27,17 @@ var forwardButton = document.getElementById("forwardButton");
 
 rewindButton.addEventListener('click', function () {
   var request = { "task": "Playerzurueckspulen" };
-  postRequest(serverip + "todo", request, function () { });
+  postRequest(TODO_IP, request, function () { });
 });
 forwardButton.addEventListener('click', function () {
   var request = { "task": "Playervorspulen" };
-  postRequest(serverip + "todo", request, function () { });
+  postRequest(TODO_IP, request, function () { });
 });
 
 function stop() {
   var request = {};
   request.task = "Playerstoppen";
-  postRequest(serverip + "todo", request, function (msg) {
+  postRequest(TODO_IP, request, function (msg) {
     checkRadio(null);
   });
 }
@@ -49,7 +49,7 @@ playpausebutton.addEventListener('MDCIconToggle:change', ({ detail }) => {
   var request = {};
   if (detail.isOn) request.task = "Playerpausieren";
   else request.task = "Playerfortsetzen";
-  postRequest(serverip + "todo", request, function (msg) {});
+  postRequest(TODO_IP, request, function (msg) {});
 });
 
 const SPACE_KEYCODE = 32;
@@ -100,7 +100,7 @@ function addtoPlaylist() {
 
   request.name = song.value;
 
-  postRequest(serverip + "todo", request, function (msg) {});
+  postRequest(TODO_IP, request, function (msg) {});
 
   song.value = "";
 }
@@ -186,7 +186,7 @@ const snackbar = new mdc.snackbar.MDCSnackbar(document.querySelector('#mainSnack
 
 function streamMedia(url) {
   var request = { "task": "YoutubeVideostreamen", "url": url, "now": true, "autoplay": false };
-  postRequest(serverip + "todo", request, function (msg) { });
+  postRequest(TODO_IP, request, function (msg) { });
 }
 
 window.onerror = function (msg, url, linenumber) {

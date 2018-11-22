@@ -1,6 +1,6 @@
 var SERIEN_URL = serverip + "LokaleSerien";
+//var SERIEN_URL = "http://kordel.selfhost.at/LokaleSerien.json" //MOCKUP FÜR DEBUGGING OHNE RASPBERRY, NICHT COMMITEN!!!!
 getRequest(SERIEN_URL, function (res) {
-    console.log("wosis???");
     if (res.message == null) console.log("nix");
     else {
         SerienListe = res.message;
@@ -107,7 +107,7 @@ function requestSeriesPlayback(path) {
     var task = {};
     task.task = "LokaleSeriespielen";
     task.path = path;
-    postRequest(serverip + "todo", task, function () {
+    postRequest(TODO_IP, task, function () {
 
     });
 }
