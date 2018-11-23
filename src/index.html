@@ -29,9 +29,9 @@
     </div>
     <!-- tabindikator (größe: 0) wird über mediaqueries ein/ausgeblendet als indikator ob tabs via javascript ein/ausgeblendet werden müssen-->
     <div id="tabindikator"></div>
-    <div class="mdc-toolbar__row musik tabs" id="music-tabs">
-      <div class="mdc-toolbar__section">
-        <nav class="mdc-tab-bar mdc-tab-bar--indicator-accent">
+    <div class="mdc-top-app-bar__row musik tabs" id="music-tabs">
+      <div class="mdc-top-app-bar__section">
+        <nav class="mdc-tab-bar">
           <div class="mdc-tab-scroller">
             <div class="mdc-tab-scroller__scroll-area">
               <div class="mdc-tab-scroller__scroll-content">
@@ -46,15 +46,15 @@
                   <span class="mdc-tab__ripple"></span>
                 </button>
 
-                <button class="mdc-tab" tabindex="0">
-                    <span class="mdc-tab__content">
-                      <span class="mdc-tab__text-label">Playlist</span>
-                    </span>
-                    <span class="mdc-tab-indicator">
-                      <span class="mdc-tab-indicator__content mdc-tab-indicator__content--underline"></span>
-                    </span>
-                    <span class="mdc-tab__ripple"></span>
-                  </button>
+                <button class="mdc-tab" tabindex="1">
+                  <span class="mdc-tab__content">
+                    <span class="mdc-tab__text-label">Playlist</span>
+                  </span>
+                  <span class="mdc-tab-indicator">
+                    <span class="mdc-tab-indicator__content mdc-tab-indicator__content--underline"></span>
+                  </span>
+                  <span class="mdc-tab__ripple"></span>
+                </button>
 
                 <!-- <a class="mdc-tab mdc-tab--active" href="#one">Radio</a>
                 <a class="mdc-tab" href="#two">Playlist</a> -->
@@ -67,7 +67,7 @@
     </div>
   </div>
   <!--Für Handys nur ein Temporärer Drawer der über den Menübutton eingeblendet wird-->
-  <aside class="mdc-drawer mdc-drawer--temporary">
+  <div class="mdc-drawer mdc-drawer--modal">
     <nav class="mdc-drawer__drawer">
       <nav class="mdc-drawer__content mdc-list-group">
         <nav class="mdc-list">
@@ -89,34 +89,36 @@
         </nav>
       </nav>
     </nav>
-  </aside>
+  </div>
   <!-- page enthält den permanenten Drawer und den content bereich nebeneinander -->
-  <div id="page" class="mdc-toolbar-fixed-adjust mdc-typography mdc-theme--dark">
+  <div id="page" class="mdc-top-app-bar--fixed-adjust mdc-typography mdc-theme--dark">
     <!--Für Tablets/PC Permanenter Drawer, da genug Platz ist-->
-    <nav class="mdc-drawer mdc-drawer--permanent">
-      <nav class="mdc-list">
-        <a class="mdc-list-item musik" onclick='showPage("musik")'>
-          <i class="material-icons mdc-list-item__start-detail">&#xE405;</i>Musik
-        </a>
-        <a class="mdc-list-item">
-          <i class="material-icons mdc-list-item__start-detail">&#xE54D;</i>Filme
-        </a>
-        <a class="mdc-list-item serien" onclick='showPage("serien")'>
-          <i class="material-icons mdc-list-item__start-detail">&#xE064;</i>Serien
-        </a>
-        <a class="mdc-list-item fernseher" onclick='showPage("fernseher")'>
-          <i class="material-icons mdc-list-item__start-detail">&#xE8C7;</i>Fernseher
-        </a>
-        <a class="mdc-list-item Geraete" onclick='showPage("Geraete")'>
-          <i class="material-icons mdc-list-item__start-detail">&#xE1B1;</i>Geräte
-        </a>
-      </nav>
-    </nav>
+    <div class="mdc-drawer" id="permanentDrawer">
+      <div class="mdc-drawer__content">
+        <nav class="mdc-list">
+          <a class="mdc-list-item musik" onclick='showPage("musik")'>
+            <i class="material-icons mdc-list-item__start-detail">&#xE405;</i>Musik
+          </a>
+          <a class="mdc-list-item">
+            <i class="material-icons mdc-list-item__start-detail">&#xE54D;</i>Filme
+          </a>
+          <a class="mdc-list-item serien" onclick='showPage("serien")'>
+            <i class="material-icons mdc-list-item__start-detail">&#xE064;</i>Serien
+          </a>
+          <a class="mdc-list-item fernseher" onclick='showPage("fernseher")'>
+            <i class="material-icons mdc-list-item__start-detail">&#xE8C7;</i>Fernseher
+          </a>
+          <a class="mdc-list-item Geraete" onclick='showPage("Geraete")'>
+            <i class="material-icons mdc-list-item__start-detail">&#xE1B1;</i>Geräte
+          </a>
+        </nav>
+      </div>
+  </div>
 
-    <!-- content enthält die verschiedenen seiten (radio, filme, etc)-->
-    <main id="content">
-      <!--=include ./pages.html -->
-    </main>
+  <!-- content enthält die verschiedenen seiten (radio, filme, etc)-->
+  <main id="content">
+    <!--=include ./pages.html -->
+  </main>
 
   </div>
 

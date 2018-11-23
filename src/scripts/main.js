@@ -2,9 +2,14 @@ mdc.autoInit();
 
 
 //DRAWER
-var drawerEl = document.querySelector('.mdc-drawer--temporary');
-// var MDCTemporaryDrawer = mdc.drawer.MDCTemporaryDrawer;
+var drawerEl = document.querySelector('.mdc-drawer--modal');
+// var MDCTemporaryDrawer = mdc.drawer.MDCTemporaryDrawer.attachTo(document.querySelector());
+// var drawer = new mdc.drawer.MDCDrawer(drawerEl);
+// var drawer = mdc.drawer.MDCDrawer.attachTo(document.querySelector('.mdc-drawer--modal'));
+// var MDCTemporaryDrawer = mdc.drawer.MDCDrawer;
 // var drawer = new MDCTemporaryDrawer(drawerEl);
+
+// var drawer = mdc.drawer.MDCDrawer.attachTo(document.querySelector('.mdc-drawer--modal'));
 document.querySelector('.menu').addEventListener('click', function () {
   drawer.open = true;
 });
@@ -14,8 +19,8 @@ window.addEventListener("resize", resize, true);
 
 
 function resize() {
-  var toolbar = mdc.toolbar.MDCToolbar.attachTo(document.querySelector('.mdc-toolbar'));
-  toolbar.fixedAdjustElement = document.querySelector('.mdc-toolbar-fixed-adjust');
+  var toolbar = new mdc.topAppBar.MDCTopAppBar(document.querySelector('.mdc-top-app-bar'));
+  toolbar.fixedAdjustElement = document.querySelector('.mdc-top-app-bar--fixed-adjust');
 }
 var serverip = "http://10.0.0.40:1337/";
 var TODO_IP = serverip + "todo";

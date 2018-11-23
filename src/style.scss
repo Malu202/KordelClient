@@ -18,7 +18,7 @@ $toolbar: #fff;
 $mdc-theme-on-surface: #fff; //design fix
 //$mdc-theme-on-primary: $mdc-theme-background;
 
-$mdc-permanent-drawer-fill-color: $toolbar-background; //design fix
+$mdc-drawer-surface-fill-color: $toolbar-background !important; //design fix
 $mdc-tab-bar-indicator-ink-color: $mdc-theme-secondary;
 //SWITCH
 //TODO im eingeschalteten zustand accent color verwenden
@@ -52,15 +52,15 @@ $mdc-tab-bar-indicator-ink-color: $mdc-theme-secondary;
 @import "node_modules/@material/snackbar/mdc-snackbar";
 @import "node_modules/@material/switch/mdc-switch";
 
-@import "@material/tab-bar/mdc-tab-bar";
-@import "@material/tab-scroller/mdc-tab-scroller";
-@import "@material/tab-indicator/mdc-tab-indicator";
-@import "@material/tab/mdc-tab";
+@import "node_modules/@material/tab-bar/mdc-tab-bar";
+@import "node_modules/@material/tab-scroller/mdc-tab-scroller";
+@import "node_modules/@material/tab-indicator/mdc-tab-indicator";
+@import "node_modules/@material/tab/mdc-tab";
 
 //@import "node_modules/@material/animation/mdc-animation";
 @import "node_modules/@material/textfield/mdc-text-field";
 @import "node_modules/@material/theme/mdc-theme";
-@import "node_modules/@material/toolbar/mdc-toolbar";
+@import "node_modules/@material/top-app-bar/mdc-top-app-bar";
 //@import "node_modules@material/top-app-bar/mdc-top-app-bar";
 @import "node_modules/@material/typography/mdc-typography";
 
@@ -89,7 +89,7 @@ body{
 
 //DRAWER
 @media only screen and (max-width: 800px) {
-	.mdc-drawer--permanent {
+	#permanentDrawer {
 		display: none !important;
     }
     
@@ -101,7 +101,7 @@ body{
 	.mdc-drawer--temporary{
 		display: none !important;
 	}
-    .mdc-toolbar__menu-icon{
+    .menu{
 		display:none;
     }
 }
@@ -114,8 +114,10 @@ nav .mdc-list, nav .mdc-list-item__start-detail{
 nav .mdc-permanent-drawer--selected, nav .mdc-permanent-drawer--selected .mdc-list-item__start-detail{
     color:$mdc-theme-secondary !important;
 }
-.mdc-drawer--permanent{
+#permanentDrawer{
+    background-color: $toolbar-background;
     border-right: 1px solid rgba(255,255,255,.12);
+    height: auto;
 }
 //LAYOUT
 //Toolbar und page übereinander (nur notwendig, weil bei height:100% auf den content
@@ -136,7 +138,7 @@ body{
     width: 100%;
     overflow:hidden;
 }
-.mdc-permanent-drawer{
+#permanentDrawer{
 	flex: 0 0 auto;
 	margin: 0;
 }
@@ -160,9 +162,9 @@ body{
 // .mdc-tab-bar__indicator{
 //     background-color: $mdc-theme-secondary;
 // }
-.mdc-drawer {
-    display: none; //nicht commiten!!!
-}
+// .mdc-drawer {
+//     display: none; //nicht commiten!!!
+// }
 #music-tabs{
     display:none;
 }
@@ -290,10 +292,10 @@ button i{
 // .mdc-theme--dark .mdc-checkbox__background::before {
 //   background-color: $mdc-theme-secondary !important;
 // }
-.mdc-theme--dark .mdc-checkbox__checkmark__path {
+// .mdc-theme--dark .mdc-checkbox__checkmark__path {
 //   stroke: #262626 !important;
 //   stroke-width: 3.12px;
-}
+// }
 // .mdc-theme--dark .mdc-checkbox__mixedmark {
 //   background-color: $mdc-theme-secondary !important;
 // }
