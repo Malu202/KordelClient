@@ -3,8 +3,8 @@ mdc.autoInit();
 
 //DRAWER
 var drawerEl = document.querySelector('.mdc-drawer--temporary');
-var MDCTemporaryDrawer = mdc.drawer.MDCTemporaryDrawer;
-var drawer = new MDCTemporaryDrawer(drawerEl);
+// var MDCTemporaryDrawer = mdc.drawer.MDCTemporaryDrawer;
+// var drawer = new MDCTemporaryDrawer(drawerEl);
 document.querySelector('.menu').addEventListener('click', function () {
   drawer.open = true;
 });
@@ -127,7 +127,7 @@ getRequest(serverip + "Status", function () { });
 
 var previousPageId = null;
 function showPage(pageid, button) {
-  drawer.open = false;
+  //drawer.open = false;
 
   var tabindikator = document.getElementById("tabindikator");
   var showtabs = (tabindikator.currentStyle ? tabindikator.currentStyle.display : getComputedStyle(tabindikator, null).display) == "block";

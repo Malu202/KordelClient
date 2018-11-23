@@ -1,7 +1,9 @@
 //RADIO
-var musikTabBar = new mdc.tabs.MDCTabBar(document.querySelector('.mdc-tab-bar'));
+var musikTabBar = new mdc.tabBar.MDCTabBar(document.querySelector('.mdc-tab-bar'));
+
 var senderSubPage = document.getElementById("sender");
 var playlistSubPage = document.getElementById("playlist");
+//eventuall :activated
 musikTabBar.listen('MDCTabBar:change', function ({ detail: tabs }) {
   var tabIndex = tabs.activeTabIndex;
   if (tabIndex == 0) {
