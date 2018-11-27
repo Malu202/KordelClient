@@ -156,9 +156,9 @@ body{
 // 	width:100%;
 // 	table-layout: fixed;
 // }
-// .mdc-tab{
-// 	width:50%;
-// }
+.mdc-tab{
+	width:50%;
+}
 // .mdc-tab-bar__indicator{
 //     background-color: $mdc-theme-secondary;
 // }
@@ -314,6 +314,11 @@ button i{
     color: $mdc-theme-primary;
 }
 //TEXTFIELD
+.mdc-text-field{
+    background-color: rgba(0,0,0,0) !important;
+    height: 31px;
+    margin-bottom: 8px;
+}
 .mdc-text-field__input{
     //margin: 0px 0px 0px 16px !important;
     padding-top: 0px;
@@ -400,6 +405,10 @@ button i{
     }    
     #tabindikator{
         display: block;
+    }
+    //margin der verhindert dass elemente hinter den tabs verschwinden (top-app-bar-fixed-adjust ignoriert tabs)
+    .tab-adjust{
+        margin-top:56px;
     }
 }
 @media only screen and (min-width: 481px) {

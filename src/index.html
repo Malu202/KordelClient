@@ -30,41 +30,39 @@
     <!-- tabindikator (größe: 0) wird über mediaqueries ein/ausgeblendet als indikator ob tabs via javascript ein/ausgeblendet werden müssen-->
     <div id="tabindikator"></div>
     <div class="mdc-top-app-bar__row musik tabs" id="music-tabs">
-      <div class="mdc-top-app-bar__section">
-        <nav class="mdc-tab-bar">
-          <div class="mdc-tab-scroller">
-            <div class="mdc-tab-scroller__scroll-area">
-              <div class="mdc-tab-scroller__scroll-content">
+      <nav class="mdc-tab-bar">
+        <div class="mdc-tab-scroller">
+          <div class="mdc-tab-scroller__scroll-area">
+            <div class="mdc-tab-scroller__scroll-content">
 
-                <button class="mdc-tab mdc-tab--active" tabindex="0">
-                  <span class="mdc-tab__content">
-                    <span class="mdc-tab__text-label">Radio</span>
-                  </span>
-                  <span class="mdc-tab-indicator mdc-tab-indicator--active">
-                    <span class="mdc-tab-indicator__content mdc-tab-indicator__content--underline"></span>
-                  </span>
-                  <span class="mdc-tab__ripple"></span>
-                </button>
+              <button class="mdc-tab mdc-tab--active" tabindex="0">
+                <span class="mdc-tab__content">
+                  <span class="mdc-tab__text-label">Radio</span>
+                </span>
+                <span class="mdc-tab-indicator mdc-tab-indicator--active">
+                  <span class="mdc-tab-indicator__content mdc-tab-indicator__content--underline"></span>
+                </span>
+                <span class="mdc-tab__ripple"></span>
+              </button>
 
-                <button class="mdc-tab" tabindex="1">
-                  <span class="mdc-tab__content">
-                    <span class="mdc-tab__text-label">Playlist</span>
-                  </span>
-                  <span class="mdc-tab-indicator">
-                    <span class="mdc-tab-indicator__content mdc-tab-indicator__content--underline"></span>
-                  </span>
-                  <span class="mdc-tab__ripple"></span>
-                </button>
+              <button class="mdc-tab" tabindex="1">
+                <span class="mdc-tab__content">
+                  <span class="mdc-tab__text-label">Playlist</span>
+                </span>
+                <span class="mdc-tab-indicator">
+                  <span class="mdc-tab-indicator__content mdc-tab-indicator__content--underline"></span>
+                </span>
+                <span class="mdc-tab__ripple"></span>
+              </button>
 
-                <!-- <a class="mdc-tab mdc-tab--active" href="#one">Radio</a>
+              <!-- <a class="mdc-tab mdc-tab--active" href="#one">Radio</a>
                 <a class="mdc-tab" href="#two">Playlist</a> -->
-                <span class="mdc-tab-bar__indicator"></span>
-              </div>
+              <span class="mdc-tab-bar__indicator"></span>
             </div>
           </div>
-        </nav>
-      </div>
+      </nav>
     </div>
+  </div>
   </div>
   <!--Für Handys nur ein Temporärer Drawer der über den Menübutton eingeblendet wird-->
   <div class="mdc-drawer mdc-drawer--modal">
@@ -113,12 +111,12 @@
           </a>
         </nav>
       </div>
-  </div>
+    </div>
 
-  <!-- content enthält die verschiedenen seiten (radio, filme, etc)-->
-  <main id="content">
-    <!--=include ./pages.html -->
-  </main>
+    <!-- content enthält die verschiedenen seiten (radio, filme, etc)-->
+    <main id="content">
+      <!--=include ./pages.html -->
+    </main>
 
   </div>
 

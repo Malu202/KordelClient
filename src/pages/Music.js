@@ -4,8 +4,9 @@ var musikTabBar = new mdc.tabBar.MDCTabBar(document.querySelector('.mdc-tab-bar'
 var senderSubPage = document.getElementById("sender");
 var playlistSubPage = document.getElementById("playlist");
 //eventuall :activated
-musikTabBar.listen('MDCTabBar:change', function ({ detail: tabs }) {
-  var tabIndex = tabs.activeTabIndex;
+musikTabBar.listen('MDCTabBar:activated', function ({detail: {index: number}}) {
+  var tabIndex = number;
+  console.log(tabIndex);
   if (tabIndex == 0) {
     senderSubPage.style.display = "block";
     playlistSubPage.style.display = "none";
