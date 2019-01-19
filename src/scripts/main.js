@@ -11,14 +11,38 @@ function openDrawer() {
   document.onclick = openDrawerClick;
 }
 //überprüft bei geöffnetem Drawer alle klicks ob der Drawer geschlossen werden muss
-function openDrawerClick(clickEvent){
-  if(clickEvent.srcElement != menuButton && clickEvent.srcElement != drawerEl){
+function openDrawerClick(clickEvent) {
+  if (clickEvent.srcElement != menuButton && clickEvent.srcElement != drawerEl) {
     closeDrawer();
     document.onclick = null;
   }
 }
 function closeDrawer() {
   drawerEl.classList.remove("mdc-drawer--open");
+}
+
+//OWN JS IMPLEMENTATION FOR MDC ELEMENTS
+var CHECKED_SWITCH_CLASSNAME = "mdc-switch--checked";
+function toggleSwitch(Switch) {
+  var SwitchDiv = Switch.parentElement.parentElement.parentElement
+  if (SwitchDiv.classList.contains(CHECKED_SWITCH_CLASSNAME)) {
+    SwitchDiv.classList.remove(CHECKED_SWITCH_CLASSNAME);
+    return false;
+  }
+  else { 
+    SwitchDiv.classList.add(CHECKED_SWITCH_CLASSNAME); 
+    return true;
+  }
+}
+
+function setSwitchState(Switch, state){
+  var SwitchDiv = Switch.parentElement.parentElement.parentElement;
+  if(state == true){
+    SwitchDiv.classList.add(CHECKED_SWITCH_CLASSNAME);
+  } 
+  if(state == false){
+    SwitchDiv.classList.remove(CHECKED_SWITCH_CLASSNAME);
+  }
 }
 //TOOLBAR mdc-toolbar-fixed-adjust damit sich der adjust anpasst beim resizen
 window.addEventListener("resize", resize, true);

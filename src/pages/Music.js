@@ -20,7 +20,7 @@ musikTabBar.listen('MDCTabBar:activated', function ({detail: {index: number}}) {
 var onOffAutoplay = document.getElementById("onOffAutoplay");
 onOffAutoplay.addEventListener("click", function () {
   var request = {};
-  if (onOffAutoplay.checked) request.task = "Autoplayaktivieren";
+  if (toggleSwitch(onOffAutoplay)) request.task = "Autoplayaktivieren";
   else request.task = "Autoplaydeaktivieren";;
   postRequest(serverip + "todo", request, function (msg) {
   });
@@ -156,11 +156,11 @@ var radiosenderSpielen = function (name) {
 }
 
 //Radiosender hinzufügen
-var dialog = new mdc.dialog.MDCDialog(document.querySelector('#addRadiosenderDialog'));
+var radioDialog = new mdc.dialog.MDCDialog(document.querySelector('#addRadiosenderDialog'));
 var radioname = document.getElementById("radioname");
 var radiourl = document.getElementById("radiourl");
 
-dialog.listen('MDCDialog:accept', function () {
+radioDialog.listen('MDCDialog:accept', function () {
   console.log('accepted');
   var request = {};
   request.name = radioname.value;
@@ -172,7 +172,7 @@ dialog.listen('MDCDialog:accept', function () {
 
 document.querySelector('#addRadioButton').addEventListener('click', function (evt) {
   //dialog.lastFocusedTarget = evt.target;
-  dialog.show();
+  radioDialog.show();
 })
 
 //PLAYLIST

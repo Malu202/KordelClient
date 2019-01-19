@@ -50,7 +50,7 @@ var deleteRequest = function (url, jsondata, callback) {
   http.send(JSON.stringify(jsondata));
 }
 var content = document.getElementById("content");
-function showDialog(heading, body, cancel, accept, oncancel, onaccept) {
+function showDialog1(heading, body, cancel, accept, oncancel, onaccept) {
   var dialog = document.createElement("aside");
   dialog.className = "mdc-dialog";
   dialog.role = "alertdialog";
@@ -90,8 +90,37 @@ function showDialog(heading, body, cancel, accept, oncancel, onaccept) {
   buttonCancel.appendChild(canceltext);
   buttonAccept.appendChild(accepttext);
   dialog.appendChild(backdrop);
-  var dialogjs = new window.mdc.dialog.MDCDialog(dialog);
+  //var dialogjs = new window.mdc.dialog.MDCDialog(dialog);
   dialogjs.listen('MDCDialog:accept', onaccept);
   dialogjs.listen('MDCDialog:cancel', oncancel);
   dialogjs.show();
+}
+
+var radioDialog = document.getElementById("dialog");
+var dialogHeading = document.getElementById("dialogHeading")
+var dialogBody = document.getElementById("dialogBody");
+var dialogCancel = document.getElementById("dialogCancel");
+var dialogAccept = document.getElementById("dialogAccept");
+
+function showDialog(heading, body, cancel, accept, oncancel, onaccept) {
+  dialogHeading.innerHTML = heading;
+  dialogBody.innerHTML = body;
+  dialogCancel.innerHTML = cancel;
+  dialogAccept.innerHTML = accept;
+
+
+  dialogCancel.addEventListener("click", function () {
+    hideDialog();
+    if (oncancel) oncancel();
+  });
+  dialogAccept.addEventListener("click", function () {
+    hideDialog();
+    if (onaccept) onaccept();
+  });
+
+  dialog.classList.add("mdc-dialog--open");
+}
+
+function hideDialog() {
+  dialog.classList.remove("mdc-dialog--open");
 }

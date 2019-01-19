@@ -311,11 +311,15 @@ button i{
     outline: 0;
 }
 //FIX ist unter bottompanel (z-index: 3) per default
-.mdc-dialog{
-    z-index: 10;
-}
-.mdc-dialog__body{
-    color: $mdc-theme-primary;
+// .mdc-dialog{
+//     z-index: 10;
+//}
+// .mdc-dialog__body{
+//     color: $mdc-theme-primary;
+// }
+.mdc-dialog__surface{
+    background-color: $mdc-theme-background !important;
+    color: $mdc-theme-primary
 }
 //TEXTFIELD
 .mdc-text-field{

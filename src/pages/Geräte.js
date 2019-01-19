@@ -1,23 +1,25 @@
 //GERÄTE
 var onOffKordel = document.getElementById("onOffKordel");
 onOffKordel.addEventListener("click", function () {
-  if (!onOffKordel.checked) {
+  if (!toggleSwitch(onOffKordel)) {
     var request = {};
     request.task = "Herunterfahren";
     postRequest(serverip + "todo", request, function (msg) {
       console.log(msg);
     });
   } else {
-    showDialog("Befehl nicht möglich", "Kordel bitte manuell einschalten", null, "OK", null, null);
-    onOffKordel.checked = false;
+    //showDialog("Befehl nicht möglich", "Kordel bitte manuell einschalten", null, "OK", null, null);
+    showDialog("Befehl nicht möglich", "Bitte Kordel manuell einschalten",null,"ok",null,null);
+    toggleSwitch(onOffKordel);
   }
 });
 onOffKordel.addEventListener("contextmenu", function (e) {
-  if (onOffKordel.checked) {
+  if (!toggleSwitch(onOffKordel)) {
     var request = {};
     request.task = "Neustarten";
     postRequest(serverip + "todo", request, function (msg) { });
     e.preventDefault();
+    toggleSwitch(onOffKordel);
   }
 });
 
@@ -25,7 +27,7 @@ onOffKordel.addEventListener("contextmenu", function (e) {
 var onOffPC = document.getElementById("onOffPc");
 onOffPC.addEventListener("click", function () {
   var request = {};
-  if (!onOffPC.checked) {
+  if (!toggleSwitch(onOffPC)) {
     request.task = "turnOffPc";
     postRequest(serverip + "todo", request, function (msg) {});
   } else {
@@ -38,7 +40,7 @@ onOffPC.addEventListener("click", function () {
 var onOffSimulationStation = document.getElementById("onOffEmulationstation");
 onOffSimulationStation.addEventListener("click", function () {
   var request = {};
-  if (onOffSimulationStation.checked) {
+  if (toggleSwitch(onOffSimulationStation)) {
     request.task = "startEmulationStation";
     postRequest(serverip + "todo", request, function (msg) {});
   } else { 
@@ -48,5 +50,5 @@ onOffSimulationStation.addEventListener("click", function () {
 });
 
 function updateGeraete(response) {
-  onOffPC.checked = response.Status.PcOnline;
+  setSwitchState(onOffPC, response.Status.PcOnline);
 };
