@@ -2,18 +2,24 @@ mdc.autoInit();
 
 
 //DRAWER
-var drawerEl = document.querySelector('.mdc-drawer--modal');
-// var MDCTemporaryDrawer = mdc.drawer.MDCTemporaryDrawer.attachTo(document.querySelector());
-// var drawer = new mdc.drawer.MDCDrawer(drawerEl);
-// var drawer = mdc.drawer.MDCDrawer.attachTo(document.querySelector('.mdc-drawer--modal'));
-// var MDCTemporaryDrawer = mdc.drawer.MDCDrawer;
-// var drawer = new MDCTemporaryDrawer(drawerEl);
+var drawerEl = document.getElementsByClassName('mdc-drawer--modal')[0];
+var menuButton = document.getElementById('menu');
+menuButton.onclick = openDrawer;
 
-// var drawer = mdc.drawer.MDCDrawer.attachTo(document.querySelector('.mdc-drawer--modal'));
-document.querySelector('.menu').addEventListener('click', function () {
-  drawer.open = true;
-});
-
+function openDrawer() {
+  drawerEl.classList.add("mdc-drawer--open");
+  document.onclick = openDrawerClick;
+}
+//überprüft bei geöffnetem Drawer alle klicks ob der Drawer geschlossen werden muss
+function openDrawerClick(clickEvent){
+  if(clickEvent.srcElement != menuButton && clickEvent.srcElement != drawerEl){
+    closeDrawer();
+    document.onclick = null;
+  }
+}
+function closeDrawer() {
+  drawerEl.classList.remove("mdc-drawer--open");
+}
 //TOOLBAR mdc-toolbar-fixed-adjust damit sich der adjust anpasst beim resizen
 window.addEventListener("resize", resize, true);
 
@@ -54,7 +60,7 @@ playpausebutton.addEventListener('MDCIconToggle:change', ({ detail }) => {
   var request = {};
   if (detail.isOn) request.task = "Playerpausieren";
   else request.task = "Playerfortsetzen";
-  postRequest(TODO_IP, request, function (msg) {});
+  postRequest(TODO_IP, request, function (msg) { });
 });
 
 const SPACE_KEYCODE = 32;
@@ -105,7 +111,7 @@ function addtoPlaylist() {
 
   request.name = song.value;
 
-  postRequest(TODO_IP, request, function (msg) {});
+  postRequest(TODO_IP, request, function (msg) { });
 
   song.value = "";
 }
@@ -124,7 +130,7 @@ function update(response) {
   //Laufendes Lied eintragen
   if (status.name) songname.innerHTML = status.name;
   else songname.innerHTML = "";
-    
+
   updateGeraete(response);
 
 }

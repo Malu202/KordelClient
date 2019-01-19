@@ -18,7 +18,7 @@ $toolbar: #fff;
 $mdc-theme-on-surface: #fff; //design fix
 //$mdc-theme-on-primary: $mdc-theme-background;
 
-$mdc-drawer-surface-fill-color: $toolbar-background !important; //design fix
+// $mdc-drawer-surface-fill-color: $toolbar-background !important; //design fix
 $mdc-tab-bar-indicator-ink-color: $mdc-theme-secondary;
 //SWITCH
 //TODO im eingeschalteten zustand accent color verwenden
@@ -93,7 +93,7 @@ body{
 		display: none !important;
     }
     
-    .mdc-drawer--temporary{
+    .mdc-drawer--modal{
         z-index: 4;
     }
 }
@@ -118,6 +118,10 @@ nav .mdc-permanent-drawer--selected, nav .mdc-permanent-drawer--selected .mdc-li
     background-color: $toolbar-background;
     border-right: 1px solid rgba(255,255,255,.12);
     height: auto;
+}
+.mdc-drawer--modal{
+    background-color: $mdc-theme-background;
+    border-right-style: none !important; //design fix
 }
 //LAYOUT
 //Toolbar und page übereinander (nur notwendig, weil bei height:100% auf den content
