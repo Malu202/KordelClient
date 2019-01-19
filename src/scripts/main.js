@@ -185,7 +185,7 @@ function showPage(pageid, button) {
 }
 showPage("musik");
 
-const snackbar = new mdc.snackbar.MDCSnackbar(document.querySelector('#mainSnackbar'));
+//const  = new mdc.snackbar.MDCSnackbar(document.querySelector('#mainSnackbar'));
 // const dataObj = {
 //   message: "test",
 //   // actionText: 'Undo',

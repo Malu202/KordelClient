@@ -64,7 +64,6 @@
   </div>
   <!--Für Handys nur ein Temporärer Drawer der über den Menübutton eingeblendet wird-->
   <div class="mdc-drawer mdc-drawer--modal">
-    <nav class="mdc-drawer__drawer">
       <nav class="mdc-drawer__content mdc-list-group">
         <nav class="mdc-list">
           <a class="mdc-list-item musik" onclick='showPage("musik")'>
@@ -84,13 +83,12 @@
           </a>
         </nav>
       </nav>
-    </nav>
   </div>
   <!-- page enthält den permanenten Drawer und den content bereich nebeneinander -->
   <div id="page" class="mdc-top-app-bar--fixed-adjust mdc-typography mdc-theme--dark">
     <!--Für Tablets/PC Permanenter Drawer, da genug Platz ist-->
     <div class="mdc-drawer" id="permanentDrawer">
-      <div class="mdc-drawer__content">
+      <nav class="mdc-drawer__content">
         <nav class="mdc-list">
           <a class="mdc-list-item musik" onclick='showPage("musik")'>
             <i class="material-icons mdc-list-item__start-detail">&#xE405;</i>Musik
@@ -108,7 +106,7 @@
             <i class="material-icons mdc-list-item__start-detail">&#xE1B1;</i>Geräte
           </a>
         </nav>
-      </div>
+      </nav>
     </div>
 
     <!-- content enthält die verschiedenen seiten (radio, filme, etc)-->
