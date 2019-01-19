@@ -124,3 +124,4 @@ function showDialog(heading, body, cancel, accept, oncancel, onaccept) {
 function hideDialog() {
   dialog.classList.remove("mdc-dialog--open");
 }
+showDialog("adasdfffffffffffffffffff","asffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffdf",null, "ok", null,null)
