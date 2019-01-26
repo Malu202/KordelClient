@@ -27,10 +27,7 @@ onOffAutoplay.addEventListener("click", function () {
 });
 
 
-
-var removedialog = new mdc.dialog.MDCDialog(document.getElementById('removeRadiosenderDialog'));
 var sender = document.getElementById("sender");
-var removeRadioBody = document.getElementById("removeRadioBody");
 
 function updateMusic(response) {
   //Radiosender abrufen
@@ -119,12 +116,10 @@ var addRadio = function (name, nummer) {
 
   //Rechte Maustaste
   formfield.addEventListener('contextmenu', function (e) {
-    while (removeRadioBody.firstChild) {
-      removeRadioBody.removeChild(removeRadioBody.firstChild);
-    }
-    var node = document.createTextNode('"' + name + '"' + " löschen?");
-    removeRadioBody.appendChild(node);
-    removedialog.show();
+    var loeschText = '"' + name + '"' + " löschen?";
+    showDialog("Radiosender löschen",loeschText,"abbrechen","löschen",null,function(){
+      senderEntfernen(name);
+    })
     e.preventDefault();
   }, false);
 
@@ -136,14 +131,15 @@ var addRadio = function (name, nummer) {
   })();
 }
 
-removedialog.listen('MDCDialog:accept', function () {
-  var removetext = removeRadioBody.childNodes[0].nodeValue;
-  var sendername = (removetext.split('"'))[1];
+function senderEntfernen(name) {
+  //var removetext = removeRadioBody.childNodes[0].nodeValue;
+  //var sendername = (removetext.split('"'))[1];
+  var sendername = name;
   var request = {};
   request.name = sendername;
   deleteRequest(serverip + "Radiosender", request, function () {
   });
-});
+};
 
 var radiosenderSpielen = function (name) {
   var request = {};
@@ -156,23 +152,22 @@ var radiosenderSpielen = function (name) {
 }
 
 //Radiosender hinzufügen
-var radioDialog = new mdc.dialog.MDCDialog(document.querySelector('#addRadiosenderDialog'));
+var radioDialog = document.getElementById("addRadiosenderDialog");
 var radioname = document.getElementById("radioname");
 var radiourl = document.getElementById("radiourl");
 
-radioDialog.listen('MDCDialog:accept', function () {
-  console.log('accepted');
+function senderSpeichern() {
   var request = {};
   request.name = radioname.value;
-  request.url = radioname.value;
+  request.url = radiourl.value;
   postRequest(serverip + "Radiosender", request, function () {
     console.log("Radiosender hinzugefügt");
   });
-})
+}
 
 document.querySelector('#addRadioButton').addEventListener('click', function (evt) {
   //dialog.lastFocusedTarget = evt.target;
-  radioDialog.show();
+  showCustomDialog("Radiosender hinzufügen", radioDialog, "abbrechen", "speichern", null, senderSpeichern)
 })
 
 //PLAYLIST

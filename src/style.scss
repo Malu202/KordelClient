@@ -321,6 +321,12 @@ button i{
     background-color: $mdc-theme-background !important;
     color: $mdc-theme-primary
 }
+.mdc-dialog .dialogContent{
+    display: block;
+}
+.dialogContent{
+    display: none;
+}
 //TEXTFIELD
 .mdc-text-field{
     background-color: rgba(0,0,0,0) !important;
