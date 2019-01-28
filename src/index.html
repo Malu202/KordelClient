@@ -1,6 +1,6 @@
 <!doctype html>
-
 <!-- <html manifest="./manifest.appcache?v-2018-13-10-002"> -->
+
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"> -->
@@ -15,57 +15,57 @@
 </head>
 
 <body class="mdc-typography mdc-theme--dark">
-  <div class="mdc-toolbar mdc-toolbar--fixed">
-    <div class="mdc-toolbar__row">
-      <section class="mdc-toolbar__section mdc-toolbar__section--align-start">
-        <button class="menu material-icons mdc-toolbar__menu-icon">&#xE5D2;</button>
-        <span class="mdc-toolbar__title catalog-title">Kordel</span>
+  <div class="mdc-top-app-bar mdc-top-app-bar--fixed">
+    <div class="mdc-top-app-bar__row">
+      <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
+        <a id="menu" class="menu material-icons mdc-top-app-bar__navigation-icon">&#xE5D2;</a>
+        <span class="mdc-top-app-bar__title catalog-title">Kordel</span>
       </section>
-      <section class="mdc-toolbar__section mdc-toolbar__section--align-end">
-        <button class="material-icons mdc-toolbar__icon" id="updateButton" onclick='android.update("https://github.com/Malu202/KordelClient/blob/master/index.html?raw=true");'>&#xE5D5;</button>
-        <button class="material-icons mdc-toolbar__icon musik" id="addRadioButton">&#xE145;</button>
+      <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end">
+        <a class="material-icons mdc-top-app-bar__action-item" id="updateButton" onclick='android.update("https://github.com/Malu202/KordelClient/blob/master/index.html?raw=true");'>&#xE5D5;</a>
+        <a class="material-icons mdc-top-app-bar__action-item musik" id="addRadioButton">&#xE145;</a>
       </section>
     </div>
     <!-- tabindikator (größe: 0) wird über mediaqueries ein/ausgeblendet als indikator ob tabs via javascript ein/ausgeblendet werden müssen-->
     <div id="tabindikator"></div>
-    <div class="mdc-toolbar__row musik tabs" id="music-tabs">
-      <div class="mdc-toolbar__section">
-        <nav class="mdc-tab-bar mdc-tab-bar--indicator-accent">
-          <a class="mdc-tab mdc-tab--active" href="#one">Radio</a>
-          <a class="mdc-tab" href="#two">Playlist</a>
-          <span class="mdc-tab-bar__indicator"></span>
-        </nav>
-      </div>
+    <div class="mdc-top-app-bar__row musik tabs" id="music-tabs">
+      <nav class="mdc-tab-bar">
+        <div class="mdc-tab-scroller">
+          <div class="mdc-tab-scroller__scroll-area">
+            <div class="mdc-tab-scroller__scroll-content">
+
+              <button class="mdc-tab mdc-tab--active" tabindex="0">
+                <span class="mdc-tab__content">
+                  <span class="mdc-tab__text-label">Radio</span>
+                </span>
+                <span class="mdc-tab-indicator mdc-tab-indicator--active">
+                  <span class="mdc-tab-indicator__content mdc-tab-indicator__content--underline"></span>
+                </span>
+                <span class="mdc-tab__ripple"></span>
+              </button>
+
+              <button class="mdc-tab" tabindex="1">
+                <span class="mdc-tab__content">
+                  <span class="mdc-tab__text-label">Playlist</span>
+                </span>
+                <span class="mdc-tab-indicator">
+                  <span class="mdc-tab-indicator__content mdc-tab-indicator__content--underline"></span>
+                </span>
+                <span class="mdc-tab__ripple"></span>
+              </button>
+
+              <!-- <a class="mdc-tab mdc-tab--active" href="#one">Radio</a>
+                <a class="mdc-tab" href="#two">Playlist</a> -->
+              <span class="mdc-tab-bar__indicator"></span>
+            </div>
+          </div>
+      </nav>
     </div>
   </div>
+  </div>
   <!--Für Handys nur ein Temporärer Drawer der über den Menübutton eingeblendet wird-->
-  <aside class="mdc-drawer mdc-drawer--temporary">
-    <nav class="mdc-drawer__drawer">
-      <nav class="mdc-drawer__content mdc-list-group">
-        <nav class="mdc-list">
-          <a class="mdc-list-item musik" onclick='showPage("musik")'>
-            <i class="material-icons mdc-list-item__start-detail">&#xE405;</i>Musik
-          </a>
-          <a class="mdc-list-item">
-            <i class="material-icons mdc-list-item__start-detail">&#xE54D;</i>Filme
-          </a>
-          <a class="mdc-list-item serien" onclick='showPage("serien")'>
-            <i class="material-icons mdc-list-item__start-detail">&#xE064;</i>Serien
-          </a>
-          <a class="mdc-list-item fernseher" onclick='showPage("fernseher")'>
-            <i class="material-icons mdc-list-item__start-detail">&#xE8C7;</i>Fernseher
-          </a>
-          <a class="mdc-list-item Geraete" onclick='showPage("Geraete")'>
-            <i class="material-icons mdc-list-item__start-detail">&#xE1B1;</i>Geräte
-          </a>
-        </nav>
-      </nav>
-    </nav>
-  </aside>
-  <!-- page enthält den permanenten Drawer und den content bereich nebeneinander -->
-  <div id="page" class="mdc-toolbar-fixed-adjust mdc-typography mdc-theme--dark">
-    <!--Für Tablets/PC Permanenter Drawer, da genug Platz ist-->
-    <nav class="mdc-drawer mdc-drawer--permanent">
+  <div class="mdc-drawer mdc-drawer--modal">
+    <nav class="mdc-drawer__content mdc-list-group">
       <nav class="mdc-list">
         <a class="mdc-list-item musik" onclick='showPage("musik")'>
           <i class="material-icons mdc-list-item__start-detail">&#xE405;</i>Musik
@@ -84,6 +84,31 @@
         </a>
       </nav>
     </nav>
+  </div>
+  <!-- page enthält den permanenten Drawer und den content bereich nebeneinander -->
+  <div id="page" class="mdc-top-app-bar--fixed-adjust mdc-typography mdc-theme--dark">
+    <!--Für Tablets/PC Permanenter Drawer, da genug Platz ist-->
+    <div class="mdc-drawer" id="permanentDrawer">
+      <nav class="mdc-drawer__content">
+        <nav class="mdc-list">
+          <a class="mdc-list-item musik" onclick='showPage("musik")'>
+            <i class="material-icons mdc-list-item__start-detail">&#xE405;</i>Musik
+          </a>
+          <a class="mdc-list-item">
+            <i class="material-icons mdc-list-item__start-detail">&#xE54D;</i>Filme
+          </a>
+          <a class="mdc-list-item serien" onclick='showPage("serien")'>
+            <i class="material-icons mdc-list-item__start-detail">&#xE064;</i>Serien
+          </a>
+          <a class="mdc-list-item fernseher" onclick='showPage("fernseher")'>
+            <i class="material-icons mdc-list-item__start-detail">&#xE8C7;</i>Fernseher
+          </a>
+          <a class="mdc-list-item Geraete" onclick='showPage("Geraete")'>
+            <i class="material-icons mdc-list-item__start-detail">&#xE1B1;</i>Geräte
+          </a>
+        </nav>
+      </nav>
+    </div>
 
     <!-- content enthält die verschiedenen seiten (radio, filme, etc)-->
     <main id="content">
@@ -115,7 +140,7 @@
 
         <div class="mdc-form-field playlistcontrolitem">
           <div class="mdc-checkbox">
-            <input type="checkbox" id="now" class="mdc-checkbox__native-control" checked/>
+            <input type="checkbox" id="now" class="mdc-checkbox__native-control" checked />
             <div class="mdc-checkbox__background">
               <svg class="mdc-checkbox__checkmark" viewBox="0 0 24 24">
                 <path class="mdc-checkbox__checkmark-path" fill="none" stroke="white" d="M1.73,12.91 8.1,19.28 22.79,4.59" />
@@ -165,15 +190,42 @@
         <div id="song-name" class="mdc-typography--body2"></div>
       </div>
 
-      <i class="mdc-icon-toggle material-icons playerbutton" id="playpause" role="button" aria-pressed="false" data-toggle-on='{"content": "&#xE037;"}' data-toggle-off='{"content": "&#xE034;"}'>
+      <i class="mdc-icon-toggle material-icons playerbutton" id="playpause" role="button" aria-pressed="false"
+        data-toggle-on='{"content": "&#xE037;"}' data-toggle-off='{"content": "&#xE034;"}'>
         pause
       </i>
     </div>
 
-    <div id="mainSnackbar" class="mdc-snackbar mdc-snackbar--align-start" aria-live="assertive" aria-atomic="true" aria-hidden="true">
-      <div class="mdc-snackbar__text"></div>
-      <div class="mdc-snackbar__action-wrapper">
-        <button type="button" class="mdc-snackbar__action-button"></button>
+
+    <div class="mdc-dialog" id="dialog">
+      <div class="mdc-dialog__container">
+        <div class="mdc-dialog__surface">
+          <!-- Title cannot contain leading whitespace due to mdc-typography-baseline-top() -->
+          <h2 class="mdc-dialog__title" id="dialogHeading">Titel</h2>
+          <div class="mdc-dialog__content" id="dialogBody">asdf</div>
+
+          <footer class="mdc-dialog__actions">
+            <button type="button" id="dialogCancel" class="mdc-button mdc-dialog__button">
+              Abbrechen
+            </button>
+            <button type="button" id="dialogAccept" class="mdc-button mdc-dialog__button">
+              Bestätigen
+            </button>
+          </footer>
+
+        </div>
+      </div>
+      <!-- <div class="mdc-dialog__scrim"></div> -->
+    </div>
+
+
+
+    <div id="mainSnackbar" class="mdc-snackbar mdc-snackbar--leading">
+      <div class="mdc-snackbar__surface">
+        <div id="mainSnackbarText" class="mdc-snackbar__label"></div>
+        <div class="mdc-snackbar__actions">
+          <button id="mainSnackbarButton" class="mdc-button mdc-snackbar__action"></button>
+        </div>
       </div>
     </div>
 

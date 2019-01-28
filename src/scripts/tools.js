@@ -8,6 +8,8 @@ var getRequest = function (url, callback) {
     callback(json);
   });
   xhr.send();
+  console.log("-------GET");
+  console.log(url);
 }
 
 var postRequest = function (url, jsondata, callback) {
@@ -23,11 +25,17 @@ var postRequest = function (url, jsondata, callback) {
         message: responseJSON.message,
       };
       snackbar.show(dataObj);
+      snackbarNotification(responseJSON.message,null,null);
       update(responseJSON);
       callback(responseJSON);
     }
   }
   http.send(JSON.stringify(jsondata));
+  
+  console.log("-------POST");
+  console.log(url);
+  console.log("data: ");
+  console.log(jsondata);
 }
 
 var deleteRequest = function (url, jsondata, callback) {
@@ -48,50 +56,63 @@ var deleteRequest = function (url, jsondata, callback) {
     }
   }
   http.send(JSON.stringify(jsondata));
+  console.log("-------DELETE");
+  console.log(url);
+  console.log("data: ");
+  console.log(jsondata);
 }
-var content = document.getElementById("content");
-function showDialog(heading, body, cancel, accept, oncancel, onaccept) {
-  var dialog = document.createElement("aside");
-  dialog.className = "mdc-dialog";
-  dialog.role = "alertdialog";
-  var surface = document.createElement("div");
-  surface.className = "mdc-dialog__surface";
-  var header = document.createElement("header");
-  header.className = "mdc-dialog__header";
-  var h2 = document.createElement("h2");
-  h2.className = "mdc-dialog__header__title";
-  var headertext = document.createTextNode(heading);
-  var section = document.createElement("section");
-  section.className = "mdc-dialog__body";
-  var bodytext = document.createTextNode(body);
-  var footer = document.createElement("footer");
-  footer.className = "mdc-dialog__footer";
-  var buttonCancel = document.createElement("button");
-  buttonCancel.className = "mdc-button mdc-dialog__footer__button mdc-dialog__footer__button--cancel";
-  buttonCancel.type = "button";
-  var buttonAccept = document.createElement("button");
-  buttonAccept.className = "mdc-button mdc-dialog__footer__button mdc-dialog__footer__button--accept";
-  buttonAccept.type = "button";
-  var backdrop = document.createElement("div");
-  backdrop.className = "mdc-dialog__backdrop";
-  var canceltext = document.createTextNode(cancel);
-  var accepttext = document.createTextNode(accept);
+var radioDialog = document.getElementById("dialog");
+var dialogHeading = document.getElementById("dialogHeading")
+var dialogBody = document.getElementById("dialogBody");
+var dialogCancel = document.getElementById("dialogCancel");
+var dialogAccept = document.getElementById("dialogAccept");
 
-  content.appendChild(dialog);
-  dialog.appendChild(surface);
-  surface.appendChild(header);
-  header.appendChild(h2);
-  h2.appendChild(headertext);
-  surface.appendChild(section);
-  section.appendChild(bodytext);
-  surface.appendChild(footer);
-  if (cancel != null) footer.appendChild(buttonCancel);
-  if (accept != null) footer.appendChild(buttonAccept);
-  buttonCancel.appendChild(canceltext);
-  buttonAccept.appendChild(accepttext);
-  dialog.appendChild(backdrop);
-  var dialogjs = new window.mdc.dialog.MDCDialog(dialog);
-  dialogjs.listen('MDCDialog:accept', onaccept);
-  dialogjs.listen('MDCDialog:cancel', oncancel);
-  dialogjs.show();
+var snackbar = document.getElementById("mainSnackbar");
+var snackbarText = document.getElementById("mainSnackbarText")
+function snackbarNotification(text,buttonText,onButtonClick){
+    snackbarText.innerHTML = text;
+    snackbar.classList.add("mdc-snackbar--open");
+    //snackbar.classList.add('mdc-snackbar--opening');
 }
+snackbarNotification("hi",null,null);
+function showCustomDialog(heading, bodyObject, cancel, accept, oncancel, onaccept) {
+  dialogHeading.innerHTML = heading;
+  //dialogBody.innerHTML = body;
+  dialogBody.innerHTML = "";
+  dialogBody.appendChild(bodyObject);
+
+  if (cancel) {
+    dialogCancel.innerHTML = cancel;
+
+    dialogCancel.addEventListener("click", function () {
+      hideDialog();
+      if (oncancel) oncancel();
+    });
+
+  } else {
+    dialogCancel.style.display = "none";
+  }
+  if (accept) {
+    dialogAccept.innerHTML = accept;
+
+    dialogAccept.addEventListener("click", function () {
+      hideDialog();
+      if (onaccept) onaccept();
+    });
+  } else {
+    dialogAccept.style.display = "none";
+  }
+
+  dialog.classList.add("mdc-dialog--open");
+}
+
+function hideDialog() {
+  dialog.classList.remove("mdc-dialog--open");
+  dialogAccept.style.display = "block";
+  dialogCancel.style.display = "block";
+}
+function showDialog(heading, bodyText, cancel, accept, oncancel, onaccept) {
+  var bodyDiv = document.createTextNode(bodyText)
+  showCustomDialog(heading, bodyDiv, cancel, accept, oncancel, onaccept);
+}
+//showDialog("heading", "bodyText", "cancel", "accept", null, null);

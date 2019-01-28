@@ -2,20 +2,55 @@ mdc.autoInit();
 
 
 //DRAWER
-var drawerEl = document.querySelector('.mdc-drawer--temporary');
-var MDCTemporaryDrawer = mdc.drawer.MDCTemporaryDrawer;
-var drawer = new MDCTemporaryDrawer(drawerEl);
-document.querySelector('.menu').addEventListener('click', function () {
-  drawer.open = true;
-});
+var drawerEl = document.getElementsByClassName('mdc-drawer--modal')[0];
+var menuButton = document.getElementById('menu');
+menuButton.onclick = openDrawer;
 
+function openDrawer() {
+  drawerEl.classList.add("mdc-drawer--open");
+  document.onclick = openDrawerClick;
+}
+//überprüft bei geöffnetem Drawer alle klicks ob der Drawer geschlossen werden muss
+function openDrawerClick(clickEvent) {
+  if (clickEvent.srcElement != menuButton && clickEvent.srcElement != drawerEl) {
+    closeDrawer();
+    document.onclick = null;
+  }
+}
+function closeDrawer() {
+  drawerEl.classList.remove("mdc-drawer--open");
+}
+
+//OWN JS IMPLEMENTATION FOR MDC ELEMENTS
+var CHECKED_SWITCH_CLASSNAME = "mdc-switch--checked";
+function toggleSwitch(Switch) {
+  var SwitchDiv = Switch.parentElement.parentElement.parentElement
+  if (SwitchDiv.classList.contains(CHECKED_SWITCH_CLASSNAME)) {
+    SwitchDiv.classList.remove(CHECKED_SWITCH_CLASSNAME);
+    return false;
+  }
+  else { 
+    SwitchDiv.classList.add(CHECKED_SWITCH_CLASSNAME); 
+    return true;
+  }
+}
+
+function setSwitchState(Switch, state){
+  var SwitchDiv = Switch.parentElement.parentElement.parentElement;
+  if(state == true){
+    SwitchDiv.classList.add(CHECKED_SWITCH_CLASSNAME);
+  } 
+  if(state == false){
+    SwitchDiv.classList.remove(CHECKED_SWITCH_CLASSNAME);
+  }
+}
 //TOOLBAR mdc-toolbar-fixed-adjust damit sich der adjust anpasst beim resizen
 window.addEventListener("resize", resize, true);
 
 
 function resize() {
-  var toolbar = mdc.toolbar.MDCToolbar.attachTo(document.querySelector('.mdc-toolbar'));
-  toolbar.fixedAdjustElement = document.querySelector('.mdc-toolbar-fixed-adjust');
+  var toolbar = new mdc.topAppBar.MDCTopAppBar(document.querySelector('.mdc-top-app-bar'));
+  toolbar.fixedAdjustElement = document.querySelector('.mdc-top-app-bar--fixed-adjust');
 }
 var serverip = "http://10.0.0.40:1337/";
 var TODO_IP = serverip + "todo";
@@ -49,7 +84,7 @@ playpausebutton.addEventListener('MDCIconToggle:change', ({ detail }) => {
   var request = {};
   if (detail.isOn) request.task = "Playerpausieren";
   else request.task = "Playerfortsetzen";
-  postRequest(TODO_IP, request, function (msg) {});
+  postRequest(TODO_IP, request, function (msg) { });
 });
 
 const SPACE_KEYCODE = 32;
@@ -100,7 +135,7 @@ function addtoPlaylist() {
 
   request.name = song.value;
 
-  postRequest(TODO_IP, request, function (msg) {});
+  postRequest(TODO_IP, request, function (msg) { });
 
   song.value = "";
 }
@@ -119,7 +154,7 @@ function update(response) {
   //Laufendes Lied eintragen
   if (status.name) songname.innerHTML = status.name;
   else songname.innerHTML = "";
-    
+
   updateGeraete(response);
 
 }
@@ -127,7 +162,7 @@ getRequest(serverip + "Status", function () { });
 
 var previousPageId = null;
 function showPage(pageid, button) {
-  drawer.open = false;
+  //drawer.open = false;
 
   var tabindikator = document.getElementById("tabindikator");
   var showtabs = (tabindikator.currentStyle ? tabindikator.currentStyle.display : getComputedStyle(tabindikator, null).display) == "block";
@@ -174,7 +209,7 @@ function showPage(pageid, button) {
 }
 showPage("musik");
 
-const snackbar = new mdc.snackbar.MDCSnackbar(document.querySelector('#mainSnackbar'));
+//const  = new mdc.snackbar.MDCSnackbar(document.querySelector('#mainSnackbar'));
 // const dataObj = {
 //   message: "test",
 //   // actionText: 'Undo',
