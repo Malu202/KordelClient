@@ -8,8 +8,8 @@ var getRequest = function (url, callback) {
     callback(json);
   });
   xhr.send();
-  console.log("-------GET");
-  console.log(url);
+  // console.log("-------GET");
+  // console.log(url);
 }
 
 var postRequest = function (url, jsondata, callback) {
@@ -32,10 +32,10 @@ var postRequest = function (url, jsondata, callback) {
   }
   http.send(JSON.stringify(jsondata));
   
-  console.log("-------POST");
-  console.log(url);
-  console.log("data: ");
-  console.log(jsondata);
+  // console.log("-------POST");
+  // console.log(url);
+  // console.log("data: ");
+  // console.log(jsondata);
 }
 
 var deleteRequest = function (url, jsondata, callback) {
@@ -56,10 +56,10 @@ var deleteRequest = function (url, jsondata, callback) {
     }
   }
   http.send(JSON.stringify(jsondata));
-  console.log("-------DELETE");
-  console.log(url);
-  console.log("data: ");
-  console.log(jsondata);
+  // console.log("-------DELETE");
+  // console.log(url);
+  // console.log("data: ");
+  // console.log(jsondata);
 }
 var radioDialog = document.getElementById("dialog");
 var dialogHeading = document.getElementById("dialogHeading")
@@ -72,9 +72,10 @@ var snackbarText = document.getElementById("mainSnackbarText")
 function snackbarNotification(text,buttonText,onButtonClick){
     snackbarText.innerHTML = text;
     snackbar.classList.add("mdc-snackbar--open");
-    //snackbar.classList.add('mdc-snackbar--opening');
+    setTimeout(function(){
+      snackbar.classList.remove("mdc-snackbar--open");
+    },1200);
 }
-snackbarNotification("hi",null,null);
 function showCustomDialog(heading, bodyObject, cancel, accept, oncancel, onaccept) {
   dialogHeading.innerHTML = heading;
   //dialogBody.innerHTML = body;
