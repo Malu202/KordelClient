@@ -17,6 +17,7 @@ $toolbar: #fff;
 
 $mdc-theme-on-surface: #fff; //design fix
 $mdc-snackbar-fill-color: #333;
+$mdc-theme-surface:#444;
 //$mdc-theme-on-primary: $mdc-theme-background;
 
 // $mdc-drawer-surface-fill-color: $toolbar-background !important; //design fix
@@ -26,7 +27,7 @@ $mdc-tab-bar-indicator-ink-color: $mdc-theme-secondary;
 
 //@import "node_modules/material-components-web/material-components-web";
 @import "node_modules/@material/button/mdc-button";
-//@import "node_modules/@material/card/mdc-card";
+@import "node_modules/@material/card/mdc-card";
 @import "node_modules/@material/checkbox/mdc-checkbox";
 //@import "node_modules@material/chips/mdc-chips";
 @import "node_modules/@material/dialog/mdc-dialog";
@@ -47,7 +48,7 @@ $mdc-tab-bar-indicator-ink-color: $mdc-theme-secondary;
 //@import "node_modules/@material/notched-outline/mdc-notched-outline";
 @import "node_modules/@material/radio/mdc-radio";
 //@import "node_modules/@material/ripple/mdc-ripple";
-//@import "node_modules/@material/select/mdc-select";
+@import "node_modules/@material/select/mdc-select";
 //@import "node_modules@material/shape/mdc-shape";
 //@import "node_modules/@material/slider/mdc-slider";
 @import "node_modules/@material/snackbar/mdc-snackbar";
@@ -398,15 +399,63 @@ button i{
 #Geraete{
     flex-direction: column;
 }
-//SERIEN
-#serien{
-    overflow: auto;
+//CARDS
+.mdc-card__primary-action{
+    padding: 1rem;
 }
+.mdc-card__primary-action h1,h2,h3{    
+    margin: 0px;
+}
+
+.card-content{    
+    padding: 1rem;
+}
+
+.card-content h1,h2,h3{    
+    margin: 0px;
+}
+//SELECT
+select option{
+    background-color: $mdc-theme-surface;
+}
+.mdc-select:not(.mdc-select--disabled) {
+    background-color: $mdc-theme-surface;
+}
+.mdc-select__native-control{
+    background-color: $mdc-theme-surface;
+    padding-top: 0px;
+    height: auto !important;
+
+}
+.mdc-select{
+    padding:0px;
+    height: auto !important;
+    width: 100%;
+}
+.mdc-select__dropdown-icon{
+    bottom:3px;
+}
+.select-container{
+    height:31px;
+    padding: 0px;
+}
+//SERIEN
 .serienSubPage{
     //display: none;T
     display:flex;
     flex-wrap: wrap;
     flex-direction: column;
+}
+#serien{
+    display:flex;
+    //overflow: auto;
+    margin: 8px;
+    align-items: flex-start;
+    flex-wrap: wrap;    
+}
+.serienCard{
+    flex: 1 0 auto;
+    max-width: 300px;
 }
 //tabindikator (größe: 0) wird über mediaqueries ein/ausgeblendet als indikator ob tabs via javascript ein/ausgeblendet werden müssen
 #tabindikator{
@@ -432,11 +481,14 @@ button i{
     }
     #sender{
         display:block;
-    }    
+    }
     #tabindikator{
         display: none;
     }
 }
 #playlist{
     margin: 14px;
+}
+.mdc-card{
+    background-color: $mdc-theme-surface;
 }
