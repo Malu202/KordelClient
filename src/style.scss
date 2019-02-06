@@ -442,20 +442,29 @@ select option{
 //SERIEN
 .serienSubPage{
     //display: none;T
-    display:flex;
-    flex-wrap: wrap;
-    flex-direction: column;
+    // display:flex;
+    // flex-wrap: wrap;
+    // flex-direction: column;
 }
 #serien{
     display:flex;
-    //overflow: auto;
-    margin: 8px;
+    margin: 4px;
     align-items: flex-start;
-    flex-wrap: wrap;    
+    flex-wrap: wrap;  
+    overflow: auto;
 }
 .serienCard{
-    flex: 1 0 auto;
+    flex: 1 1 auto;
     max-width: 300px;
+    margin: 4px 4px 4px 4px;
+}
+.serienCardSection{
+    color: rgba(0,0,0,.54);
+    color: var(--mdc-theme-text-secondary-on-background,rgba(0,0,0,.54));
+    margin-top: 12px;
+}
+.serienBluePrint{
+    display:none;
 }
 //tabindikator (größe: 0) wird über mediaqueries ein/ausgeblendet als indikator ob tabs via javascript ein/ausgeblendet werden müssen
 #tabindikator{
