@@ -69,7 +69,7 @@ $mdc-tab-bar-indicator-ink-color: $mdc-theme-secondary;
 
 html{
 	height:100vh;
-    min-height:100vh;    
+    min-height:100vh;
     color: $mdc-theme-primary; //design fix
 }
 body{
@@ -94,7 +94,7 @@ body{
 	#permanentDrawer {
 		display: none !important;
     }
-    
+
     // .mdc-drawer--modal{
     //     z-index: 4;
     // }
@@ -136,7 +136,7 @@ body{
 .mdc-toolbar{
 	flex: 0 0 auto;
 }
-//page enthält den permanenten Drawer und den content bereich nebeneinander 
+//page enthält den permanenten Drawer und den content bereich nebeneinander
 #page{
 	flex: 1 1 auto;
 	display:flex;
@@ -150,7 +150,7 @@ body{
 }
 //content enthält die verschiedenen seiten (radio, filme, etc)
 #content{
-	flex: 1 0 auto;
+	flex: 1 0 0;
     overflow: auto;
     -webkit-overflow-scrolling: touch;
     display:flex;
@@ -208,7 +208,7 @@ $bottomPanelMaxWidth: 800px;
     width:48px;
 }
 .playerbutton.mdc-icon-toggle {
-    //Mindestmaße, damit gleich wie playerbutton und quadratisch  
+    //Mindestmaße, damit gleich wie playerbutton und quadratisch
     // margin: 8px 8px 8px 8px;
     // padding: 0px 16px;
     //height:36px;
@@ -403,15 +403,15 @@ button i{
 .mdc-card__primary-action{
     padding: 1rem;
 }
-.mdc-card__primary-action h1,h2,h3{    
+.mdc-card__primary-action h1,h2,h3{
     margin: 0px;
 }
 
-.card-content{    
+.card-content{
     padding: 1rem;
 }
 
-.card-content h1,h2,h3{    
+.card-content h1,h2,h3{
     margin: 0px;
 }
 //SELECT
@@ -440,22 +440,18 @@ select option{
     padding: 0px;
 }
 //SERIEN
-.serienSubPage{
-    //display: none;T
-    // display:flex;
-    // flex-wrap: wrap;
-    // flex-direction: column;
-}
 #serien{
     display:flex;
-    margin: 4px;
+    flex: 1 1 0;
     align-items: flex-start;
-    flex-wrap: wrap;  
+    // margin: 4px;
+    // width:100%;
     overflow: auto;
+    flex-wrap: wrap;
 }
 .serienCard{
-    flex: 1 1 auto;
-    max-width: 300px;
+    flex: 0 1 auto;
+    // max-width: 300px;
     margin: 4px 4px 4px 4px;
 }
 .serienCardSection{
@@ -475,7 +471,7 @@ select option{
 @media only screen and (max-width: 480px) {
 	#playlist{
         display:none;
-    }    
+    }
     #tabindikator{
         display: block;
     }
