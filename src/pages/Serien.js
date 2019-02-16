@@ -11,10 +11,7 @@ getRequest(SERIEN_URL, function (res) {
 serienPage = document.getElementById("serien");
 
 var serienBluePrint = document.getElementsByClassName("serienBluePrint")[0];
-// var serienName = document.getElementsByClassName("serienName")[0];
 var serienStaffelOption = document.getElementsByClassName("serienStaffelOption")[0];
-// var serienFolgeOption = document.getElementsByClassName("serienFolgeOption")[0];
-// var folgeAbspielenButton = document.getElementsByClassName("folgeAbspielenButton")[0];
 
 function newSerienCard(serie) {
     var name = serie.name;
@@ -34,11 +31,10 @@ function newSerienCard(serie) {
     for (var i = 0; i < staffeln.length; i++) {
         var neueStaffel = neueOption.cloneNode(true);
         neueStaffel.innerHTML = staffeln[i].name;
-        //neueStaffel.value = staffeln[i].name;
         neueStaffel.value = i;
         staffelSelect.appendChild(neueStaffel);
     }
-    
+    //Die Folgen dürfen nur hinzugefügt werden wenn die passende staffel ausgewählt ist
     staffelOnChange = function(){        
         var i = staffelSelect.value;
         var staffeln = serie.staffeln;
@@ -47,7 +43,6 @@ function newSerienCard(serie) {
         for (var j = 0; j < staffeln[i].folgen.length; j++) {
             var neueFolge = neueOption.cloneNode(true);
             neueFolge.innerHTML = staffeln[i].folgen[j].name;
-            //neueFolge.value = staffeln[i].folgen[j].name;
             neueFolge.value = j;
             folgeSelect.appendChild(neueFolge);
         }
@@ -75,7 +70,5 @@ function requestSeriesPlayback(path) {
     var task = {};
     task.task = "LokaleSeriespielen";
     task.path = path;
-    postRequest(TODO_IP, task, function () {
-
-    });
+    postRequest(TODO_IP, task, function () {});
 }
