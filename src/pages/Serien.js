@@ -4,103 +4,71 @@ getRequest(SERIEN_URL, function (res) {
     if (res.message == null) console.log("nix");
     else {
         SerienListe = res.message;
-        setupButtons2();
+        setupSerienCards(SerienListe);
     }
 });
 
-var serien = document.getElementById("serien");
-var Serien = [];
+serienPage = document.getElementById("serien");
 
+var serienBluePrint = document.getElementsByClassName("serienBluePrint")[0];
+// var serienName = document.getElementsByClassName("serienName")[0];
+var serienStaffelOption = document.getElementsByClassName("serienStaffelOption")[0];
+// var serienFolgeOption = document.getElementsByClassName("serienFolgeOption")[0];
+// var folgeAbspielenButton = document.getElementsByClassName("folgeAbspielenButton")[0];
 
-var SerienListe = [];
-// for (var k = 1; k < 4; k++) {
-//     var Serienname = "Serie " + k;
+function newSerienCard(serie) {
+    var name = serie.name;
+    var staffeln = serie.staffeln;
 
-//     var Staffeln = {};
-//     for (var j = 1; j < 5; j++) {
-//         var Staffelname = "Staffel " + j;
+    var neueOption = serienStaffelOption.cloneNode(true);
+    var neueSerie = serienBluePrint.cloneNode(true);
 
-//         var Folgen = [];
-//         for (var i = 1; i < 300; i++) {
-//             //SerienListe[Serienname][Staffelname][i] = "Folge " + i;
-//             Folgen.push("Folge " + i + " von " + Serienname);
-//         }
-//         Staffeln[Staffelname] = Folgen;
-//     }
-//     SerienListe[Serienname] = Staffeln;
-// }
+    neueSerie.classList.remove("serienBluePrint");
+    neueSerie.getElementsByClassName("serienName")[0].innerHTML = name;
+    var staffelSelect = neueSerie.getElementsByClassName("serienStaffelOption")[0].parentElement;
+    staffelSelect.innerHTML = "";
+    var folgeSelect = neueSerie.getElementsByClassName("serienFolgeOption")[0].parentElement;
+    folgeSelect.innerHTML = "";
+    var folgeAbspielenButton = neueSerie.getElementsByClassName("folgeAbspielenButton")[0];
 
-console.log(SerienListe);
-// SerienListe.length = Object.keys(SerienListe).length;
-// console.log(SerienListe.length);
-
-
-
-
-var sp = document.getElementById("sp");
-
-var addButton = function (name, onclick) {
-    var button = document.createElement("button");
-    button.className = "mdc-button serienSubPage";
-    button.innerHTML = name;
-
-    sp.appendChild(button);
-
-    button.onclick = (function () {
-        return function () {
-            onclick(name);
-        };
-    })();
-}
-
-var Serienname = "";
-var Serienstaffel = "";
-var Serienfolge = "";
-
-function setupButtons() {
-    clearButtons();
-    for (var i = 0; i < SerienListe.length; i++) {
-        addButton(Object.keys(SerienListe)[i], function (name) {
-            Serienname = name;
-            clearButtons();
-            for (var j = 0; j < Object.keys(SerienListe[Serienname]).length; j++) {
-                addButton(Object.keys(SerienListe[Serienname])[j], function (name) {
-                    Serienstaffel = name;
-                    clearButtons();
-
-                    var Folgen = (SerienListe[Serienname])[Serienstaffel];
-                    for (var k = 0; k < ((SerienListe[Serienname])[Serienstaffel]).length; k++) {
-                        addButton(((SerienListe[Serienname])[Serienstaffel])[k], function (name) {
-                            requestSeriesPlayback(Serienname, Serienstaffel, Serienfolge);
-                        });
-                    }
-                });
-            }
-        });
+    for (var i = 0; i < staffeln.length; i++) {
+        var neueStaffel = neueOption.cloneNode(true);
+        neueStaffel.innerHTML = staffeln[i].name;
+        //neueStaffel.value = staffeln[i].name;
+        neueStaffel.value = i;
+        staffelSelect.appendChild(neueStaffel);
     }
+    
+    staffelOnChange = function(){        
+        var i = staffelSelect.value;
+        var staffeln = serie.staffeln;
+        var neueOption = serienStaffelOption.cloneNode(true);
+        folgeSelect.innerHTML = "";
+        for (var j = 0; j < staffeln[i].folgen.length; j++) {
+            var neueFolge = neueOption.cloneNode(true);
+            neueFolge.innerHTML = staffeln[i].folgen[j].name;
+            //neueFolge.value = staffeln[i].folgen[j].name;
+            neueFolge.value = j;
+            folgeSelect.appendChild(neueFolge);
+        }
+    };
+    staffelSelect.addEventListener("change", staffelOnChange);
+
+    folgeAbspielenButton.addEventListener("click",function(){
+        var i = staffelSelect.value;
+        var j = folgeSelect.value;
+        requestSeriesPlayback(serie.staffeln[i].folgen[j].path);
+    })
+
+    serienPage.appendChild(neueSerie);
+    staffelOnChange();    
 }
 
-function setupButtons2() {
-    clearButtons();
-    SerienListe.forEach(function (serie) {
-        addButton(serie.name, function () {
-            clearButtons();
-            serie.staffeln.forEach(function (staffel) {
-                addButton(staffel.name, function () {
-                    clearButtons();
-                    staffel.folgen.forEach(function (folge) {
-                        addButton(folge.name, function () {
-                            requestSeriesPlayback(folge.path);
-                        });
-                    });
-                });
-            });
-        });
-    });
-
-}
-function clearButtons() {
-    sp.innerHTML = "";
+function setupSerienCards(serien) {
+    serienPage.innerHTML = "";
+    for (var i = 0; i < serien.length; i++) {
+        newSerienCard(serien[i]);
+    }
 }
 
 function requestSeriesPlayback(path) {

@@ -17,6 +17,7 @@ $toolbar: #fff;
 
 $mdc-theme-on-surface: #fff; //design fix
 $mdc-snackbar-fill-color: #333;
+$mdc-theme-surface:#444;
 //$mdc-theme-on-primary: $mdc-theme-background;
 
 // $mdc-drawer-surface-fill-color: $toolbar-background !important; //design fix
@@ -26,7 +27,7 @@ $mdc-tab-bar-indicator-ink-color: $mdc-theme-secondary;
 
 //@import "node_modules/material-components-web/material-components-web";
 @import "node_modules/@material/button/mdc-button";
-//@import "node_modules/@material/card/mdc-card";
+@import "node_modules/@material/card/mdc-card";
 @import "node_modules/@material/checkbox/mdc-checkbox";
 //@import "node_modules@material/chips/mdc-chips";
 @import "node_modules/@material/dialog/mdc-dialog";
@@ -47,7 +48,7 @@ $mdc-tab-bar-indicator-ink-color: $mdc-theme-secondary;
 //@import "node_modules/@material/notched-outline/mdc-notched-outline";
 @import "node_modules/@material/radio/mdc-radio";
 //@import "node_modules/@material/ripple/mdc-ripple";
-//@import "node_modules/@material/select/mdc-select";
+@import "node_modules/@material/select/mdc-select";
 //@import "node_modules@material/shape/mdc-shape";
 //@import "node_modules/@material/slider/mdc-slider";
 @import "node_modules/@material/snackbar/mdc-snackbar";
@@ -68,7 +69,7 @@ $mdc-tab-bar-indicator-ink-color: $mdc-theme-secondary;
 
 html{
 	height:100vh;
-    min-height:100vh;    
+    min-height:100vh;
     color: $mdc-theme-primary; //design fix
 }
 body{
@@ -93,7 +94,7 @@ body{
 	#permanentDrawer {
 		display: none !important;
     }
-    
+
     // .mdc-drawer--modal{
     //     z-index: 4;
     // }
@@ -135,7 +136,7 @@ body{
 .mdc-toolbar{
 	flex: 0 0 auto;
 }
-//page enthält den permanenten Drawer und den content bereich nebeneinander 
+//page enthält den permanenten Drawer und den content bereich nebeneinander
 #page{
 	flex: 1 1 auto;
 	display:flex;
@@ -149,7 +150,7 @@ body{
 }
 //content enthält die verschiedenen seiten (radio, filme, etc)
 #content{
-	flex: 1 0 auto;
+	flex: 1 0 0;
     overflow: auto;
     -webkit-overflow-scrolling: touch;
     display:flex;
@@ -207,7 +208,7 @@ $bottomPanelMaxWidth: 800px;
     width:48px;
 }
 .playerbutton.mdc-icon-toggle {
-    //Mindestmaße, damit gleich wie playerbutton und quadratisch  
+    //Mindestmaße, damit gleich wie playerbutton und quadratisch
     // margin: 8px 8px 8px 8px;
     // padding: 0px 16px;
     //height:36px;
@@ -398,15 +399,68 @@ button i{
 #Geraete{
     flex-direction: column;
 }
+//CARDS
+.mdc-card__primary-action{
+    padding: 1rem;
+}
+.mdc-card__primary-action h1,h2,h3{
+    margin: 0px;
+}
+
+.card-content{
+    padding: 1rem;
+}
+
+.card-content h1,h2,h3{
+    margin: 0px;
+}
+//SELECT
+select option{
+    background-color: $mdc-theme-surface;
+}
+.mdc-select:not(.mdc-select--disabled) {
+    background-color: $mdc-theme-surface;
+}
+.mdc-select__native-control{
+    background-color: $mdc-theme-surface;
+    padding-top: 0px;
+    height: auto !important;
+
+}
+.mdc-select{
+    padding:0px;
+    height: auto !important;
+    width: 100%;
+}
+.mdc-select__dropdown-icon{
+    bottom:3px;
+}
+.select-container{
+    height:31px;
+    padding: 0px;
+}
 //SERIEN
 #serien{
-    overflow: auto;
-}
-.serienSubPage{
-    //display: none;T
     display:flex;
+    flex: 1 1 0;
+    align-items: flex-start;
+    // margin: 4px;
+    // width:100%;
+    overflow: auto;
     flex-wrap: wrap;
-    flex-direction: column;
+}
+.serienCard{
+    flex: 0 1 auto;
+    // max-width: 300px;
+    margin: 4px 4px 4px 4px;
+}
+.serienCardSection{
+    color: rgba(0,0,0,.54);
+    color: var(--mdc-theme-text-secondary-on-background,rgba(0,0,0,.54));
+    margin-top: 12px;
+}
+.serienBluePrint{
+    display:none;
 }
 //tabindikator (größe: 0) wird über mediaqueries ein/ausgeblendet als indikator ob tabs via javascript ein/ausgeblendet werden müssen
 #tabindikator{
@@ -417,7 +471,7 @@ button i{
 @media only screen and (max-width: 480px) {
 	#playlist{
         display:none;
-    }    
+    }
     #tabindikator{
         display: block;
     }
@@ -432,11 +486,14 @@ button i{
     }
     #sender{
         display:block;
-    }    
+    }
     #tabindikator{
         display: none;
     }
 }
 #playlist{
     margin: 14px;
+}
+.mdc-card{
+    background-color: $mdc-theme-surface;
 }

@@ -10,6 +10,9 @@ var htmlmin = require('gulp-htmlmin');
 gulp.task('css', function () {
     return gulp.src('src/style.scss')
         .pipe(sass({ outputStyle: 'compressed', includePaths: 'node_modules' }).on('error', sass.logError))
+        .pipe(autoprefixer({
+            browsers: ['last 2 versions', 'android 4.4']
+        }))
         .pipe(gulp.dest("./dist/"));
 });
 
