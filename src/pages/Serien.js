@@ -35,7 +35,7 @@ function newSerienCard(serie) {
         staffelSelect.appendChild(neueStaffel);
     }
     //Die Folgen dürfen nur hinzugefügt werden wenn die passende staffel ausgewählt ist
-    staffelOnChange = function(){        
+    staffelOnChange = function () {
         var i = staffelSelect.value;
         var staffeln = serie.staffeln;
         var neueOption = serienStaffelOption.cloneNode(true);
@@ -49,16 +49,53 @@ function newSerienCard(serie) {
     };
     staffelSelect.addEventListener("change", staffelOnChange);
 
-    folgeAbspielenButton.addEventListener("click",function(){
+    folgeAbspielenButton.addEventListener("click", function () {
         var i = staffelSelect.value;
         var j = folgeSelect.value;
         requestSeriesPlayback(serie.staffeln[i].folgen[j].path);
     })
+    folgeAbspielenButton.addEventListener("contextmenu", function () {
+        var Verlauf = "";
+        if (serie.history) {
+            for (var index = 0; index < serie.history.length; index++) {
+                Verlauf += "Staffel: " + serie.history[index].Staffel + " Folge: " + serie.history[index].Folge + "\n";
+            }
+        } else { 
+            Verlauf = "Kein Verlauf gefunden";
+        }
 
+        showDialog(serie.name, Verlauf, null, "ok", null, null);
+    })
+    //Select Last watched Episode
+    var currentStaffelIndex = 0;
+    var currentFolgenIndex = 0;
+    if (serie.history) {
+        for (var i = 0; i < serie.staffeln.length; i++) {
+            if (serie.staffeln[i].name == serie.history[serie.history.length - 1].Staffel) {
+                currentStaffelIndex = i;
+                break;
+            }
+        }
+        for (var j = 0; j < serie.staffeln[currentStaffelIndex].folgen.length; j++) {
+            if (serie.staffeln[currentStaffelIndex].folgen[j].name == serie.history[serie.history.length - 1].Folge) {
+                currentFolgenIndex = j;
+                break;
+            }
+        }
+        if (serie.staffeln[currentStaffelIndex].folgen.length - 1 > currentFolgenIndex + 1) {
+            currentFolgenIndex++;
+        } else {
+            if (serie.staffeln.length - 1 > currentStaffelIndex + 1) {
+                currentStaffelIndex++;
+                currentFolgenIndex = 0;
+            }
+        }
+    }
     serienPage.appendChild(neueSerie);
-    staffelOnChange();    
+    staffelSelect.value = currentStaffelIndex;
+    staffelOnChange();
+    folgeSelect.value = currentFolgenIndex;
 }
-
 function setupSerienCards(serien) {
     serienPage.innerHTML = "";
     for (var i = 0; i < serien.length; i++) {
@@ -70,5 +107,5 @@ function requestSeriesPlayback(path) {
     var task = {};
     task.task = "LokaleSeriespielen";
     task.path = path;
-    postRequest(TODO_IP, task, function () {});
+    postRequest(TODO_IP, task, function () { });
 }

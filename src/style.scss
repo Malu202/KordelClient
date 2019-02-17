@@ -329,6 +329,9 @@ button i{
 .dialogContent{
     display: none;
 }
+#dialogBody{
+    white-space: pre;
+}
 //TEXTFIELD
 .mdc-text-field{
     background-color: rgba(0,0,0,0) !important;
@@ -450,8 +453,8 @@ select option{
     flex-wrap: wrap;
 }
 .serienCard{
-    flex: 0 1 auto;
-    // max-width: 300px;
+    flex: 1 1 auto;
+    max-width: 300px;
     margin: 4px 4px 4px 4px;
 }
 .serienCardSection{
