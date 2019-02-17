@@ -54,7 +54,8 @@ function newSerienCard(serie) {
         var j = folgeSelect.value;
         requestSeriesPlayback(serie.staffeln[i].folgen[j].path);
     })
-    folgeAbspielenButton.addEventListener("contextmenu", function () {
+    folgeAbspielenButton.addEventListener("contextmenu", function (e) {
+        e.preventDefault();
         var Verlauf = "";
         if (serie.history) {
             for (var index = 0; index < serie.history.length; index++) {
