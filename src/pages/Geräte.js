@@ -49,6 +49,17 @@ onOffSimulationStation.addEventListener("click", function () {
   }
 });
 
+var onOffTv = document.getElementById("onOffTV");
+onOffTv.addEventListener("click", function () {
+  var request = {};
+  if (toggleSwitch(onOffTv)) {
+    showDialog("Nicht notwendig", "TV started automatisch bei Wiedergabe",null,"ok",null,null);
+  } else { 
+    request.task = "turnOffTv";
+    postRequest(serverip + "todo", request, function (msg) {});
+  }
+});
+
 function updateGeraete(response) {
   setSwitchState(onOffPC, response.Status.PcOnline);
 };
