@@ -83,10 +83,10 @@ function newSerienCard(serie) {
                 break;
             }
         }
-        if (serie.staffeln[currentStaffelIndex].folgen.length - 1 > currentFolgenIndex + 1) {
+        if (serie.staffeln[currentStaffelIndex].folgen.length > currentFolgenIndex + 1) {
             currentFolgenIndex++;
         } else {
-            if (serie.staffeln.length - 1 > currentStaffelIndex + 1) {
+            if (serie.staffeln.length > currentStaffelIndex + 1) {
                 currentStaffelIndex++;
                 currentFolgenIndex = 0;
             }
