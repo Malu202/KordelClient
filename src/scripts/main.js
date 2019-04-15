@@ -53,7 +53,7 @@ function resize() {
   toolbar.fixedAdjustElement = document.querySelector('.mdc-top-app-bar--fixed-adjust');
 }
 //var serverip = "http://10.0.0.40:1337/";
-var serverip = "http://192.168.0.185:1337";
+var serverip = "http://192.168.0.185:1337/";
 var TODO_IP = serverip + "todo";
 
 var rewindButton = document.getElementById("rewindButton");
