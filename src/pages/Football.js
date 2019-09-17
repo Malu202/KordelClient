@@ -7,8 +7,8 @@ function updateFootball(response) {
     var footballControls = document.createElement("div");
     footballControls.classList = "footballcontrols";
 
-    footballControls.appendChild(fbButton("play", play));
-    footballControls.appendChild(fbButton("pause", pause));
+    // footballControls.appendChild(fbButton("play", play));
+    footballControls.appendChild(fbButton("play/pause", pause));
     footballControls.appendChild(fbButton("vorspulen", vorspulen));
     footballControls.appendChild(fbButton("stop", stop));
 
