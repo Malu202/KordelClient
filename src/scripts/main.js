@@ -157,6 +157,7 @@ var songname = document.getElementById("song-name");
 
 
 function update(response) {
+  setOnlineStatus(true);
   updateMusic(response);
   updateFootball(response);
 
@@ -172,7 +173,11 @@ function update(response) {
   updateGeraete(response);
 
 }
-getRequest(serverip + "Status", function () { });
+function getStatus() {
+  getRequest(serverip + "Status", function () { });
+}
+getStatus();
+
 
 var previousPageId = null;
 function showPage(pageid, button) {
@@ -235,7 +240,29 @@ showPage("musik");
 
 
 
-// window.onerror = function (msg, url, linenumber) {
-//   showDialog("Error", msg + '\nURL: ' + url + '\nLine Number: ' + linenumber, null, "OK", null, null);
-//   return true;
-// }
+window.onerror = function (msg, url, linenumber) {
+  showDialog("Error", msg + '\nURL: ' + url + '\nLine Number: ' + linenumber, null, "OK", null, null);
+  return true;
+}
+var onlineIndicator = document.getElementById("onlineIndicator");
+function setOnlineStatus(online) {
+  if (online) {
+    onlineIndicator.innerHTML = "leak_add";
+  } else {
+    onlineIndicator.innerHTML = "leak_remove";
+  }
+}
+function focus() {
+  console.log("fh");
+  getStatus();
+}
+
+function blur() {
+  console.log("bh");
+  setOnlineStatus(false);
+}
+
+window.addEventListener("focus", focus);
+document.addEventListener("focus", focus);
+window.addEventListener("blur", blur);
+document.addEventListener("blur", blur);
