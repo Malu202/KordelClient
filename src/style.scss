@@ -500,3 +500,24 @@ select option{
 .mdc-card{
     background-color: $mdc-theme-surface;
 }
+
+#football{
+    display: flex;
+    flex-direction: column;
+    padding: 16px;
+    overflow: auto;
+
+}
+#football > * {
+    margin:8px;
+    flex: 0 0 auto;
+}
+#footballcontrols{
+    display: flex;
+    flex-direction: row;
+}
+.footballcontrols > *{
+    flex: 0 0 auto;
+    margin-left: 8px;
+    margin-right: 8px;
+}

@@ -146,6 +146,7 @@ var songname = document.getElementById("song-name");
 
 function update(response) {
   updateMusic(response);
+  updateFootball(response);
 
   var status = response.Status;
   if (status == undefined) status = {};
