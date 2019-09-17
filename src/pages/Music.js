@@ -48,9 +48,10 @@ function updateMusic(response) {
  }
 
 function clearRadio() {
-  while (sender.firstChild) {
-    sender.removeChild(sender.firstChild);
-  }
+  sender.innerHTML = "";
+  // while (sender.firstChild) {
+  //   sender.removeChild(sender.firstChild);
+  // }
 }
 
 function checkRadio(name) {

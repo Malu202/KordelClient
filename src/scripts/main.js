@@ -230,7 +230,7 @@ showPage("musik");
 
 
 
-window.onerror = function (msg, url, linenumber) {
-  showDialog("Error", msg + '\nURL: ' + url + '\nLine Number: ' + linenumber, null, "OK", null, null);
-  return true;
-}
+// window.onerror = function (msg, url, linenumber) {
+//   showDialog("Error", msg + '\nURL: ' + url + '\nLine Number: ' + linenumber, null, "OK", null, null);
+//   return true;
+// }
