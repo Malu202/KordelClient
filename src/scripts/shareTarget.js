@@ -14,11 +14,10 @@ function streamMedia(url) {
 
 // var url = event.clipboardData.getData('text/plain');
 // console.log(url)
-var pasteButton = document.getElementById("addUrlToPlaylist");
+// var pasteButton = document.getElementById("addUrlToPlaylist");
 
-function addUrlToPlaylist() {
-    song.focus();
-    song.select();
-    document.execCommand('paste');
-}
-rewindButton.onclick = function(){};
+// function addUrlToPlaylist() {
+//     song.focus();
+//     song.select();
+//     document.execCommand('paste');
+// }
