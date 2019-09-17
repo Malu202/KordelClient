@@ -20,6 +20,13 @@ function openDrawerClick(clickEvent) {
 function closeDrawer() {
   drawerEl.classList.remove("mdc-drawer--open");
 }
+//open drawer on launch (only on mobile)
+console.log(menuButton.style.display)
+
+var menuButtonDisplay = window.getComputedStyle(menuButton).display;
+if(menuButtonDisplay != "none"){
+  openDrawer();
+}
 
 //OWN JS IMPLEMENTATION FOR MDC ELEMENTS
 var CHECKED_SWITCH_CLASSNAME = "mdc-switch--checked";
@@ -209,7 +216,7 @@ function showPage(pageid, button) {
   resize();
   previousPageId = pageid;
 }
-showPage("serien");
+showPage("musik");
 
 //const  = new mdc.snackbar.MDCSnackbar(document.querySelector('#mainSnackbar'));
 // const dataObj = {
