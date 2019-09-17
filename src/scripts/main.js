@@ -4,16 +4,21 @@ mdc.autoInit();
 //DRAWER
 var drawerEl = document.getElementsByClassName('mdc-drawer--modal')[0];
 var menuButton = document.getElementById('menu');
-menuButton.onclick = openDrawer;
+var body = document.body;
 
+menuButton.onclick = openDrawer;
 function openDrawer() {
   drawerEl.classList.add("mdc-drawer--open");
+  //notwendig für iphone...
+  body.style.cursor = "pointer";
   document.onclick = openDrawerClick;
 }
 //überprüft bei geöffnetem Drawer alle klicks ob der Drawer geschlossen werden muss
 function openDrawerClick(clickEvent) {
-  if (clickEvent.srcElement != menuButton && clickEvent.srcElement != drawerEl) {
+  var clickedElement = clickEvent.srcElement;
+  if (clickedElement != menuButton && clickedElement != drawerEl && clickedElement != drawerEl.firstElementChild) {
     closeDrawer();
+    body.style.cursor = "";
     document.onclick = null;
   }
 }
@@ -24,7 +29,7 @@ function closeDrawer() {
 console.log(menuButton.style.display)
 
 var menuButtonDisplay = window.getComputedStyle(menuButton).display;
-if(menuButtonDisplay != "none"){
+if (menuButtonDisplay != "none") {
   openDrawer();
 }
 
@@ -36,18 +41,18 @@ function toggleSwitch(Switch) {
     SwitchDiv.classList.remove(CHECKED_SWITCH_CLASSNAME);
     return false;
   }
-  else { 
-    SwitchDiv.classList.add(CHECKED_SWITCH_CLASSNAME); 
+  else {
+    SwitchDiv.classList.add(CHECKED_SWITCH_CLASSNAME);
     return true;
   }
 }
 
-function setSwitchState(Switch, state){
+function setSwitchState(Switch, state) {
   var SwitchDiv = Switch.parentElement.parentElement.parentElement;
-  if(state == true){
+  if (state == true) {
     SwitchDiv.classList.add(CHECKED_SWITCH_CLASSNAME);
-  } 
-  if(state == false){
+  }
+  if (state == false) {
     SwitchDiv.classList.remove(CHECKED_SWITCH_CLASSNAME);
   }
 }
