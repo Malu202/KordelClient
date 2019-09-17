@@ -228,10 +228,7 @@ showPage("musik");
 // };
 // snackbar.show(dataObj);
 
-function streamMedia(url) {
-  var request = { "task": "YoutubeVideostreamen", "url": url, "now": true, "autoplay": false };
-  postRequest(TODO_IP, request, function (msg) { });
-}
+
 
 window.onerror = function (msg, url, linenumber) {
   showDialog("Error", msg + '\nURL: ' + url + '\nLine Number: ' + linenumber, null, "OK", null, null);
