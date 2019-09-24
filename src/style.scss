@@ -508,18 +508,24 @@ select option{
     padding: 16px;
     overflow: auto;
     align-items: flex-start;
+    max-width: 100%;
 
 }
 #football > * {
     margin:8px;
     flex: 0 0 auto;
 }
-#footballcontrols{
+.footballcontrols{
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
+    margin-bottom: 60px !important;
+
+    
 }
 .footballcontrols > *{
     flex: 0 0 auto;
     margin-left: 8px;
     margin-right: 8px;
+    margin-bottom: 8px;
 }
