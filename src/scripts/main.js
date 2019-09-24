@@ -11,7 +11,7 @@ function openDrawer() {
   drawerEl.classList.add("mdc-drawer--open");
   //notwendig für iphone...
   body.style.cursor = "pointer";
-  document.onclick = openDrawerClick;
+  document.addEventListener('click', function () { openDrawerClick(); });
 }
 //überprüft bei geöffnetem Drawer alle klicks ob der Drawer geschlossen werden muss
 function openDrawerClick(clickEvent) {
