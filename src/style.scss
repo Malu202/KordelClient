@@ -505,15 +505,17 @@ select option{
 
 #football{
     flex-direction: column;
-    padding: 16px;
+    // padding: 16px;
     overflow: auto;
-    align-items: flex-start;
+    // align-items: center;
     max-width: 100%;
+    width: 100%;
 
 }
 #football > * {
     margin:8px;
     flex: 0 0 auto;
+    max-width: 600px;
 }
 .footballcontrols{
     display: flex;
