@@ -80,7 +80,6 @@ body{
 	height:100vh;
     min-height:100vh;
     overflow:hidden;
-    position: relative;
 
     -webkit-tap-highlight-color: transparent;
     z-index:0;
@@ -329,7 +328,6 @@ button i{
 // }
 .mdc-dialog{
     z-index: 22;
-    position: absolute;
 }
 .mdc-dialog__surface{
     background-color: $mdc-theme-background !important;
