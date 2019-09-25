@@ -331,7 +331,8 @@ button i{
 }
 .mdc-dialog__surface{
     background-color: $mdc-theme-background !important;
-    color: $mdc-theme-primary
+    color: $mdc-theme-primary;
+    z-index:22;
 }
 .mdc-dialog .dialogContent{
     display: block;
