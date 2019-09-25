@@ -11,7 +11,7 @@ function openDrawer() {
   drawerEl.classList.add("mdc-drawer--open");
   //notwendig für iphone...
   body.style.cursor = "pointer";
-  document.addEventListener('click', function () { openDrawerClick(); });
+  document.addEventListener('click', openDrawerClick);
 }
 //überprüft bei geöffnetem Drawer alle klicks ob der Drawer geschlossen werden muss
 function openDrawerClick(clickEvent) {
@@ -26,7 +26,6 @@ function closeDrawer() {
   drawerEl.classList.remove("mdc-drawer--open");
 }
 //open drawer on launch (only on mobile)
-console.log(menuButton.style.display)
 
 var menuButtonDisplay = window.getComputedStyle(menuButton).display;
 if (menuButtonDisplay != "none") {
@@ -90,19 +89,35 @@ function stop() {
   });
 }
 
-var playpausebuttonjs = new mdc.iconToggle.MDCIconToggle(document.getElementById("playpause"));
+// var playpausebuttonjs = new mdc.iconToggle.MDCIconToggle(document.getElementById("playpause"));
 
-const playpausebutton = document.getElementById('playpause');
-playpausebutton.addEventListener('MDCIconToggle:change', ({ detail }) => {
-  var request = {};
-  if (detail.isOn) request.task = "Playerpausieren";
-  else request.task = "Playerfortsetzen";
-  postRequest(TODO_IP, request, function (msg) { });
-});
+var playpausebutton = document.getElementById('playpause');
+function setPlayPauseButtonState(state) {
+  if (state == "paused") {
+    playpausebutton.firstElementChild.innerHTML = "play_arrow";
+    playpausebutton.onclick = function () {
+      postRequest(TODO_IP, { task: "Playerfortsetzen" }, function (msg) { });
+    }
+  } else if (state == "playing") {
+    playpausebutton.firstElementChild.innerHTML = "pause";
+    playpausebutton.onclick = function () {
+      postRequest(TODO_IP, { task: "Playerpausieren" }, function (msg) { });
+    }
+  }
+}
+setPlayPauseButtonState("paused");
 
-const SPACE_KEYCODE = 32;
-const ESCAPE_KEYCODE = 27;
-const ENTER_KEYCODE = 13;
+
+// playpausebutton.addEventListener('MDCIconToggle:change', ({ detail }) => {
+//   var request = {};
+//   if (detail.isOn) request.task = "Playerpausieren";
+//   else request.task = "Playerfortsetzen";
+//   postRequest(TODO_IP, request, function (msg) { });
+// });
+
+var SPACE_KEYCODE = 32;
+var ESCAPE_KEYCODE = 27;
+var ENTER_KEYCODE = 13;
 
 document.addEventListener("keyup", function (event) {
   var keyCode = event.which || event.keyCode || event.charCode;
@@ -163,8 +178,8 @@ function update(response) {
 
   var status = response.Status;
   if (status == undefined) status = {};
-  if (status.Pausiert == false) playpausebuttonjs.on = false;
-  else playpausebuttonjs.on = true;
+  if (status.Pausiert == false) setPlayPauseButtonState("playing");
+  else setPlayPauseButtonState("paused");
 
   //Laufendes Lied eintragen
   if (status.name) songname.innerHTML = status.name;
@@ -242,7 +257,7 @@ showPage("musik");
 
 window.onerror = function (msg, url, linenumber) {
   showDialog("Error", msg + '\nURL: ' + url + '\nLine Number: ' + linenumber, null, "OK", null, null);
-  return true;
+  return false;
 }
 var onlineIndicator = document.getElementById("onlineIndicator");
 function setOnlineStatus(online) {
@@ -266,3 +281,4 @@ window.addEventListener("focus", focus);
 document.addEventListener("focus", focus);
 window.addEventListener("blur", blur);
 document.addEventListener("blur", blur);
+

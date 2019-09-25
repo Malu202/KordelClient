@@ -17,6 +17,7 @@ $toolbar: #fff;
 
 $mdc-theme-on-surface: #fff; //design fix
 $mdc-snackbar-fill-color: #333;
+$mdc-snackbar-label-ink-color: #fff;
 $mdc-theme-surface:#444;
 //$mdc-theme-on-primary: $mdc-theme-background;
 
@@ -37,8 +38,8 @@ $mdc-tab-bar-indicator-ink-color: $mdc-theme-secondary;
 //@import "node_modules/@material/floating-label/mdc-floating-label";
 @import "node_modules/@material/form-field/mdc-form-field";
 //@import "node_modules/@material/grid-list/mdc-grid-list";
-//@import "node_modules@material/icon-button/mdc-icon-button";
-@import "node_modules/@material/icon-toggle/mdc-icon-toggle";
+@import "node_modules/@material/icon-button/mdc-icon-button";
+// @import "node_modules/@material/icon-toggle/mdc-icon-toggle";
 //@import "node_modules@material/image-list/mdc-image-list";
 //@import "node_modules/@material/layout-grid/mdc-layout-grid";
 //@import "node_modules@material/line-ripple/mdc-line-ripple";
@@ -126,6 +127,7 @@ nav .mdc-permanent-drawer--selected, nav .mdc-permanent-drawer--selected .mdc-li
 .mdc-drawer--modal{
     background-color: $mdc-theme-background;
     border-right-style: none !important; //design fix
+    z-index: 20;
 }
 //LAYOUT
 //Toolbar und page übereinander (nur notwendig, weil bei height:100% auf den content
@@ -145,6 +147,7 @@ body{
 	flex-direction: row;
     width: 100%;
     overflow:hidden;
+    position: relative; //so that snackbar can be positioned at the bottom of page with position:absolute
 }
 #permanentDrawer{
 	flex: 0 0 auto;
@@ -321,6 +324,9 @@ button i{
 // .mdc-dialog__body{
 //     color: $mdc-theme-primary;
 // }
+.mdc-dialog{
+    z-index: 22;
+}
 .mdc-dialog__surface{
     background-color: $mdc-theme-background !important;
     color: $mdc-theme-primary
@@ -331,9 +337,9 @@ button i{
 .dialogContent{
     display: none;
 }
-#dialogBody{
-    white-space: pre;
-}
+// #dialogBody{
+//     // white-space: pre;
+// }
 //TEXTFIELD
 .mdc-text-field{
     background-color: rgba(0,0,0,0) !important;
@@ -530,4 +536,10 @@ select option{
     margin-left: 8px;
     margin-right: 8px;
     margin-bottom: 8px;
+}
+
+.positionableSnackbar{
+    position: absolute;
+    bottom: 0;
+    z-index: 14;
 }

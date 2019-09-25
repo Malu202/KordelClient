@@ -18,14 +18,13 @@
   <div class="mdc-top-app-bar mdc-top-app-bar--fixed">
     <div class="mdc-top-app-bar__row">
       <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
-        <a id="menu" class="menu material-icons mdc-top-app-bar__navigation-icon">&#xE5D2;</a>
+        <button id="menu" class="menu material-icons mdc-top-app-bar__navigation-icon mdc-icon-button">&#xE5D2;</button>
         <span class="mdc-top-app-bar__title catalog-title">Kordel</span>
       </section>
       <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end">
-          <a class="material-icons mdc-top-app-bar__action-item" id="onlineIndicator">leak_remove</a>
-        
-        <a class="material-icons mdc-top-app-bar__action-item" id="updateButton" onclick='android.update("https://github.com/Malu202/KordelClient/blob/master/index.html?raw=true");'>&#xE5D5;</a>
-        <a class="material-icons mdc-top-app-bar__action-item musik" id="addRadioButton">&#xE145;</a>
+        <button class="material-icons mdc-top-app-bar__action-item mdc-icon-button" id="onlineIndicator">leak_remove</button>
+        <button class="material-icons mdc-top-app-bar__action-item mdc-icon-button" id="updateButton" onclick='android.update("https://github.com/Malu202/KordelClient/blob/master/index.html?raw=true");'>&#xE5D5;</button>
+        <button class="material-icons mdc-top-app-bar__action-item mdc-icon-button musik" id="addRadioButton">&#xE145;</button>
       </section>
     </div>
     <!-- tabindikator (größe: 0) wird über mediaqueries ein/ausgeblendet als indikator ob tabs via javascript ein/ausgeblendet werden müssen-->
@@ -123,8 +122,18 @@
       <!--=include ./pages.html -->
     </main>
 
-  </div>
 
+
+    <div id="mainSnackbar" class="mdc-snackbar mdc-snackbar--leading positionableSnackbar">
+      <div class="mdc-snackbar__surface">
+        <div id="mainSnackbarText" class="mdc-snackbar__label"></div>
+        <div class="mdc-snackbar__actions">
+          <button id="mainSnackbarButton" class="mdc-button mdc-snackbar__action"></button>
+        </div>
+      </div>
+    </div>
+
+  </div>
 
   <div class="bottompanel">
 
@@ -198,10 +207,9 @@
         <div id="song-name" class="mdc-typography--body2"></div>
       </div>
 
-      <i class="mdc-icon-toggle material-icons playerbutton" id="playpause" role="button" aria-pressed="false"
-        data-toggle-on='{"content": "&#xE037;"}' data-toggle-off='{"content": "&#xE034;"}'>
-        pause
-      </i>
+      <button class="mdc-button playerbutton" id="playpause">
+        <i class="material-icons">pause</i>
+      </button>
     </div>
 
 
@@ -227,14 +235,6 @@
     </div>
   </div>
 
-  <div id="mainSnackbar" class="mdc-snackbar mdc-snackbar--leading">
-    <div class="mdc-snackbar__surface">
-      <div id="mainSnackbarText" class="mdc-snackbar__label"></div>
-      <div class="mdc-snackbar__actions">
-        <button id="mainSnackbarButton" class="mdc-button mdc-snackbar__action"></button>
-      </div>
-    </div>
-  </div>
 
   <script>
     /*=include ./masterscript.js */

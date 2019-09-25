@@ -8,7 +8,7 @@ getRequest(SERIEN_URL, function (res) {
     }
 });
 
-serienPage = document.getElementById("serien");
+var serienPage = document.getElementById("serien");
 
 var serienBluePrint = document.getElementsByClassName("serienBluePrint")[0];
 var serienStaffelOption = document.getElementsByClassName("serienStaffelOption")[0];
@@ -35,7 +35,7 @@ function newSerienCard(serie) {
         staffelSelect.appendChild(neueStaffel);
     }
     //Die Folgen dürfen nur hinzugefügt werden wenn die passende staffel ausgewählt ist
-    staffelOnChange = function () {
+    var staffelOnChange = function () {
         var i = staffelSelect.value;
         var staffeln = serie.staffeln;
         var neueOption = serienStaffelOption.cloneNode(true);

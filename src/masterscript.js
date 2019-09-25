@@ -24,7 +24,7 @@
 //nicht=require ../node_modules/@material/top-app-bar/dist/mdc.topAppBar.js
 
 
-//=require ../node_modules/material-components-web/dist/material-components-web.js
+//=require ../node_modules/material-components-web/dist/material-components-web.min.js
 //=require ./scripts/tools.js
 //=require ./scripts/*.js
 //=require ./pages/*.js

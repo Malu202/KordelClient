@@ -62,11 +62,11 @@ var deleteRequest = function (url, jsondata, callback) {
   // console.log("data: ");
   // console.log(jsondata);
 }
-var radioDialog = document.getElementById("dialog");
-var dialogHeading = document.getElementById("dialogHeading")
-var dialogBody = document.getElementById("dialogBody");
-var dialogCancel = document.getElementById("dialogCancel");
-var dialogAccept = document.getElementById("dialogAccept");
+// var radioDialog = document.getElementById("dialog");
+// var dialogHeading = document.getElementById("dialogHeading")
+// var dialogBody = document.getElementById("dialogBody");
+// var dialogCancel = document.getElementById("dialogCancel");
+// var dialogAccept = document.getElementById("dialogAccept");
 
 var snackbar = document.getElementById("mainSnackbar");
 var snackbarText = document.getElementById("mainSnackbarText")

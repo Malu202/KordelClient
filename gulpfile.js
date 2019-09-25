@@ -2,6 +2,7 @@ var gulp = require('gulp');
 var sass = require('gulp-sass');
 var include = require('gulp-include');
 var compiler = require('google-closure-compiler').gulp();
+var uglify = require('gulp-uglify');
 var purify = require('gulp-purifycss');
 const autoprefixer = require('gulp-autoprefixer');
 var htmlmin = require('gulp-htmlmin');
@@ -10,9 +11,7 @@ var htmlmin = require('gulp-htmlmin');
 gulp.task('css', function () {
     return gulp.src('src/style.scss')
         .pipe(sass({ outputStyle: 'compressed', includePaths: 'node_modules' }).on('error', sass.logError))
-        .pipe(autoprefixer({
-            browsers: ['last 2 versions', 'android 4.4']
-        }))
+        .pipe(autoprefixer())
         .pipe(gulp.dest("./dist/"));
 });
 
@@ -62,15 +61,16 @@ gulp.task('distributeFaviconHead', function () {
         .pipe(gulp.dest('./dist'));
 });
 
-gulp.task('distributejs', function () {
+gulp.task('distributejs2', function () {
     //Anleitung für externs als file einlesen: https://medium.com/dev-channel/polymer-the-closure-compiler-e80dd249d9d7
     //zusammenfassung: externsSrc = fs.readFileSync(...), externs: [{'src': externsSrc, 'path': 'asdf.js'}],
 
     return gulp.src('src/masterscript.js')
         .pipe(include())
+
         .pipe(compiler({
-            compilationLevel: 'SIMPLE_OPTIMIZATIONS',
-            warningLevel: 'QUIET',
+            compilation_level: 'WHITESPACE_ONLY',
+            warning_level: 'VERBOSE',
             // externs: [
             //     { 'src': "var exports;var module; var define;var mdc;" }
             // ],
@@ -80,20 +80,34 @@ gulp.task('distributejs', function () {
             // moduleResolutionMode: "NODE",
             // processCommonJsModules: true,            
 
-            jsOutputFile: 'dist/masterscript.js',
+            js_output_file: 'dist/masterscript.js',
+            // js_compiler: true
             //createSourceMap: true,
-        }))
-        //.pipe(sourcemaps.write(''))
+        }, {
+                platform: "javascript"
+            }))
+
+
+        // .pipe(sourcemaps.write(''))
+        
         .pipe(gulp.dest('./'));
+
+})
+
+gulp.task('distributejs', function () {
+   
+    return gulp.src('src/masterscript.js')
+        .pipe(include())
+        // .pipe(uglify({warnings: "verbose"}))
+        .pipe(gulp.dest('./dist/'));
+
 })
 
 
-gulp.task('distributecss', gulp.series(gulp.parallel('distributejs', 'distributehtml', 'distributepages','distributeFaviconHead'), function () {
+gulp.task('distributecss', gulp.series(gulp.parallel('distributejs', 'distributehtml', 'distributepages', 'distributeFaviconHead'), function () {
     return gulp.src('src/style.scss')
         .pipe(sass({ outputStyle: 'compressed', includePaths: 'node_modules' }).on('error', sass.logError))
-        .pipe(autoprefixer({
-            browsers: ['last 2 versions', 'android 4.4']
-        }))
+        .pipe(autoprefixer())
         .pipe(purify(['dist/masterscript.js', 'dist/index.html', 'dist/pages.html'], {
             minify: true,
             //rejected: true,
