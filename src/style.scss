@@ -323,12 +323,12 @@ button i{
 // .mdc-dialog{
 //     z-index: 10;
 //}
-.mdc-dialog__body{
-    // color: $mdc-theme-primary;
-    z-index: 22;
-}
+// .mdc-dialog__body{
+//     // color: $mdc-theme-primary;
+// }
 .mdc-dialog{
     z-index: 22;
+    position: absolute;
 }
 .mdc-dialog__surface{
     background-color: $mdc-theme-background !important;
