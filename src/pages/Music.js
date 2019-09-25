@@ -1,21 +1,42 @@
 //RADIO
-var musikTabBar = new mdc.tabBar.MDCTabBar(document.querySelector('.mdc-tab-bar'));
+// var musikTabBar = new mdc.tabBar.MDCTabBar(document.querySelector('.mdc-tab-bar'));
 
 var senderSubPage = document.getElementById("sender");
 var playlistSubPage = document.getElementById("playlist");
 //eventuall :activated
-musikTabBar.listen('MDCTabBar:activated', function ({detail: {index: number}}) {
-  var tabIndex = number;
-  console.log(tabIndex);
-  if (tabIndex == 0) {
-    senderSubPage.style.display = "block";
-    playlistSubPage.style.display = "none";
-  }
-  else {
-    senderSubPage.style.display = "none";
-    playlistSubPage.style.display = "block";
-  }
-});
+
+// musikTabBar.listen('MDCTabBar:activated', function ({detail: {index: number}}) {
+//   var tabIndex = number;
+//   console.log(tabIndex);
+//   if (tabIndex == 0) {
+//     senderSubPage.style.display = "block";
+//     playlistSubPage.style.display = "none";
+//   }
+//   else {
+//     senderSubPage.style.display = "none";
+//     playlistSubPage.style.display = "block";
+//   }
+// });
+var radioTab = document.getElementById("radioTab");
+var playlistTab = document.getElementById("playlistTab");
+
+radioTab.addEventListener("click", function(){
+  senderSubPage.style.display = "block";
+  playlistSubPage.style.display = "none";
+  playlistTab.classList.remove("mdc-tab--active");
+  radioTab.classList.add("mdc-tab--active");
+  radioTab.children[1].classList.add("mdc-tab-indicator--active");
+  playlistTab.children[1].classList.remove("mdc-tab-indicator--active");
+})
+
+playlistTab.addEventListener("click", function(){
+  senderSubPage.style.display = "none";
+  playlistSubPage.style.display = "block";
+  radioTab.classList.remove("mdc-tab--active");
+  playlistTab.classList.add("mdc-tab--active");
+  playlistTab.children[1].classList.add("mdc-tab-indicator--active");
+  radioTab.children[1].classList.remove("mdc-tab-indicator--active");
+})
 
 var onOffAutoplay = document.getElementById("onOffAutoplay");
 onOffAutoplay.addEventListener("click", function () {
