@@ -72,7 +72,6 @@ html{
 	height:100vh;
     min-height:100vh;
     color: $mdc-theme-primary; //design fix
-    z-index:0;
 }
 body{
 	background: $hintergrund;
@@ -82,7 +81,6 @@ body{
     overflow:hidden;
 
     -webkit-tap-highlight-color: transparent;
-    z-index:0;
 }
 
 //TOOLBAR
@@ -150,6 +148,7 @@ body{
     width: 100%;
     overflow:hidden;
     position: relative; //so that snackbar can be positioned at the bottom of page with position:absolute
+    z-index:0;
 }
 #permanentDrawer{
 	flex: 0 0 auto;
@@ -186,7 +185,6 @@ body{
 .bottompanel {
 	background-color: $toolbar-background;
 	flex: 0 0 auto;
-    z-index: 3;
     overflow: hidden!important;
 }
 $bottomPanelMaxWidth: 800px;
@@ -328,7 +326,6 @@ button i{
 // }
 .mdc-dialog{
     z-index: 22;
-
     -webkit-overflow-scrolling: touch;
 }
 .mdc-dialog__surface{
