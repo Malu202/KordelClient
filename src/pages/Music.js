@@ -187,7 +187,7 @@ function senderSpeichern() {
   });
 }
 
-document.querySelector('#addRadioButton').addEventListener('click', function (evt) {
+document.getElementById('addRadioButton').addEventListener('click', function (evt) {
   //dialog.lastFocusedTarget = evt.target;
   showCustomDialog("Radiosender hinzufügen", radioDialog, "abbrechen", "speichern", null, senderSpeichern)
 })
