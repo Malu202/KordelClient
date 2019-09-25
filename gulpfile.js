@@ -98,7 +98,7 @@ gulp.task('distributejs', function () {
    
     return gulp.src('src/masterscript.js')
         .pipe(include())
-        // .pipe(uglify({warnings: "verbose"}))
+        .pipe(uglify({warnings: "verbose"}))
         .pipe(gulp.dest('./dist/'));
 
 })
