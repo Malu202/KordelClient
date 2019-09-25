@@ -323,9 +323,10 @@ button i{
 // .mdc-dialog{
 //     z-index: 10;
 //}
-// .mdc-dialog__body{
-//     color: $mdc-theme-primary;
-// }
+.mdc-dialog__body{
+    // color: $mdc-theme-primary;
+    z-index: 22;
+}
 .mdc-dialog{
     z-index: 22;
 }
@@ -336,6 +337,7 @@ button i{
 }
 .mdc-dialog .dialogContent{
     display: block;
+    z-index: 22;
 }
 .dialogContent{
     display: none;
