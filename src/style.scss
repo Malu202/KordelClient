@@ -328,6 +328,8 @@ button i{
 // }
 .mdc-dialog{
     z-index: 22;
+
+    -webkit-overflow-scrolling: touch;
 }
 .mdc-dialog__surface{
     background-color: $mdc-theme-background !important;
