@@ -95,6 +95,10 @@ body {
     color: $toolbar;
 }
 
+#updateButton{
+    display:none;
+}
+
 //DRAWER
 @media only screen and (max-width: 800px) {
     #permanentDrawer {

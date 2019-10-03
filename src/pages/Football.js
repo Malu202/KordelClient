@@ -4,16 +4,16 @@ function updateFootball(response) {
     var spiele = response.Footballspiele;
     footballPage.innerHTML = "";
 
-    var footballControls = document.createElement("div");
-    footballControls.classList = "footballcontrols";
+    // var footballControls = document.createElement("div");
+    // footballControls.classList = "footballcontrols";
 
-    // footballControls.appendChild(fbButton("play", play));
-    footballControls.appendChild(fbButton("play/pause", pauseFootball));
-    footballControls.appendChild(fbButton("vorspulen", vorspulenFootball));
-    footballControls.appendChild(fbButton("stop", stopFootball));
+    // // footballControls.appendChild(fbButton("play", play));
+    // footballControls.appendChild(fbButton("play/pause", pauseFootball));
+    // footballControls.appendChild(fbButton("vorspulen", vorspulenFootball));
+    // footballControls.appendChild(fbButton("stop", stopFootball));
 
 
-    footballPage.appendChild(footballControls);
+    // footballPage.appendChild(footballControls);
 
     for (var i = 0; i < spiele.length; i++) {
         var button = document.createElement("button");
