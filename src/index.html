@@ -5,7 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"> -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500|Material+Icons">
-  <meta name="viewport" content="initial-scale = 1.0, maximum-scale = 1.0, user-scalable = no, width = device-width, height = device-height">
+  <meta name="viewport"
+    content="initial-scale = 1.0, maximum-scale = 1.0, user-scalable = no, width = device-width, height = device-height">
   <title>Kordel</title>
   <meta charset="utf-8">
   <!--=include ./faviconHead.html -->
@@ -22,9 +23,12 @@
         <span class="mdc-top-app-bar__title catalog-title">Kordel</span>
       </section>
       <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end">
-        <button class="material-icons mdc-top-app-bar__action-item mdc-icon-button Geraete" id="updateButton" onclick='android.update("https://github.com/Malu202/KordelClient/blob/master/index.html?raw=true");'>&#xE5D5;</button>
-        <button class="material-icons mdc-top-app-bar__action-item mdc-icon-button musik" id="addRadioButton">&#xE145;</button>
-        <button class="material-icons mdc-top-app-bar__action-item mdc-icon-button" id="onlineIndicator">leak_remove</button>
+        <button class="material-icons mdc-top-app-bar__action-item mdc-icon-button Geraete" id="updateButton"
+          onclick='android.update("https://github.com/Malu202/KordelClient/blob/master/index.html?raw=true");'>&#xE5D5;</button>
+        <button class="material-icons mdc-top-app-bar__action-item mdc-icon-button musik"
+          id="addRadioButton">&#xE145;</button>
+        <button class="material-icons mdc-top-app-bar__action-item mdc-icon-button"
+          id="onlineIndicator">leak_remove</button>
       </section>
     </div>
     <!-- tabindikator (größe: 0) wird über mediaqueries ein/ausgeblendet als indikator ob tabs via javascript ein/ausgeblendet werden müssen-->
@@ -145,7 +149,8 @@
             <input type="checkbox" id="video" class="mdc-checkbox__native-control" />
             <div class="mdc-checkbox__background">
               <svg class="mdc-checkbox__checkmark" viewBox="0 0 24 24">
-                <path class="mdc-checkbox__checkmark-path" fill="none" stroke="white" d="M1.73,12.91 8.1,19.28 22.79,4.59" />
+                <path class="mdc-checkbox__checkmark-path" fill="none" stroke="white"
+                  d="M1.73,12.91 8.1,19.28 22.79,4.59" />
               </svg>
               <div class="mdc-checkbox__mixedmark"></div>
             </div>
@@ -158,7 +163,8 @@
             <input type="checkbox" id="now" class="mdc-checkbox__native-control" checked />
             <div class="mdc-checkbox__background">
               <svg class="mdc-checkbox__checkmark" viewBox="0 0 24 24">
-                <path class="mdc-checkbox__checkmark-path" fill="none" stroke="white" d="M1.73,12.91 8.1,19.28 22.79,4.59" />
+                <path class="mdc-checkbox__checkmark-path" fill="none" stroke="white"
+                  d="M1.73,12.91 8.1,19.28 22.79,4.59" />
               </svg>
               <div class="mdc-checkbox__mixedmark"></div>
             </div>
@@ -184,10 +190,10 @@
       <button class="mdc-button playerbutton" id="rewindButton">
         <i class="material-icons">&#xE020;</i>
       </button>
-      <button class="mdc-button playerbutton" disabled id="skipForwardButton">
+      <button class="mdc-button playerbutton" disabled id="skipBackButton">
         <i class="material-icons">&#xE045;</i>
       </button>
-      <button class="mdc-button playerbutton" disabled id="skipBackButton">
+      <button class="mdc-button playerbutton" id="skipForwardButton">
         <i class="material-icons">&#xE044;</i>
       </button>
       <button class="mdc-button playerbutton" id="forwardButton">

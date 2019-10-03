@@ -68,7 +68,7 @@ var serverip = "http://192.168.0.185:1337/";
 var TODO_IP = serverip + "todo";
 
 var rewindButton = document.getElementById("rewindButton");
-//var skipForwardButton = document.getElementById("skipForwardButton");
+var skipForwardButton = document.getElementById("skipForwardButton");
 //var skipBackButton = document.getElementById("skipBackButton");
 var forwardButton = document.getElementById("forwardButton");
 
@@ -80,14 +80,18 @@ forwardButton.addEventListener('click', function () {
   var request = { "task": "Playervorspulen" };
   postRequest(TODO_IP, request, function () { });
 });
+skipForwardButton.addEventListener('click', function () {
+  var request = { "task": "Playerskippen" };
+  postRequest(TODO_IP, request, function () { });
+});
 
 function stop() {
-  var request = {};
-  request.task = "Playerstoppen";
-  postRequest(TODO_IP, request, function (msg) {
-    checkRadio(null);
-  });
-}
+    var request = {};
+    request.task = "Playerstoppen";
+    postRequest(TODO_IP, request, function (msg) {
+      checkRadio(null);
+    });
+  }
 
 // var playpausebuttonjs = new mdc.iconToggle.MDCIconToggle(document.getElementById("playpause"));
 
