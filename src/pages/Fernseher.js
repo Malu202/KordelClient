@@ -28,3 +28,15 @@ pcButton.addEventListener("click", function () {
   request["task"] = "PCundTV";
   postRequest(serverip + "todo", request, function () { });
 });
+
+var volMinusButton = document.getElementById("volMinus");
+volMinusButton.addEventListener("click", function () {
+  var request = { "task": "AmpVolumeDown" };
+  postRequest(serverip + "todo", request, function () { });
+});
+
+var volPlusButton = document.getElementById("volPlus");
+volPlusButton.addEventListener("click", function () {
+  var request = { "task": "AmpVolumeUp" };
+  postRequest(serverip + "todo", request, function () { });
+});
