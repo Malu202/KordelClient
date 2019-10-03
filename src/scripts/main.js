@@ -86,12 +86,12 @@ skipForwardButton.addEventListener('click', function () {
 });
 
 function stop() {
-    var request = {};
-    request.task = "Playerstoppen";
-    postRequest(TODO_IP, request, function (msg) {
-      checkRadio(null);
-    });
-  }
+  var request = {};
+  request.task = "Playerstoppen";
+  postRequest(TODO_IP, request, function (msg) {
+    checkRadio(null);
+  });
+}
 
 // var playpausebuttonjs = new mdc.iconToggle.MDCIconToggle(document.getElementById("playpause"));
 
@@ -259,8 +259,8 @@ showPage("musik");
 
 
 
-window.onerror = function (msg, url, linenumber) {
-  showDialog("Error", msg + '\nURL: ' + url + '\nLine Number: ' + linenumber, null, "OK", null, null);
+window.onerror = function (msg, url, linenumber, columnNo, error) {
+  showDialog("Error", msg + '<br/>URL: ' + url + '<br/>Line Number: ' + linenumber + ", " + columnNo + "<br/>" + JSON.stringify(error), null, "OK", null, null);
   return false;
 }
 var onlineIndicator = document.getElementById("onlineIndicator");

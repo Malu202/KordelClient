@@ -114,7 +114,8 @@ function hideDialog() {
   dialogCancel.style.display = "block";
 }
 function showDialog(heading, bodyText, cancel, accept, oncancel, onaccept) {
-  var bodyDiv = document.createTextNode(bodyText)
+  var bodyDiv = document.createElement("div");
+  bodyDiv.innerHTML = bodyText;
   showCustomDialog(heading, bodyDiv, cancel, accept, oncancel, onaccept);
 }
 //showDialog("heading", "bodyText", "cancel", "accept", null, null);
