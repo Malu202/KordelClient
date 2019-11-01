@@ -126,4 +126,6 @@ gulp.task('distribute', gulp.series('distributecss', function () {
             removeComments: true,
         }))
         .pipe(gulp.dest('./'))
+        .pipe(gulp.dest('./public'))
+
 }));
