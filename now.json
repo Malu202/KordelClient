@@ -6,11 +6,19 @@
         {
             "src": "**.html",
             "use": "@now/static"
+        },
+        {
+            "src": "favicons/**",
+            "use": "@now/static"
         }
     ],
     "routes": [
         {
             "src": "/",
+            "dest": "index.html"
+        },
+        {
+            "src": "favicons",
             "dest": "index.html"
         }
     ]
