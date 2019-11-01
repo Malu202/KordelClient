@@ -19,7 +19,7 @@
         },
         {
             "src": "favicons",
-            "dest": "index.html"
+            "dest": "favicons"
         }
     ]
 }
