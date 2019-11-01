@@ -4,7 +4,7 @@
     "alias": "Kordel",
     "builds": [
         {
-            "src": "index.html",
+            "src": "**.html",
             "use": "@now/static"
         }
     ],
