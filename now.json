@@ -18,8 +18,8 @@
             "dest": "index.html"
         },
         {
-            "src": "favicons/",
-            "dest": "favicons/"
+            "src": "/",
+            "dest": "/"
         }
     ]
 }
