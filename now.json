@@ -8,11 +8,11 @@
             "use": "@now/static"
         },
         {
-            "src": "favicons/favicon.ico",
+            "src": "/favicons/favicon.ico",
             "use": "@now/static"
         },
         {
-            "src": "favicons/**(.*)",
+            "src": "/favicons/**(.*)",
             "use": "@now/static"
         }
     ],
