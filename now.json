@@ -8,7 +8,7 @@
             "use": "@now/static"
         },
         {
-            "src": "**.js",
+            "src": "favicons/**",
             "use": "@now/static"
         }
     ],
