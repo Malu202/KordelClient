@@ -8,6 +8,10 @@
             "use": "@now/static"
         },
         {
+            "src": "favicons/favicon.ico",
+            "use": "@now/static"
+        },
+        {
             "src": "favicons/**(.*)",
             "use": "@now/static"
         }
@@ -19,4 +23,3 @@
         }
     ]
 }
-
