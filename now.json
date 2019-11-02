@@ -1,18 +1,14 @@
 {
     "version": 1,
     "name": "Kordel",
-    "alias": "Kordel",
+    "alias": "kordel.now.sh",
     "builds": [
         {
             "src": "**.html",
             "use": "@now/static"
         },
         {
-            "src": "/favicons/favicon.ico",
-            "use": "@now/static"
-        },
-        {
-            "src": "/favicons/**(.*)",
+            "src": "**.js",
             "use": "@now/static"
         }
     ],
