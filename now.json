@@ -16,10 +16,6 @@
         {
             "src": "/",
             "dest": "index.html"
-        },
-        {
-            "src": "/favicons/(.*)",
-            "dest": "/favicons/$1"
         }
     ]
 }
