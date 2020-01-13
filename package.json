@@ -5,9 +5,9 @@
   "main": "index.js",
   "dependencies": {},
   "devDependencies": {
-    "google-closure-compiler": "^20190909.0.0",
+    "google-closure-compiler": "20200101.0.0",
     "gulp": "^4.0.2",
-    "gulp-autoprefixer": "^7.0.0",
+    "gulp-autoprefixer": "7.0.1",
     "gulp-cli": "^2.2.0",
     "gulp-htmlmin": "^5.0.1",
     "gulp-include": "^2.4.1",
@@ -15,7 +15,7 @@
     "gulp-sass": "^4.0.2",
     "gulp-uglify": "^3.0.2",
     "material-components-web": "^3.2.0",
-    "node-sass": "^4.12.0"
+    "node-sass": "4.13.0"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -26,5 +26,5 @@
     "last 2 versions",
     "android 4.4"
   ],
-  "build":""
+  "build": ""
 }
