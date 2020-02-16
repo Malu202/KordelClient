@@ -53,10 +53,10 @@ function createDropdownOption(name) {
 
 
 var tvthekAbspielenButton = document.getElementById("tvthekAbspielenButton");
-tvthekAbspielenButton.addEventListener("click", function(){
-    var Kategorie = sendungsListe[kategorieDropdown.value];
+tvthekAbspielenButton.addEventListener("click", function () {
+    var Kategorie = kategorieDropdown.value;// sendungsListe[kategorieDropdown.value];
 
-    var Sendung = sendungsListe[kategorieDropdown.value][sendungDropdown.selectedIndex].title;
+    var Sendung = sendungDropdown.selectedIndex;//sendungsListe[kategorieDropdown.value][sendungDropdown.selectedIndex].title;
     requestTvthekPlayback(Kategorie, Sendung);
 });
 
@@ -66,5 +66,6 @@ function requestTvthekPlayback(kategorie, index) {
     task.task = "playTvthek";
     task.Kategorie = kategorie;
     task.index = index;
+    console.log(task)
     postRequest(TODO_IP, task, function () { });
 }
