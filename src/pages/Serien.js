@@ -1,12 +1,16 @@
 var SERIEN_URL = serverip + "LokaleSerien";
 //var SERIEN_URL = "http://kordel.selfhost.at/LokaleSerien.json" //MOCKUP FÜR DEBUGGING OHNE RASPBERRY, NICHT COMMITEN!!!!
-getRequest(SERIEN_URL, function (res) {
-    if (res.message == null) console.log("nix");
-    else {
-        SerienListe = res.message;
-        setupSerienCards(SerienListe);
-    }
-});
+
+loadSerien = function () {
+    getRequest(SERIEN_URL, function (res) {
+        if (res.message == null) console.log("nix");
+        else {
+            SerienListe = res.message;
+            setupSerienCards(SerienListe);
+        }
+    });
+}
+loadSerien();
 
 var serienPage = document.getElementById("serien");
 
@@ -61,7 +65,7 @@ function newSerienCard(serie) {
             for (var index = 0; index < serie.history.length; index++) {
                 Verlauf += "Staffel: " + serie.history[index].Staffel + " Folge: " + serie.history[index].Folge + "\n";
             }
-        } else { 
+        } else {
             Verlauf = "Kein Verlauf gefunden";
         }
 

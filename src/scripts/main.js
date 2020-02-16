@@ -1,6 +1,3 @@
-// mdc.autoInit();
-
-
 //DRAWER
 var drawerEl = document.getElementsByClassName('mdc-drawer--modal')[0];
 var menuButton = document.getElementById('menu');
@@ -56,13 +53,13 @@ function setSwitchState(Switch, state) {
   }
 }
 //TOOLBAR mdc-toolbar-fixed-adjust damit sich der adjust anpasst beim resizen
-window.addEventListener("resize", resize, true);
+//window.addEventListener("resize", resize, true);
 
 
-function resize() {
-  // var toolbar = new mdc.topAppBar.MDCTopAppBar(document.querySelector('.mdc-top-app-bar'));
-  // toolbar.fixedAdjustElement = document.querySelector('.mdc-top-app-bar--fixed-adjust');
-}
+// function resize() {
+//   // var toolbar = new mdc.topAppBar.MDCTopAppBar(document.querySelector('.mdc-top-app-bar'));
+//   // toolbar.fixedAdjustElement = document.querySelector('.mdc-top-app-bar--fixed-adjust');
+// }
 //var serverip = "http://10.0.0.40:1337/";
 var serverip = "http://192.168.0.185:1337/";
 var TODO_IP = serverip + "todo";
@@ -175,28 +172,6 @@ function addtoPlaylist() {
 var songname = document.getElementById("song-name");
 
 
-function update(response) {
-  setOnlineStatus(true);
-  updateMusic(response);
-  updateFootball(response);
-
-  var status = response.Status;
-  if (status == undefined) status = {};
-  if (status.Pausiert == false) setPlayPauseButtonState("playing");
-  else setPlayPauseButtonState("paused");
-
-  //Laufendes Lied eintragen
-  if (status.name) songname.innerHTML = status.name;
-  else songname.innerHTML = "";
-
-  updateGeraete(response);
-
-}
-function getStatus() {
-  getRequest(serverip + "Status", function () { });
-}
-getStatus();
-
 
 var previousPageId = null;
 function showPage(pageid, button) {
@@ -242,7 +217,7 @@ function showPage(pageid, button) {
     }
   }
   //Toolbar platzhalter aktualisieren (tabs können hinzugekommen/verschwunden sein)
-  resize();
+  //resize();
   previousPageId = pageid;
 }
 showPage("musik");
@@ -271,9 +246,37 @@ function setOnlineStatus(online) {
     onlineIndicator.innerHTML = "leak_remove";
   }
 }
+
+
+
+function update(response) {
+  setOnlineStatus(true);
+  updateMusic(response);
+  updateFootball(response);
+
+  var status = response.Status;
+  if (status == undefined) status = {};
+  if (status.Pausiert == false) setPlayPauseButtonState("playing");
+  else setPlayPauseButtonState("paused");
+
+  //Laufendes Lied eintragen
+  if (status.name) songname.innerHTML = status.name;
+  else songname.innerHTML = "";
+
+  updateGeraete(response);
+
+}
+function getStatus() {
+  getRequest(serverip + "Status", function () { });
+}
+getStatus();
+//loadSerien();
+
 function focus() {
   console.log("fh");
-  getStatus();
+  // getStatus();
+  //Serien inkludiert natürlich status
+  loadSerien();
 }
 
 function blur() {
