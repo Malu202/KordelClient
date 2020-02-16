@@ -33,26 +33,26 @@ function updateFootball(response) {
     }
 }
 
-function vorspulenFootball() {
-    var request = {};
-    request.task = "fastForwardFootballGame";
-    postRequest(serverip + "todo", request, function (msg) { });
-}
-function pauseFootball() {
-    var request = {};
-    request.task = "pauseFootballGame";
-    postRequest(serverip + "todo", request, function (msg) { });
-}
-function playFootball() {
-    var request = {};
-    request.task = "playFootballGame";
-    postRequest(serverip + "todo", request, function (msg) { });
-}
-function stopFootball() {
-    var request = {};
-    request.task = "stopFootballGame";
-    postRequest(serverip + "todo", request, function (msg) { });
-}
+// function vorspulenFootball() {
+//     var request = {};
+//     request.task = "fastForwardFootballGame";
+//     postRequest(serverip + "todo", request, function (msg) { });
+// }
+// function pauseFootball() {
+//     var request = {};
+//     request.task = "pauseFootballGame";
+//     postRequest(serverip + "todo", request, function (msg) { });
+// }
+// function playFootball() {
+//     var request = {};
+//     request.task = "playFootballGame";
+//     postRequest(serverip + "todo", request, function (msg) { });
+// }
+// function stopFootball() {
+//     var request = {};
+//     request.task = "stopFootballGame";
+//     postRequest(serverip + "todo", request, function (msg) { });
+// }
 function fbButton(name, click) {
     var button = document.createElement("button");
     button.classList = "mdc-button mdc-button--raised";

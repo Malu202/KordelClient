@@ -95,8 +95,8 @@ body {
     color: $toolbar;
 }
 
-#updateButton{
-    display:none;
+#updateButton {
+    display: none;
 }
 
 //DRAWER
@@ -548,7 +548,8 @@ select option {
     margin: 4px 4px 4px 4px;
 }
 
-.serienCardSection {
+// .serienCardSection {
+.card-content h3 {
     color: rgba(0, 0, 0, .54);
     color: var(--mdc-theme-text-secondary-on-background, rgba(0, 0, 0, .54));
     margin-top: 12px;
@@ -638,4 +639,9 @@ select option {
     position: absolute;
     bottom: 0;
     z-index: 14;
+}
+
+#tvthek {
+    align-items: center;
+    justify-content: center;
 }
