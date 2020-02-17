@@ -277,6 +277,7 @@ function focus() {
   // getStatus();
   //Serien inkludiert natürlich status
   loadSerien();
+  loadSendungen();
 }
 
 function blur() {
