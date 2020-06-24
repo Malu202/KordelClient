@@ -27,13 +27,21 @@ function setupKategorien() {
     for (var Kategorie in sendungsListe) {
         kategorieDropdown.appendChild(createDropdownOption(Kategorie))
     }
-
+    
+    if (Object.keys(sendungsListe)[0]) {
+        kategorieDropdown.value = localStorage.getItem("tvthekKategorie");
+        if (kategorieDropdown.value == "") kategorieDropdown.value = Object.keys(sendungsListe)[0];
+    }
     //if (sendungsListe.hasOwnProperty(preferredKategorie)) { }
 };
 
 kategorieDropdown.addEventListener("change", function () {
     updateSendungenForKategorie();
+    localStorage.setItem("tvthekKategorie", kategorieDropdown.value);
 });
+sendungDropdown.addEventListener("change", function () {
+    localStorage.setItem("tvthekSendung", sendungDropdown.value)
+})
 
 function updateSendungenForKategorie() {
     sendungDropdown.innerText = "";
@@ -41,6 +49,8 @@ function updateSendungenForKategorie() {
     for (var i = 0; i < sendungsListe[kategorieDropdown.value].length; i++) {
         sendungDropdown.appendChild(createDropdownOption(sendungsListe[kategorieDropdown.value][i].title));
     }
+    sendungDropdown.value = localStorage.getItem("tvthekSendung");
+    if (sendungDropdown.value == "") sendungDropdown.value = sendungsListe[kategorieDropdown.value][0].title;
 }
 
 
