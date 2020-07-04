@@ -1,6 +1,7 @@
 var SERIEN_URL = serverip + "LokaleSerien";
 //var SERIEN_URL = "http://kordel.selfhost.at/LokaleSerien.json" //MOCKUP FÜR DEBUGGING OHNE RASPBERRY, NICHT COMMITEN!!!!
 
+var SerienListe = [];
 loadSerien = function () {
     getRequest(SERIEN_URL, function (res) {
         if (res.message == null) console.log("nix");
