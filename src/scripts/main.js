@@ -272,9 +272,10 @@ function getStatus() {
 getStatus();
 //loadSerien();
 
-function focus() {
-  console.log("fh");
-  snackbarNotification("fh")
+function focus(stuff) {
+  //console.log(stuff)
+  console.log((this).classList);
+  snackbarNotification((this).classList)
 
   // getStatus();
   //Serien inkludiert natürlich status

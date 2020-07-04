@@ -65,7 +65,7 @@ function newSerienCard(serie) {
         var Verlauf = "";
         if (serie.history) {
             for (var index = 0; index < serie.history.length; index++) {
-                Verlauf += "Staffel: " + serie.history[index].Staffel + " Folge: " + serie.history[index].Folge + "\n";
+                Verlauf += "Staffel: " + serie.history[index].Staffel + " Folge: " + serie.history[index].Folge + "<br />";
             }
         } else {
             Verlauf = "Kein Verlauf gefunden";
