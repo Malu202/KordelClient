@@ -7,7 +7,6 @@ loadSerien = function () {
         if (res.message == null) console.log("nix");
         else {
             if (res.message.length != SerienListe.length) {
-                alert("Serienrefresh")
                 SerienListe = res.message;
                 setupSerienCards(SerienListe);
             }
