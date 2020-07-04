@@ -5,8 +5,10 @@ loadSerien = function () {
     getRequest(SERIEN_URL, function (res) {
         if (res.message == null) console.log("nix");
         else {
-            SerienListe = res.message;
-            setupSerienCards(SerienListe);
+            if (res.message.length != SerienListe.length) {
+                SerienListe = res.message;
+                setupSerienCards(SerienListe);
+            }
         }
     });
 }
