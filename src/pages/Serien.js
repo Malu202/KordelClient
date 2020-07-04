@@ -1,6 +1,5 @@
 var SERIEN_URL = serverip + "LokaleSerien";
 //var SERIEN_URL = "http://kordel.selfhost.at/LokaleSerien.json" //MOCKUP FÜR DEBUGGING OHNE RASPBERRY, NICHT COMMITEN!!!!
-
 var SerienListe = [];
 loadSerien = function () {
     getRequest(SERIEN_URL, function (res) {
@@ -73,6 +72,14 @@ function newSerienCard(serie) {
 
         showDialog(serie.name, Verlauf, null, "ok", null, null);
     })
+    serienPage.appendChild(neueSerie);
+    return [staffelSelect, folgeSelect];
+}
+
+function selectLastWatched(serieSelects, serie) {
+    var staffelSelect = serieSelects[0];
+    var folgeSelect = serieSelects[1];
+
     //Select Last watched Episode
     var currentStaffelIndex = 0;
     var currentFolgenIndex = 0;
@@ -99,16 +106,32 @@ function newSerienCard(serie) {
         }
     }
 
-    serienPage.appendChild(neueSerie);
     staffelSelect.value = currentStaffelIndex;
-    staffelOnChange();
+    staffelSelect.dispatchEvent(new Event('change', { 'bubbles': false }))
     folgeSelect.value = currentFolgenIndex;
 }
+var serienSelects;
+var previousHistory = [];
 function setupSerienCards(serien) {
-    serienPage.innerHTML = "";
-    for (var i = 0; i < serien.length; i++) {
-        newSerienCard(serien[i]);
+    // console.log(previousHistory);
+    if (SerienListe.length != serien.length) {
+        serienPage.innerHTML = "";
+        serienSelects = [];
+        for (var i = 0; i < serien.length; i++) {
+            newSelects = newSerienCard(serien[i]);
+            serienSelects.push(newSelects);
+        }
     }
+    for (var i = 0; i < serien.length; i++) {
+        var history = undefined;
+        if(serien[i].history != undefined ) history = serien[i].history[serien[i].history.length - 1].Staffel + serien[i].history[serien[i].history.length - 1].Folge;
+        if (history != previousHistory[i]) {
+            selectLastWatched(serienSelects[i], serien[i]);
+        }
+        previousHistory[i] = history;
+    }
+
+
 }
 
 function requestSeriesPlayback(path) {

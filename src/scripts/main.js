@@ -273,9 +273,7 @@ getStatus();
 //loadSerien();
 
 function focus(stuff) {
-  //console.log(stuff)
-  console.log((this).classList);
-  snackbarNotification((this).classList)
+  console.log("fh")
 
   // getStatus();
   //Serien inkludiert natürlich status
@@ -285,7 +283,6 @@ function focus(stuff) {
 
 function blur() {
   console.log("bh");
-  snackbarNotification("bh")
   setOnlineStatus(false);
 }
 
