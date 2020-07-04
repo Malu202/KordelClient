@@ -274,6 +274,8 @@ getStatus();
 
 function focus() {
   console.log("fh");
+  snackbarNotification("fh")
+
   // getStatus();
   //Serien inkludiert natürlich status
   loadSerien();
@@ -282,6 +284,7 @@ function focus() {
 
 function blur() {
   console.log("bh");
+  snackbarNotification("bh")
   setOnlineStatus(false);
 }
 

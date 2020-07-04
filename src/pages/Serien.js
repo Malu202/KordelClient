@@ -6,10 +6,8 @@ loadSerien = function () {
     getRequest(SERIEN_URL, function (res) {
         if (res.message == null) console.log("nix");
         else {
-            if (res.message.length != SerienListe.length) {
-                SerienListe = res.message;
-                setupSerienCards(SerienListe);
-            }
+            setupSerienCards(res.message);
+            SerienListe = res.message;
         }
     });
 }
@@ -21,6 +19,7 @@ var serienBluePrint = document.getElementsByClassName("serienBluePrint")[0];
 var serienStaffelOption = document.getElementsByClassName("serienStaffelOption")[0];
 
 function newSerienCard(serie) {
+
     var name = serie.name;
     var staffeln = serie.staffeln;
 
@@ -99,6 +98,7 @@ function newSerienCard(serie) {
             }
         }
     }
+
     serienPage.appendChild(neueSerie);
     staffelSelect.value = currentStaffelIndex;
     staffelOnChange();
