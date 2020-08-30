@@ -52,6 +52,7 @@ function newSerienCard(serie) {
             folgeSelect.appendChild(neueFolge);
         }
     };
+    staffelOnChange();
     staffelSelect.addEventListener("change", staffelOnChange);
 
     folgeAbspielenButton.addEventListener("click", function () {
@@ -124,7 +125,7 @@ function setupSerienCards(serien) {
     }
     for (var i = 0; i < serien.length; i++) {
         var history = undefined;
-        if(serien[i].history != undefined ) history = serien[i].history[serien[i].history.length - 1].Staffel + serien[i].history[serien[i].history.length - 1].Folge;
+        if (serien[i].history != undefined) history = serien[i].history[serien[i].history.length - 1].Staffel + serien[i].history[serien[i].history.length - 1].Folge;
         if (history != previousHistory[i]) {
             selectLastWatched(serienSelects[i], serien[i]);
         }
