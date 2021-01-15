@@ -659,6 +659,8 @@ select option {
     flex: 1 1 auto;
     padding: 16px;
     margin-bottom: 16px;
+    font-size: small;
+
 
 }
 
@@ -688,5 +690,4 @@ select option {
 
 .notSelectable {
     user-select: none;
-    font-size: small;
 }
