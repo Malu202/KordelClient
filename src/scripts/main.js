@@ -220,8 +220,8 @@ function showPage(pageid, button) {
   //resize();
   previousPageId = pageid;
 }
-// showPage("tvthek");
-showPage("Debug");
+showPage("tvthek");
+//showPage("Debug");
 
 //const  = new mdc.snackbar.MDCSnackbar(document.querySelector('#mainSnackbar'));
 // const dataObj = {
