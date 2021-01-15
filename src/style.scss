@@ -685,3 +685,7 @@ select option {
 #getDebugData {
     flex: 0 0 auto;
 }
+
+.notSelectable {
+    user-select: none;
+}
