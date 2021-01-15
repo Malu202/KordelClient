@@ -9,7 +9,7 @@ onOffKordel.addEventListener("click", function () {
     });
   } else {
     //showDialog("Befehl nicht möglich", "Kordel bitte manuell einschalten", null, "OK", null, null);
-    showDialog("Befehl nicht möglich", "Bitte Kordel manuell einschalten",null,"ok",null,null);
+    showDialog("Befehl nicht möglich", "Bitte Kordel manuell einschalten", null, "ok", null, null);
     toggleSwitch(onOffKordel);
   }
 });
@@ -24,15 +24,15 @@ onOffKordel.addEventListener("contextmenu", function (e) {
 });
 
 
-var onOffPC = document.getElementById("onOffPc");
-onOffPC.addEventListener("click", function () {
+var onOffPc = document.getElementById("onOffPc");
+onOffPc.addEventListener("click", function () {
   var request = {};
-  if (!toggleSwitch(onOffPC)) {
+  if (!toggleSwitch(onOffPc)) {
     request.task = "turnOffPc";
-    postRequest(serverip + "todo", request, function (msg) {});
+    postRequest(serverip + "todo", request, function (msg) { });
   } else {
     request.task = "turnOnPc";
-    postRequest(serverip + "todo", request, function (msg) {});
+    postRequest(serverip + "todo", request, function (msg) { });
   }
 });
 
@@ -42,10 +42,10 @@ onOffSimulationStation.addEventListener("click", function () {
   var request = {};
   if (toggleSwitch(onOffSimulationStation)) {
     request.task = "startEmulationStation";
-    postRequest(serverip + "todo", request, function (msg) {});
-  } else { 
+    postRequest(serverip + "todo", request, function (msg) { });
+  } else {
     request.task = "killEmulationStation";
-    postRequest(serverip + "todo", request, function (msg) {});
+    postRequest(serverip + "todo", request, function (msg) { });
   }
 });
 
@@ -53,13 +53,13 @@ var onOffTv = document.getElementById("onOffTV");
 onOffTv.addEventListener("click", function () {
   var request = {};
   if (toggleSwitch(onOffTv)) {
-    showDialog("Nicht notwendig", "TV started automatisch bei Wiedergabe",null,"ok",null,null);
-  } else { 
+    showDialog("Nicht notwendig", "TV started automatisch bei Wiedergabe", null, "ok", null, null);
+  } else {
     request.task = "turnOffTv";
-    postRequest(serverip + "todo", request, function (msg) {});
+    postRequest(serverip + "todo", request, function (msg) { });
   }
 });
 
 function updateGeraete(response) {
-  setSwitchState(onOffPC, response.Status.PcOnline);
+  setSwitchState(onOffPc, response.Status.PcOnline);
 };

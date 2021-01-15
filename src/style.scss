@@ -182,6 +182,7 @@ body {
     -webkit-overflow-scrolling: touch;
     display: flex;
     overflow: hidden;
+    max-width: 100%;
 }
 
 //TABS
@@ -649,4 +650,38 @@ select option {
 #filme {
     align-items: center;
     justify-content: center;
+}
+
+#logs {
+    margin-top: 16px;
+    //white-space: nowrap;
+    overflow: auto;
+    flex: 1 1 auto;
+    padding: 16px;
+    margin-bottom: 16px;
+
+}
+
+#debug {
+    flex-direction: column;
+    box-sizing: border-box;
+    padding: 16px;
+    max-height: 100%;
+}
+
+#debugSettings {
+    display: flex;
+    flex-direction: row;
+}
+
+.Debug {
+    max-width: 100%;
+}
+
+#debugStats {
+    margin-top: 16px;
+}
+
+#getDebugData {
+    flex: 0 0 auto;
 }

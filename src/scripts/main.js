@@ -221,7 +221,7 @@ function showPage(pageid, button) {
   previousPageId = pageid;
 }
 // showPage("tvthek");
-showPage("tvthek")
+showPage("Debug");
 
 //const  = new mdc.snackbar.MDCSnackbar(document.querySelector('#mainSnackbar'));
 // const dataObj = {

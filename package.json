@@ -3,19 +3,17 @@
   "version": "0.0.1",
   "description": "Kordel WebApp Client",
   "main": "index.js",
-  "dependencies": {},
   "devDependencies": {
-    "google-closure-compiler": "20200101.0.0",
+    "google-closure-compiler": "*",
     "gulp": "*",
     "gulp-autoprefixer": "*",
-    "gulp-cli": "^2.2.0",
-    "gulp-htmlmin": "^5.0.1",
-    "gulp-include": "^2.4.1",
-    "gulp-purifycss": "^0.2.0",
-    "gulp-sass": "*",
-    "gulp-uglify": "^3.0.2",
+    "gulp-dart-sass": "*",
+    "gulp-htmlmin": "*",
+    "gulp-include": "*",
+    "gulp-purifycss": "*",
+    "gulp-uglify": "*",
     "material-components-web": "^3.2.0",
-    "node-sass": "*"
+    "node-sass": "^5.0.0"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

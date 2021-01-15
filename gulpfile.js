@@ -1,5 +1,5 @@
 var gulp = require('gulp');
-var sass = require('gulp-sass');
+var sass = require('gulp-dart-sass');
 var include = require('gulp-include');
 var compiler = require('google-closure-compiler').gulp();
 var uglify = require('gulp-uglify');
@@ -84,21 +84,21 @@ gulp.task('distributejs2', function () {
             // js_compiler: true
             //createSourceMap: true,
         }, {
-                platform: "javascript"
-            }))
+            platform: "javascript"
+        }))
 
 
         // .pipe(sourcemaps.write(''))
-        
+
         .pipe(gulp.dest('./'));
 
 })
 
 gulp.task('distributejs', function () {
-   
+
     return gulp.src('src/masterscript.js')
         .pipe(include())
-        .pipe(uglify({warnings: "verbose"}))
+        .pipe(uglify({ warnings: "verbose" }))
         .pipe(gulp.dest('./dist/'));
 
 })
