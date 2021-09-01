@@ -219,8 +219,12 @@ function showPage(pageid, button) {
   //Toolbar platzhalter aktualisieren (tabs können hinzugekommen/verschwunden sein)
   //resize();
   previousPageId = pageid;
+  if (pageid != "Geraete") localStorage.setItem('lastVisitedPage', pageid);
 }
-showPage("Geraete");
+
+let lastVisitedPage = localStorage.getItem("lastVisitedPage");
+if (lastVisitedPage == null) lastVisitedPage = "tvthek";
+showPage(lastVisitedPage);
 //showPage("Debug");
 
 //const  = new mdc.snackbar.MDCSnackbar(document.querySelector('#mainSnackbar'));
