@@ -18,7 +18,7 @@ fernsehenButton.addEventListener("click", function () {
 var hdmi1Button = document.getElementById("hdmi1");
 hdmi1Button.addEventListener("click", function () {
   var request = {};
-  request["task"] = "HDMI1";
+  request["task"] = "HDMI3";
   postRequest(serverip + "todo", request, function () { });
 });
 
