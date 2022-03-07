@@ -68,6 +68,10 @@ var rewindButton = document.getElementById("rewindButton");
 var skipForwardButton = document.getElementById("skipForwardButton");
 //var skipBackButton = document.getElementById("skipBackButton");
 var forwardButton = document.getElementById("forwardButton");
+var goToTimestampButton = document.getElementById("goToTimestampButton");
+let goToTimestampDialog = document.getElementById("goToTimestampDialog");
+let goToTimestampDialogInput = document.getElementById("goToTimestampDialogInput");
+
 
 rewindButton.addEventListener('click', function () {
   var request = { "task": "Playerzurueckspulen" };
@@ -80,6 +84,41 @@ forwardButton.addEventListener('click', function () {
 skipForwardButton.addEventListener('click', function () {
   var request = { "task": "Playerskippen" };
   postRequest(TODO_IP, request, function () { });
+});
+goToTimestampButton.addEventListener('click', function () {
+  showCustomDialog("Gehe zu Timestamp", goToTimestampDialog, "Abbrechen", "Bestätigen", null, function () {
+    let inputValue = goToTimestampDialogInput.value;
+    // let minuteDivider = inputValue.indexOf(':');
+    // let hours, minutes, seconds;
+    // if (minuteDivider > 0) {
+    //   let secondsDivider = inputValue.substring(minuteDivider).indexOf(':');
+    //   if (secondsDivider < 0) { //mm:ss
+    //     secondsDivider = minuteDivider;
+    //     minuteDivider = 0;
+    //   } else { //hh:mm:ss
+
+    //   }
+    // }
+    // else { //ss
+    //   seconds = parseInt(goToTimestampDialogInput.value);
+    // }
+    // seconds = parseInt(goToTimestampDialogInput.value.substring(secondsDivider));
+    // minutes = parseInt(goToTimestampDialogInput.value.substring(minuteDivider, secondsDivider));
+    // hours = parseInt(goToTimestampDialogInput.value.substring(0, minuteDivider));
+    let seconds = 0;
+    inputValue = inputValue.split(":");
+    if (inputValue.length <= 3) {
+      for (let i = inputValue.length - 1; i >= 0; i--) {
+        seconds += inputValue[i] * Math.pow(60, inputValue.length - 1 - i);
+      }
+    }
+    if (isNaN(seconds)) {
+      snackbarNotification("ERROR, ungültige Eingabe: " + goToTimestampDialogInput.value, null, null)
+      return;
+    }
+    var request = { "task": "Playergehezutimestamp", "timestamp": seconds };
+    postRequest(TODO_IP, request, function () { });
+  });
 });
 
 function stop() {

@@ -205,6 +205,9 @@
       <button class="mdc-button playerbutton" disabled id="skipBackButton">
         <i class="material-icons">&#xE045;</i>
       </button>
+      <button class="mdc-button playerbutton" id="goToTimestampButton">
+        <i class="material-icons">&#xE923;</i>
+      </button>
       <button class="mdc-button playerbutton" id="skipForwardButton">
         <i class="material-icons">&#xE044;</i>
       </button>
@@ -252,6 +255,11 @@
   </div>
 
 
+  <div class="dialogContent" id="goToTimestampDialog">
+    <label for="goToTimestampDialogInput">Timestamp in Sekunden oder MM:SS</label>
+    <input class="mdc-text-field__input" type="text" name="goToTimestampDialogInput" id="goToTimestampDialogInput"
+      value="02:30">
+  </div>
   <script>
     /*=include ./masterscript.js */
   </script>
