@@ -10,9 +10,9 @@ getDebugData.addEventListener("click", function () {
 });
 var debugStats = document.getElementById("debugStats");
 function updateDebugData(msg) {
-    console.log(msg)
     debugStats.innerText = "CPU-Temp: " + msg.cpuTemp + "°C";
     logs.innerText = msg.logs;
+    logs.scrollTop = logs.scrollHeight;
 }
 
 
