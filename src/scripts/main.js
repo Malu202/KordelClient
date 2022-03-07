@@ -88,23 +88,6 @@ skipForwardButton.addEventListener('click', function () {
 goToTimestampButton.addEventListener('click', function () {
   showCustomDialog("Gehe zu Timestamp", goToTimestampDialog, "Abbrechen", "Bestätigen", null, function () {
     let inputValue = goToTimestampDialogInput.value;
-    // let minuteDivider = inputValue.indexOf(':');
-    // let hours, minutes, seconds;
-    // if (minuteDivider > 0) {
-    //   let secondsDivider = inputValue.substring(minuteDivider).indexOf(':');
-    //   if (secondsDivider < 0) { //mm:ss
-    //     secondsDivider = minuteDivider;
-    //     minuteDivider = 0;
-    //   } else { //hh:mm:ss
-
-    //   }
-    // }
-    // else { //ss
-    //   seconds = parseInt(goToTimestampDialogInput.value);
-    // }
-    // seconds = parseInt(goToTimestampDialogInput.value.substring(secondsDivider));
-    // minutes = parseInt(goToTimestampDialogInput.value.substring(minuteDivider, secondsDivider));
-    // hours = parseInt(goToTimestampDialogInput.value.substring(0, minuteDivider));
     let seconds = 0;
     inputValue = inputValue.split(":");
     if (inputValue.length <= 3) {
@@ -119,6 +102,8 @@ goToTimestampButton.addEventListener('click', function () {
     var request = { "task": "Playergehezutimestamp", "timestamp": seconds };
     postRequest(TODO_IP, request, function () { });
   });
+
+  goToTimestampDialogInput.focus();
 });
 
 function stop() {
