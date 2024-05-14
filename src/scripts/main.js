@@ -64,7 +64,7 @@ function setSwitchState(Switch, state) {
 
 //ZIMABLADE ÄNDERUNG
 //var serverip = "http://192.168.0.185:1337/";
-let serverip = window.location.host + '/';
+let serverip = "http://" + window.location.host + '/';
 //ZIMABLADE ENDE
 var TODO_IP = serverip + "todo";
 
