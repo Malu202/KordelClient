@@ -3,7 +3,7 @@ var preferredKategorie = "Comedy-Satire";
 var sendungsListe = {};
 loadSendungen = function () {
     getRequest(TVTHEK_URL, function (res) {
-        if (res.message == null || res.message == {}) console.log("nix");
+        if (res.message == null || Object.keys(e.message).length == 0) console.log("nix");
         else {
             sendungsListe = res.message;
             setupSendungen();
