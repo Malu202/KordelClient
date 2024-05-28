@@ -17,7 +17,7 @@
     "theme_color": "#303030",
     "background_color": "#303030",
     "display": "standalone",
-    "display_override": [
+    "display-override": [
         "standalone"
     ],
     "share_target": {
