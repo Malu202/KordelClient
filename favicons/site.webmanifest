@@ -18,7 +18,8 @@
     "background_color": "#303030",
     "display": "standalone",
     "display-override": [
-        "standalone"
+        "standalone",
+        "fullscreen"
     ],
     "share_target": {
         "action": "/",
