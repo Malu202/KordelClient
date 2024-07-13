@@ -28,7 +28,9 @@ var onOffTv = document.getElementById("onOffTV");
 onOffTv.addEventListener("click", function () {
   var request = {};
   if (toggleSwitch(onOffTv)) {
-    showDialog("Nicht notwendig", "TV started automatisch bei Wiedergabe", null, "ok", null, null);
+    //showDialog("Nicht notwendig", "TV started automatisch bei Wiedergabe", null, "ok", null, null);
+    request.task = "turnOnTv";
+    postRequest(serverip + "todo", request, function (msg) { });
   } else {
     request.task = "turnOffTv";
     postRequest(serverip + "todo", request, function (msg) { });
