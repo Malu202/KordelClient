@@ -29,6 +29,6 @@ jobs:
       uses: JamesIves/github-pages-deploy-action@releases/v3
       with:
         SSH: true
-        BRANCH: master
+        BRANCH: testbranch
         FOLDER: public
         CLEAN: false
