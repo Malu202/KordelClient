@@ -1,37 +1,77 @@
 //TOOLS
+
+
+
+
 var getRequest = function (url, callback) {
-  var xhr = new XMLHttpRequest();
-  xhr.open("GET", url, true);
-  xhr.addEventListener('load', function (event) {
-    var json = JSON.parse(xhr.responseText);
-    update(json);
-    callback(json);
-  });
-  xhr.send();
+  if (IS_PUBLIC_HOSTED) {
+    fetch(url, {
+      targetAddressSpace: "private",
+      mode: "cors"
+    })
+      .then(function (response) { return response.json(); })
+      .then(function (json) {
+        update(json);
+        callback(json);
+      })
+      .catch(function (error) {
+        console.error('Error:', error);
+      });
+  } else {
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", url, true);
+    xhr.addEventListener('load', function (event) {
+      var json = JSON.parse(xhr.responseText);
+      update(json);
+      callback(json);
+    });
+    xhr.send();
+  }
   // console.log("-------GET");
   // console.log(url);
 }
 
 var postRequest = function (url, jsondata, callback) {
-  var http = new XMLHttpRequest();
-  http.open("POST", url, true);
+  if (IS_PUBLIC_HOSTED) {
+    fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json"
+      },
+      body: JSON.stringify(jsondata),
+      targetAddressSpace: "private",
+      mode: "cors"
+    })
+      .then(function (response) { return response.json(); })
+      .then(function (responseJSON) {
+        snackbarNotification(responseJSON.message, null, null);
+        update(responseJSON);
+        callback(responseJSON);
+      })
+      .catch(function (error) {
+        console.error('Error:', error);
+      });
+  } else {
+    var http = new XMLHttpRequest();
+    http.open("POST", url, true);
 
-  http.setRequestHeader("Content-type", "application/json");
+    http.setRequestHeader("Content-type", "application/json");
 
-  http.onreadystatechange = function () {
-    if (http.readyState == 4) {
-      var responseJSON = JSON.parse(http.responseText);
-      // const dataObj = {
-      //   message: responseJSON.message,
-      // };
-      //snackbar.show(dataObj);
-      snackbarNotification(responseJSON.message,null,null);
-      update(responseJSON);
-      callback(responseJSON);
+    http.onreadystatechange = function () {
+      if (http.readyState == 4) {
+        var responseJSON = JSON.parse(http.responseText);
+        // const dataObj = {
+        //   message: responseJSON.message,
+        // };
+        //snackbar.show(dataObj);
+        snackbarNotification(responseJSON.message, null, null);
+        update(responseJSON);
+        callback(responseJSON);
+      }
     }
+    http.send(JSON.stringify(jsondata));
   }
-  http.send(JSON.stringify(jsondata));
-  
+
   // console.log("-------POST");
   // console.log(url);
   // console.log("data: ");
@@ -51,7 +91,7 @@ var deleteRequest = function (url, jsondata, callback) {
       //   message: responseJSON.message,
       // };
       // snackbar.show(dataObj);
-      snackbarNotification(responseJSON.message,null,null);
+      snackbarNotification(responseJSON.message, null, null);
       update(responseJSON);
       callback(responseJSON);
     }
@@ -70,12 +110,12 @@ var deleteRequest = function (url, jsondata, callback) {
 
 var snackbar = document.getElementById("mainSnackbar");
 var snackbarText = document.getElementById("mainSnackbarText")
-function snackbarNotification(text,buttonText,onButtonClick){
-    snackbarText.innerHTML = text;
-    snackbar.classList.add("mdc-snackbar--open");
-    setTimeout(function(){
-      snackbar.classList.remove("mdc-snackbar--open");
-    },1200);
+function snackbarNotification(text, buttonText, onButtonClick) {
+  snackbarText.innerHTML = text;
+  snackbar.classList.add("mdc-snackbar--open");
+  setTimeout(function () {
+    snackbar.classList.remove("mdc-snackbar--open");
+  }, 1200);
 }
 function showCustomDialog(heading, bodyObject, cancel, accept, oncancel, onaccept) {
   dialogHeading.innerHTML = heading;
