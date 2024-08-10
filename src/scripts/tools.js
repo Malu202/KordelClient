@@ -4,7 +4,7 @@
 
 var detectedServerUrl = null;
 var detectServerUrlTask = null;
-var serverIpCandidates = ["10.0.0.135", "192.168.0.52", "kordel.local"];
+var serverIpCandidates = ["10.0.0.135", "192.168.0.52"];
 
 function detectServerUrl() {
   if (detectedServerUrl) return Promise.resolve(detectedServerUrl);
