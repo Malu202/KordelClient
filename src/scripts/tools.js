@@ -2,12 +2,53 @@
 
 
 
+var detectedServerUrl = null;
+var detectServerUrlTask = null;
+var serverIpCandidates = ["10.0.0.135", "192.168.0.52", "kordel.local"];
+
+function detectServerUrl() {
+  if (detectedServerUrl) return Promise.resolve(detectedServerUrl);
+  if (detectServerUrlTask) return detectServerUrlTask;
+  console.log("Detecting server URL...");
+  detectServerUrlTask = Promise.any(serverIpCandidates.map(function (host) {
+    var url = "http://" + host + "/";
+    return fetch(url + "Status", getFetchOptions()).then(function (response) {
+      if (response.ok) {
+        return url;
+
+      } else {
+        throw new Error("Failed to fetch " + url);
+      }
+    });
+  })).then(function (url) {
+    console.log("Detected server URL: " + url);
+    detectedServerUrl = url;
+    return url;
+  }).finally(function () {
+    detectServerUrlTask = null;
+  });
+  return detectServerUrlTask;
+}
+
+function replaceServerUrl(url) {
+  return detectServerUrl().then(function (serverUrl) {
+    return url.replace(/^<detect-server-url>/, serverUrl);
+  });
+}
+
+function getFetchOptions(fetchOptions) {
+  fetchOptions = fetchOptions || {};
+  if (USE_PRIVATE_NETWORK_ACCESS) {
+    fetchOptions.targetAddressSpace = "private";
+    fetchOptions.mode = "cors";
+  }
+  return fetchOptions;
+}
 
 var getRequest = function (url, callback) {
-  if (IS_PUBLIC_HOSTED) {
-    fetch(url, {
-      targetAddressSpace: "private",
-      mode: "cors"
+  if (url.startsWith("<detect-server-url>")) {
+    replaceServerUrl(url).then(function (newUrl) {
+      return fetch(newUrl, getFetchOptions());
     })
       .then(function (response) { return response.json(); })
       .then(function (json) {
@@ -32,15 +73,15 @@ var getRequest = function (url, callback) {
 }
 
 var postRequest = function (url, jsondata, callback) {
-  if (IS_PUBLIC_HOSTED) {
-    fetch(url, {
-      method: "POST",
-      headers: {
-        "Content-type": "application/json"
-      },
-      body: JSON.stringify(jsondata),
-      targetAddressSpace: "private",
-      mode: "cors"
+  if (url.startsWith("<detect-server-url>")) {
+    replaceServerUrl(url).then(function (newUrl) {
+      return fetch(newUrl, getFetchOptions({
+        method: "POST",
+        headers: {
+          "Content-type": "application/json"
+        },
+        body: JSON.stringify(jsondata),
+      }));
     })
       .then(function (response) { return response.json(); })
       .then(function (responseJSON) {

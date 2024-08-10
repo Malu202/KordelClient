@@ -65,13 +65,17 @@ function setSwitchState(Switch, state) {
 //ZIMABLADE ÄNDERUNG
 //var serverip = "http://192.168.0.185:1337/";
 let serverip = "http://" + window.location.host + '/';
-var publicHostedHostnames = [
-  "kordeltest.duckdns.org"
+var detectServerUrlOrigins = [
+  "file://", // fürs developen, damit kann man einfach das index.html file öffnen und es detected trotzdem die server ip
+  "https://kordeltest.duckdns.org"
 ];
-var IS_PUBLIC_HOSTED = publicHostedHostnames.indexOf(window.location.hostname) != -1;
-if (IS_PUBLIC_HOSTED) {
-  serverip = "http://kordel.local/";
+var usePrivateNetworkAccessOrigins = [
+  "https://kordeltest.duckdns.org"
+];
+if (detectServerUrlOrigins.indexOf(window.location.origin) != -1) {
+  serverip = "<detect-server-url>";
 }
+var USE_PRIVATE_NETWORK_ACCESS = usePrivateNetworkAccessOrigins.indexOf(window.location.origin) != -1;
 
 //ZIMABLADE ENDE
 var TODO_IP = serverip + "todo";
