@@ -4,7 +4,7 @@ var include = require('gulp-include');
 var compiler = require('google-closure-compiler').gulp();
 var uglify = require('gulp-uglify');
 var purify = require('gulp-purifycss');
-//const autoprefixer = require('gulp-autoprefixer');
+// const autoprefixer = require('gulp-autoprefixer');
 var htmlmin = require('gulp-htmlmin');
 
 //DEVELOPMENT TASKS
@@ -119,7 +119,7 @@ gulp.task('distributecss', gulp.series(gulp.parallel('distributejs', 'distribute
 
 gulp.task('distribute', gulp.series('distributecss', function () {
     return gulp.src('dist/index.html')
-        //.pipe(include()).on('error', console.log)
+        .pipe(include()).on('error', console.log)
         .pipe(htmlmin({
             collapseWhitespace: true,
             conservativeCollapse: true,
