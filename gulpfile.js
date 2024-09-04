@@ -4,14 +4,14 @@ var include = require('gulp-include');
 var compiler = require('google-closure-compiler').gulp();
 var uglify = require('gulp-uglify');
 var purify = require('gulp-purifycss');
-const autoprefixer = require('gulp-autoprefixer');
+//const autoprefixer = require('gulp-autoprefixer');
 var htmlmin = require('gulp-htmlmin');
 
 //DEVELOPMENT TASKS
 gulp.task('css', function () {
     return gulp.src('src/style.scss')
         .pipe(sass({ outputStyle: 'compressed', includePaths: 'node_modules' }).on('error', sass.logError))
-        .pipe(autoprefixer())
+        // .pipe(autoprefixer())
         .pipe(gulp.dest("./dist/"));
 });
 
@@ -107,7 +107,7 @@ gulp.task('distributejs', function () {
 gulp.task('distributecss', gulp.series(gulp.parallel('distributejs', 'distributehtml', 'distributepages', 'distributeFaviconHead'), function () {
     return gulp.src('src/style.scss')
         .pipe(sass({ outputStyle: 'compressed', includePaths: 'node_modules' }).on('error', sass.logError))
-        .pipe(autoprefixer())
+        //.pipe(autoprefixer())
         .pipe(purify(['dist/masterscript.js', 'dist/index.html', 'dist/pages.html'], {
             minify: true,
             //rejected: true,
@@ -119,7 +119,7 @@ gulp.task('distributecss', gulp.series(gulp.parallel('distributejs', 'distribute
 
 gulp.task('distribute', gulp.series('distributecss', function () {
     return gulp.src('dist/index.html')
-        .pipe(include()).on('error', console.log)
+        //.pipe(include()).on('error', console.log)
         .pipe(htmlmin({
             collapseWhitespace: true,
             conservativeCollapse: true,

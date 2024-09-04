@@ -70,16 +70,16 @@ $mdc-tab-bar-indicator-ink-color: $mdc-theme-secondary;
 
 
 html {
-    height: 100vh;
-    min-height: 100vh;
+    height: 100%;
+    min-height: 100%;
     color: $mdc-theme-primary; //design fix
 }
 
 body {
     background: $hintergrund;
     margin: 0;
-    height: 100vh;
-    min-height: 100vh;
+    height: 100%;
+    min-height: 100%;
     overflow: hidden;
 
     -webkit-tap-highlight-color: transparent;
