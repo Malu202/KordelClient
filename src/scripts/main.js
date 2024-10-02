@@ -63,7 +63,7 @@ function setSwitchState(Switch, state) {
 //var serverip = "http://10.0.0.40:1337/";
 
 //ZIMABLADE ÄNDERUNG
-//var serverip = "http://192.168.0.185:1337/";
+//var serverip = "http://192.168.0.52:1337/";
 let serverip = "http://" + window.location.host + '/';
 var detectServerUrlOrigins = [
   "file://", // fürs developen, damit kann man einfach das index.html file öffnen und es detected trotzdem die server ip

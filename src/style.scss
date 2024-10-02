@@ -541,7 +541,8 @@ select option {
 //SERIEN
 #serien {
     flex: 1 1 0;
-    align-items: flex-start;
+    align-items: center;
+    align-content: flex-start; //Wichtig sonst verschwinden die ersten paar serien
     // margin: 4px;
     // width:100%;
     overflow: auto;
@@ -651,6 +652,13 @@ select option {
 #filme {
     align-items: center;
     justify-content: center;
+}
+
+#refreshFilmeUndSerienButton {
+    width: 100px;
+    height: 100px;
+    background-color: $mdc-theme-surface;
+    margin: 4px 4px 4px 4px;
 }
 
 #logs {

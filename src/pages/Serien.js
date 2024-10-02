@@ -132,8 +132,9 @@ function setupSerienCards(serien) {
         previousHistory[i] = history;
     }
 
-
+    serienPage.appendChild(refreshButton);
 }
+
 
 function requestSeriesPlayback(path) {
     var task = {};

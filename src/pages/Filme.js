@@ -1,5 +1,7 @@
 var FILME_URL = serverip + "LokaleFilme";
 
+let refreshButton = document.getElementById("refreshFilmeUndSerienButton")
+
 var filme;
 function loadFilme() {
     filme = [];
@@ -38,5 +40,15 @@ function playFilm(path) {
     var task = {};
     task.task = "LokalenFilmspielen";
     task.path = path;
+    postRequest(TODO_IP, task, function () { });
+}
+
+refreshButton.addEventListener("click", function () {
+    showDialog("Filme & Serien indizieren", "Filme und Serien werden geladen. Die Festplatte wird dafür eigneschaltet. Fortfahren?", "Abbrechen", "Fortfahren", null, filmeUndSerienIndizieren);
+});
+function filmeUndSerienIndizieren() {
+    var task = {};
+    task.task = "FilmeUndSerienIndizieren";
+    console.log("hi")
     postRequest(TODO_IP, task, function () { });
 }

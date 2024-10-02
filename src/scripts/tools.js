@@ -167,10 +167,10 @@ function showCustomDialog(heading, bodyObject, cancel, accept, oncancel, onaccep
   if (cancel) {
     dialogCancel.innerHTML = cancel;
 
-    dialogCancel.addEventListener("click", function () {
+    dialogCancel.onclick = function () {
       hideDialog();
       if (oncancel) oncancel();
-    });
+    };
 
   } else {
     dialogCancel.style.display = "none";
@@ -178,10 +178,10 @@ function showCustomDialog(heading, bodyObject, cancel, accept, oncancel, onaccep
   if (accept) {
     dialogAccept.innerHTML = accept;
 
-    dialogAccept.addEventListener("click", function () {
+    dialogAccept.onclick = function () {
       hideDialog();
       if (onaccept) onaccept();
-    });
+    };
   } else {
     dialogAccept.style.display = "none";
   }
