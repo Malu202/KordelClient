@@ -1,7 +1,7 @@
 var footballPage = document.getElementById("football");
 
 function updateFootball(response) {
-    var spiele = response.Footballspiele;
+    var spiele = response.Footballspiele || [];
     footballPage.innerHTML = "";
 
     // var footballControls = document.createElement("div");
