@@ -64,7 +64,7 @@ function setSwitchState(Switch, state) {
 
 //ZIMABLADE ÄNDERUNG
 //var serverip = "http://192.168.0.52:1337/";
-let serverip = "http://" + window.location.host + '/';
+let serverip = ((window.location.protocol || "").toLowerCase() == "https:" ? "https:" : "http:") + "//" + window.location.host + '/';
 var detectServerUrlOrigins = [
   "file://", // fürs developen, damit kann man einfach das index.html file öffnen und es detected trotzdem die server ip
   "https://kordeltest.duckdns.org"
