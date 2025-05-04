@@ -1,16 +1,21 @@
 function streamMedia(url) {
-    var request = { "task": "YoutubeVideostreamen", "url": url, "now": true, "autoplay": false };
+    var request = { "task": "YoutubeVideostreamen", "name": url, "now": true };
     postRequest(TODO_IP, request, function (msg) { });
 }
 
-// window.addEventListener('DOMContentLoaded', function () {
-//     const parsedUrl = new URL(window.location);
-//     // searchParams.get() will properly handle decoding the values.
-//     console.log('Title shared: ' + parsedUrl.searchParams.get('title'));
-//     console.log('Text shared: ' + parsedUrl.searchParams.get('text'));
-//     console.log('URL shared: ' + parsedUrl.searchParams.get('url'));
-//     streamMedia(parsedUrl.searchParams.get('url'));
-// });
+window.addEventListener('DOMContentLoaded', function () {
+    const parsedUrl = new URL(window.location);
+    // searchParams.get() will properly handle decoding the values.
+    const title = parsedUrl.searchParams.get('title');
+    const text = parsedUrl.searchParams.get('text');
+    const url = parsedUrl.searchParams.get('url');
+    console.log('Title shared: ' + title);
+    console.log('Text shared: ' + text);
+    console.log('URL shared: ' + url);
+    if (typeof url == "string" && url.length > 0) {
+        streamMedia(url);
+    }
+});
 
 // var url = event.clipboardData.getData('text/plain');
 // console.log(url)
