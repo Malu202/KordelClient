@@ -34,6 +34,12 @@ window.addEventListener('DOMContentLoaded', function () {
     if (null != firstStreamable) {
         console.log('Found streamable url: ' + firstStreamable);
         streamMedia(firstStreamable);
+        ['url', 'text', 'title'].forEach(function (u) {
+            if (parsedUrl.searchParams.has(u)) {
+                parsedUrl.searchParams.delete(u);
+            }
+        });
+        window.history.replaceState({}, null, parsedUrl);
     }
 });
 
